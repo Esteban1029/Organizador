@@ -1,11 +1,18 @@
 package Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-
-public class Event {
+/**
+ * El String date se convierte a tipo Date
+ * Cuando de instancie en el String date poner: yyyy mm dd hr o los tres primeros
+ */
+public class Event implements Serializable{
+    
+    private static final long serialVersionUID= 112233445566778899l;
     private String name;
     private Date date;
+    private Date made;  // fecha de creación
     private String description;
     private String place;
     private int importance;
@@ -38,18 +45,22 @@ public class Event {
         Date verificar= new Date();
         ArrayList<String> elementos =new ArrayList();
         String aux[];
+        this.made=new Date();
 
             aux=date.split(" ");
             for(String b:aux)
             {
-                System.out.println(b);
                 if(!b.equals(""))
                 {
                    elementos.add(b.trim());
                 }
             }
 
-
+          
+        
+        try
+        {
+         
             for(String b:elementos)
             {
                 if(elementos.size()==4)
@@ -71,7 +82,8 @@ public class Event {
                 }
                 else
                 {
-                    System.out.println("Ingrese bien los datos");
+                    this.date=null;
+                    System.out.println("Ingrese los datos de manera coherente");
                 }
             }
             
@@ -86,8 +98,19 @@ public class Event {
             {
                     System.out.println("Fecha incohrente");
             }
+        }
+        catch(NumberFormatException error )
+        {
+            System.out.println("Ingrese los datos de forma coherente\n"
+                    + "yyyy mm dd hr o los tres primeros campos");
+        }
+        
 
       
+    }
+    
+        public Date getMade() {
+        return made;
     }
 
     public String getDescription() {
@@ -113,7 +136,8 @@ public class Event {
     public void setImportance(int importance) {
         this.importance = importance;
     }
-    //
+    
+    
     public String restTime()
     {
         System.out.println("Dias,horas,minutos");
@@ -122,6 +146,8 @@ public class Event {
         int days,hours,minutes;
         String auxTime;
         Date current = new Date();
+        try
+        {
         time=(date.getTime()-current.getTime())/86400000d;
         days=(int)time;
         time-=Math.floor(time);
@@ -135,8 +161,29 @@ public class Event {
         auxTime=String.format("%d,%d,%d",
                 days,hours,minutes);
         
-        return auxTime;
+            return auxTime;
+        }
+        catch(NullPointerException error)
+        {
+            return null;
+        }
+        
     }
     
+    public boolean isExpire()
+    {
+        Date auxDate= new Date();
+        try
+        {
+           return auxDate.compareTo(date)==1;    
+        }
+        catch(NullPointerException error)
+        {
+           return true; 
+        }
+        
+    }
     
 }
+
+
