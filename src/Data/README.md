@@ -1,0 +1,4 @@
+# Organizador-POO
+Aplicación organizadora de eventos: este programa facilitará una adecuada organización de eventos, tareas y diferentes actividades que tenga el usuario, de tal manera que se genere una gestión eficaz del tiempo, priorizando los eventos importantes. El programa será capaz de alertar al usuario de las actividades o tareas que están a punto de acontecer en su calendario.
+
+Al desarrollar esta aplicación  se busca gestionar de manera sencilla, creativa e interactiva la organización de los diferentes eventos particulares, familiares, sociales, etc. del usuario. Frente a una necesidad de estipular un orden y recordatorio concreto de los eventos del dia a dia que una persona vaya consolidando en su agenda  particular, y es así como el programa tiene efecto organizador y administrativo de los diferentes eventos agendados por el usuario cotidianamente.
