@@ -117,7 +117,7 @@ public class Event {
     public String restTime()
     {
         System.out.println("Dias,horas,minutos");
-        // da el tiempo que falta en dias.
+        // da el tiempo que falta en dias,horas y minutos.
         double time;
         int days,hours,minutes;
         String auxTime;
