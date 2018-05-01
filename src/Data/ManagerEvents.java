@@ -25,8 +25,10 @@ public class  ManagerEvents{
         try
         {
             salida=new ObjectOutputStream(new FileOutputStream(fileName));
+            System.out.println("hola");
             salida.writeObject(lisEve);
             salida.close();
+            
         }
         catch(IOException error)
         {
