@@ -6,8 +6,7 @@
 package javaapplication16;
 
 /**
- *
- * @author Esteban Ladino
+
  */
 public class Gui {
     
