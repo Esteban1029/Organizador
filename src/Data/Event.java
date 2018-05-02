@@ -7,7 +7,7 @@ import java.util.Date;
  * El String date se convierte a tipo Date
  * Cuando de instancie en el String date poner: yyyy mm dd hr o los tres primeros
  */
-public class Event implements Serializable{
+public class Event implements Serializable, Comparable<Event>{
     
     private static final long serialVersionUID= 112233445566778899l;
     private String name;
@@ -183,7 +183,12 @@ public class Event implements Serializable{
         }
         
     }
-    
+       
+    @Override 
+    public int compareTo(Event e)
+    {
+        return date.compareTo(e.getDate());
+    }
 }
 
 

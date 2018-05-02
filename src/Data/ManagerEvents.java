@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -64,7 +65,9 @@ public class  ManagerEvents{
     
     public ArrayList<Event> tidyEvents(ArrayList<Event> lisEve)
     {
-        return null;
+        // EL programa necesita que devuelva en ArrayList
+      Collections.sort(lisEve);
+      return lisEve;
     }
     
     
