@@ -1,11 +1,14 @@
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package Data;
+/**
+ * Se declararon estaticos los metodos de guardar y leer 
+ * eventos, para no tener que instanciar en cada momento.
+ * 
 
+ */
+package Bussines;
+
+
+import Data.Event;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,12 +23,18 @@ import java.util.Collections;
  */
 public class  ManagerEvents{
     
-    public boolean saveEvents(ArrayList<Event> lisEve, String fileName)
+    static String fileName="Events.ser";
+    
+    
+    static boolean saveEvents(ArrayList<Event> lisEve)
     {
         ObjectOutputStream salida;
         try
         {
             salida=new ObjectOutputStream(new FileOutputStream(fileName));
+            //Ordena los eventos antes de guardarlos
+            tidyEvents(lisEve);
+            
             salida.writeObject(lisEve);
             salida.close();
             
@@ -38,8 +47,11 @@ public class  ManagerEvents{
 
     }
     
-    public ArrayList<Event> readEvents(ArrayList<Event> lisEve,String fileName)
+    
+    
+    static ArrayList<Event> readEvents()
     {
+        
         ObjectInputStream entrada;
         ArrayList<Event> eventos;
         
@@ -63,12 +75,59 @@ public class  ManagerEvents{
         return null;
     }
     
-    public ArrayList<Event> tidyEvents(ArrayList<Event> lisEve)
+    
+    
+    static ArrayList<Event> tidyEvents(ArrayList<Event> lisEve)
     {
         // EL programa necesita que devuelva en ArrayList
       Collections.sort(lisEve);
       return lisEve;
     }
+    
+    
+    public ArrayList<Event> ExpireEvents(){
+        ArrayList<Event> lisEven=new ArrayList();
+        
+        
+        for(Event evento:readEvents())
+        {
+            if(evento.isExpire())
+                lisEven.add(evento);
+        }
+        
+        if(lisEven.isEmpty())
+            return null;
+        return lisEven;
+    }
+    
+    
+    public void makeEvent()
+    {
+        
+    }
+    
+    public void deleteEvent()
+    {
+        
+    }
+    
+    public void editEvent()
+    {
+        
+    }
+    
+    
+    public ArrayList<Event> searchEvent()
+    {
+        return null;
+    }
+    
+    
+         
+    
+    
+    
+    
     
     
     

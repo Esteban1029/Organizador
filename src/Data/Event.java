@@ -10,20 +10,35 @@ import java.util.Date;
 public class Event implements Serializable, Comparable<Event>{
     
     private static final long serialVersionUID= 112233445566778899l;
+    
+    private int importance;
     private String name;
-    private Date date;
-    private Date made;  // fecha de creación
     private String description;
     private String place;
-    private int importance;
+    
+    private final Date made;  // fecha de creación
+    private Date date;
 
-    public Event(String name,String date, String description, String place, int importance) {
+    private ArrayList<Person> guestList;
+    private ArrayList<Alarm> alarm;
+
+    
+    public Event(String name,String description,String place, Date date,  int importance, 
+            ArrayList<Person> guestList, ArrayList<Alarm> alarm) 
+    {
         this.name = name;
-        setDate(date);
+        this.date=date;
+        this.made = new Date();
         this.description = description;
         this.place = place;
         this.importance = importance;
+        this.guestList = guestList;
+        this.alarm=alarm;
+        
     }
+    
+
+ 
 
     public String getName() {
         return name;
@@ -32,85 +47,10 @@ public class Event implements Serializable, Comparable<Event>{
     public void setName(String name) {
         this.name = name;
     }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        int year=0;
-        int month=0;
-        int day=0;
-        int hour=0;
-        Date verificar= new Date();
-        ArrayList<String> elementos =new ArrayList();
-        String aux[];
-        this.made=new Date();
-
-            aux=date.split(" ");
-            for(String b:aux)
-            {
-                if(!b.equals(""))
-                {
-                   elementos.add(b.trim());
-                }
-            }
-
-          
-        
-        try
-        {
-         
-            for(String b:elementos)
-            {
-                if(elementos.size()==4)
-                {
-                    if(elementos.indexOf(b)==0)year=Integer.parseInt(b)-1900;
-                    if(elementos.indexOf(b)==1)month=Integer.parseInt(b)-1;
-                    if(elementos.indexOf(b)==2)day=Integer.parseInt(b);
-                    if(elementos.indexOf(b)==3)hour=Integer.parseInt(b);
-                   
-                   
-                    
-                }
-                else if(elementos.size()==3)
-                {
-                    if(elementos.indexOf(b)==0)year=Integer.parseInt(b)-1900;
-                    if(elementos.indexOf(b)==1)month=Integer.parseInt(b)-1;
-                    if(elementos.indexOf(b)==2)day=Integer.parseInt(b);
-                    
-                }
-                else
-                {
-                    this.date=null;
-                    System.out.println("Ingrese los datos de manera coherente");
-                }
-            }
-            
-            
-            if(year>verificar.getYear()||month>verificar.getMonth()||
-                    day>verificar.getDay()||(hour>verificar.getHours()&&
-                    hour!=0))
-            {
-                this.date= new Date(year,month,day,hour,0);
-            }
-            else
-            {
-                    System.out.println("Fecha incohrente");
-            }
-        }
-        catch(NumberFormatException error )
-        {
-            System.out.println("Ingrese los datos de forma coherente\n"
-                    + "yyyy mm dd hr o los tres primeros campos");
-        }
-        
-
-      
-    }
     
-        public Date getMade() {
-        return made;
+    public Date getMade() 
+    {
+    return made;
     }
 
     public String getDescription() {
@@ -136,8 +76,31 @@ public class Event implements Serializable, Comparable<Event>{
     public void setImportance(int importance) {
         this.importance = importance;
     }
-    
-    
+
+    public ArrayList<Person> getGuestList() {
+        return guestList;
+    }
+
+    public void setGuestList(ArrayList<Person> guestList) {
+        this.guestList = guestList;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public ArrayList<Alarm> getAlarm() {
+        return alarm;
+    }
+
+    public void setAlarm(ArrayList<Alarm> alarm) {
+        this.alarm = alarm;
+    }
+        
     public String restTime()
     {
         System.out.println("Dias,horas,minutos");
@@ -183,12 +146,14 @@ public class Event implements Serializable, Comparable<Event>{
         }
         
     }
-       
+    
+    
     @Override 
     public int compareTo(Event e)
     {
         return date.compareTo(e.getDate());
     }
+    
 }
 
 

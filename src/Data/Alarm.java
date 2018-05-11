@@ -1,12 +1,52 @@
+
+package Data;
+
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  *
  * @author Andres
  */
-public class Alarm {
-    private int tipoAlarma;
-    private Date diaNotificacion;
+public class Alarm implements Serializable{
+    
+    private String tipoAlarma;
+    private Date date;
 
+    
+    public Alarm(String tipoAlarma, Date date) {
+        this.tipoAlarma = tipoAlarma;
+        this.date = date;
+    }   
+    
+    
     public String getTipoAlarma() {
+        return tipoAlarma;
+    }
+
+    public void setTipoAlarma(String tipoAlarma) {
+        this.tipoAlarma = tipoAlarma;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+    
+    
+    
+    public boolean isExpire()
+    {
+        Date auxDate=new Date();
+        return auxDate.compareTo(date)==1;
+    }
+    
+    
+
+   /*  public String getTipoAlarma() {
         return tipoAlarma;
     }
 
@@ -22,7 +62,7 @@ public class Alarm {
         this.diaNotificacion = diaNotificacion;
     }
 
-    public Alarm(String tipoAlarma, Date diaNotificacion) {
+   public Alarm(String tipoAlarma, Date diaNotificacion) {
         if(tipoAlarma.equals("correo")){
             this.tipoAlarma = 1;
         }else if(tipoAlarma.equals("sonido"){
@@ -61,8 +101,11 @@ public class Alarm {
     catch (MessagingException me) {
         me.printStackTrace();   //Si se produce un error
     }
+    
 }
-                 
+    */             
+
+
     
     
     

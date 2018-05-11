@@ -1,7 +1,6 @@
 
 
 package Bussines;
-import java.util.Scanner;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,15 +13,14 @@ import java.util.Scanner;
  *
  * @author Esteban Ladino
  */
-public class testAll {
+public class MainManager{
  
     public static void main(String[] args) {
-        Scanner reader=new Scanner(System.in);
-        ManagerIcons icons= new ManagerIcons(); 
-  
-       icons.mostrarIcons();
-  
-
+       
+      
+       //Pantalla principal
+       ManagerGui.showMainScreen();
+       
  
     }
       

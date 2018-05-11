@@ -11,17 +11,18 @@ import java.io.Serializable;
  *
  * @author Esteban
  */
-public class Persona implements Serializable{
-   
-   String nombre;
-   String correo;
+public class Person implements Serializable{
+    
+    
+   private String nombre;
+   private String correo;
+   private boolean user;
 
-
-    public Persona(String nombre, String correo) {
+    public Person(String nombre, String correo, boolean user) {
         this.nombre = nombre;
         this.correo = correo;
+        this.user = user;
     }
-    
 
     public String getNombre() {
         return nombre;
@@ -38,5 +39,12 @@ public class Persona implements Serializable{
     public void setCorreo(String correo) {
         this.correo = correo;
     }
-    
+
+    public boolean isUser() {
+        return user;
+    }
+
+    public void setUser(boolean user) {
+        this.user = user;
+    }  
 }
