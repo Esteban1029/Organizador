@@ -12,11 +12,14 @@ public class Alarm implements Serializable{
     
     private String tipoAlarma;
     private Date date;
+    private boolean activated;
+    
 
     
     public Alarm(String tipoAlarma, Date date) {
         this.tipoAlarma = tipoAlarma;
         this.date = date;
+        activated=false;
     }   
     
     
@@ -36,6 +39,14 @@ public class Alarm implements Serializable{
         this.date = date;
     }
     
+        public boolean isActivated() {
+        return activated;
+    }
+        
+    public void setActivated(boolean activated) {
+        this.activated = activated;
+    }
+
     
     
     public boolean isExpire()
@@ -43,6 +54,7 @@ public class Alarm implements Serializable{
         Date auxDate=new Date();
         return auxDate.compareTo(date)==1;
     }
+    
     
     
 
@@ -104,6 +116,7 @@ public class Alarm implements Serializable{
     
 }
     */             
+
 
 
     

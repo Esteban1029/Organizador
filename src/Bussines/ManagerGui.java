@@ -21,7 +21,7 @@ public class ManagerGui {
    
    private static String[] nameIcons;
    
-   static void showMainScreen()
+   static public void showMainScreen()
    {
        javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -82,7 +82,7 @@ public class ManagerGui {
   
     
     // leer las imágenes disponibles en un archivo
-   static String[] searchIconPath(String ruta)
+    public String[] searchIconPath(String ruta)
    {
        File file=new File(ruta);
        String[] contenido;
@@ -105,7 +105,7 @@ public class ManagerGui {
    }
    
    // mostrar solo los nombres de las imágenes sin extensiones.
-   static String[] nameIcon()
+    public String[] nameIcon()
    {
        String[] name=new String[nameIcons.length]; 
        for (int i = 0; i < nameIcons.length; i++) {
