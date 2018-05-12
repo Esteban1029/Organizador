@@ -8,10 +8,14 @@ package Bussines;
 
 import Data.Event;
 import Data.Person;
-import Gui.AvailableIcon;
+import Gui.AvailableIcons;
+
 import Gui.PantallaPrincipal;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 /**
  *
@@ -20,6 +24,7 @@ import java.util.ArrayList;
 public class ManagerGui {
    
    private static String[] nameIcons;
+   private final String pathFile= "Icons";
    
    static public void showMainScreen()
    {
@@ -34,12 +39,10 @@ public class ManagerGui {
    public void showIcons()
     {
     
-      AvailableIcon mostrarIconos=new AvailableIcon();
-      
-      String[] rutas=searchIconPath("Icons");
-      String[] nombreIconos=nameIcon();
-      
-      mostrarIconos.icon(rutas, nombreIconos);  
+      AvailableIcons mostrarIconos=new AvailableIcons(arrayIcons());
+      mostrarIconos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      mostrarIconos.setSize(300,500);
+      mostrarIconos.setVisible(true);
     }
    
    /**
@@ -82,9 +85,9 @@ public class ManagerGui {
   
     
     // leer las imágenes disponibles en un archivo
-    public String[] searchIconPath(String ruta)
+    public String[] searchIconPath()
    {
-       File file=new File(ruta);
+       File file=new File(pathFile);
        String[] contenido;
        if(file.exists())
        {
@@ -93,7 +96,7 @@ public class ManagerGui {
                nameIcons=file.list();
                contenido=file.list(); 
                 for (int i = 0; i < contenido.length; i++) {
-                   contenido[i]=ruta+"\\"+"\\"+contenido[i];
+                   contenido[i]=pathFile+"\\"+"\\"+contenido[i];
                }
 
                return contenido;
@@ -114,6 +117,25 @@ public class ManagerGui {
 
            return name;
    }
+    
+    
+    public Icon[] arrayIcons()
+    {
+      
+        ArrayList<Icon> iconos=new ArrayList();
+      for(String a:searchIconPath())
+      {
+          
+          iconos.add(new ImageIcon(a));
+      }
+      
+      Icon[] arrayIcons = new Icon[iconos.size()];
+      
+      arrayIcons=iconos.toArray(arrayIcons);
+      
+      return arrayIcons;
+       
+    }
    
     
       
