@@ -13,6 +13,19 @@ import javax.swing.JScrollPane;
 import javax.swing.JFrame;
 
 
+
+class listener implements ActionListener{
+   @Override
+    public void actionPerformed(ActionEvent ae) {
+        EventGui obj=new EventGui();
+        obj.setVisible(true);
+        
+    } 
+}
+
+    
+
+
 public class PantallaPrincipal {
     JTextArea output;
     JScrollPane scrollPane;
@@ -32,6 +45,9 @@ public class PantallaPrincipal {
         //a group of JMenuItems
         menuItem = new JMenuItem("Crear evento");
         menu.add(menuItem);
+        
+        listener al = new listener();
+        menuItem.addActionListener(al);
 
         menuItem = new JMenuItem("Editar evento");
         menuItem.setMnemonic(KeyEvent.VK_E);

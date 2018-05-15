@@ -8,7 +8,10 @@
 package Bussines;
 
 
+import Data.Alarm;
 import Data.Event;
+import Data.Person;
+import com.toedter.calendar.JCalendar;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,7 +19,14 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.Date;
+import java.util.Scanner;
+import javax.swing.*;
+import Data.*;
+import java.awt.*;
+import Data.*;
+import Bussines.*;
+import Gui.Invitados;
 /**
  *
  * @author Esteban Ladino
@@ -26,7 +36,7 @@ public class  ManagerEvents{
     static String fileName="Events.ser";
     
     
-    static boolean saveEvents(ArrayList<Event> lisEve)
+    public static boolean saveEvents(ArrayList<Event> lisEve)
     {
         ObjectOutputStream salida;
         try
@@ -49,7 +59,7 @@ public class  ManagerEvents{
     
     
     
-    static ArrayList<Event> readEvents()
+    public static ArrayList<Event> readEvents()
     {
         
         ObjectInputStream entrada;
@@ -76,6 +86,7 @@ public class  ManagerEvents{
     }
     
     
+ 
     
     static ArrayList<Event> tidyEvents(ArrayList<Event> lisEve)
     {
@@ -100,25 +111,49 @@ public class  ManagerEvents{
         return lisEven;
     }
     
+    public static void addEvent(Event event){
+        
+        ArrayList <Event> events =ManagerEvents.readEvents();
+        boolean iscreated = false;
+        for(Event e: events){
+            if(event.equals(e)){
+                iscreated=true;
+            }
+        }
+        if(iscreated==false){
+            events.add(event);
+        }else{
+            JOptionPane.showMessageDialog(null, "El evento ya fue creado ");
+            //System.out.println("El evento ya fue creado ");
+        }
+    }
+    /*public Event makeEvent(String name,String description,String place, Date date, int importance){
+       ArrayList <Event> events =ManagerEvents.readEvents();
+       ArrayList<Person> guestList = new ArrayList();
+       ArrayList<Alarm> alarm =new ArrayList();
+        
+    }*/
     
-    public void makeEvent()
-    {
+    public void deleteEvent(Event event){
+        
+        ArrayList <Event> events =ManagerEvents.readEvents();
+        for(Event e: events){
+            if(event.equals(e)){
+                events.remove(e);
+            }
+        }
         
     }
     
-    public void deleteEvent()
-    {
+    public void editEvent(){
         
     }
     
-    public void editEvent()
-    {
+    public void createguestList(){
         
     }
     
-    
-    public ArrayList<Event> searchEvent()
-    {
+    public ArrayList<Event> searchEvent(){
         return null;
     }
     
