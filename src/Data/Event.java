@@ -37,8 +37,7 @@ public class Event implements Serializable, Comparable<Event>{
         
     }
     
-
- 
+    
 
     public String getName() {
         return name;
@@ -81,7 +80,11 @@ public class Event implements Serializable, Comparable<Event>{
         return guestList;
     }
 
-    public void setGuestList(ArrayList<Person> guestList) {
+    public void setGuestList(ArrayList<Person> guestList, String name, String correo,boolean isuser) {
+        
+        Person guest = new Person(name,correo,isuser);
+        guestList.add(guest);
+        
         this.guestList = guestList;
     }
 

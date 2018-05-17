@@ -8,8 +8,8 @@ import java.util.Date;
  *
  * @author Andres
  */
-public class Alarm implements Serializable{
-    
+public class Alarm implements Serializable  {
+    private static final long serialVersionUID= 112233445566778899l;
     private String tipoAlarma;
     private Date date;
     private boolean activated;
@@ -116,6 +116,8 @@ public class Alarm implements Serializable{
     
 }
     */             
+
+    
 
 
 

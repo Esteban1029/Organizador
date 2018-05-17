@@ -5,18 +5,73 @@
  */
 package Bussines;
 
+import static Bussines.ManagerEvents.fileName;
 import Data.Alarm;
 import Data.Event;
 import Data.Person;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
  * @author
  */
-public class ManagerAlarm {
+public class ManagerAlarm{
+    static String fileName="Alarms.ser";
+    
+    public static boolean saveAlarms(ArrayList<Event> lisEve)
+    {
+        ObjectOutputStream salida;
+        try
+        {
+            salida=new ObjectOutputStream(new FileOutputStream(fileName));
+            //Ordena los eventos antes de guardarlos
+            
+            
+            salida.writeObject(lisEve);
+            salida.close();
+            
+        }
+        catch(IOException error)
+        {
+            return false;
+        }
+        return true;
+
+    }
     
     
+    
+    public static ArrayList<Alarm> readAlarms()
+    {
+        
+        ObjectInputStream entrada;
+        ArrayList<Alarm> Alarms;
+        
+        try
+        {
+        entrada=new ObjectInputStream(new FileInputStream(fileName));
+        Alarms=(ArrayList<Alarm>)entrada.readObject();
+        entrada.close();
+        return Alarms;
+        
+        }
+        catch(IOException error)
+        {
+            System.out.println("No se puede abrir el archivo "+ fileName);
+        }
+        catch (ClassNotFoundException error)
+        {
+            System.out.println("las clases no son sompatibles");
+        }
+        
+        return null;
+    }
     //Utiliza los dos métodos de abajo para notificar.
     public void notification()
     {

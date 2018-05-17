@@ -8,16 +8,88 @@
 package Bussines;
 
 
+import Data.Alarm;
 import Data.Event;
+
+import Data.Person;
+import com.toedter.calendar.JCalendar;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import java.util.ArrayList;
 import java.util.Collections;
-
+import java.util.Date;
+import java.util.Scanner;
+import javax.swing.*;
+import Data.*;
+import java.awt.*;
+import Data.*;
+import Bussines.*;
+import Gui.Invitados;
 /**
  *
  * @author Esteban Ladino
  */
 public class  ManagerEvents{
     
+
+    static String fileName="Events.ser";
+    
+    
+    public static boolean saveEvents(ArrayList<Event> lisEve)
+    {
+        ObjectOutputStream salida;
+        try
+        {
+            salida=new ObjectOutputStream(new FileOutputStream(fileName));
+            //Ordena los eventos antes de guardarlos
+            tidyEvents(lisEve);
+            
+            salida.writeObject(lisEve);
+            salida.close();
+            
+        }
+        catch(IOException error)
+        {
+            return false;
+        }
+        return true;
+
+    }
+    
+    
+    
+    public static ArrayList<Event> readEvents()
+    {
+        
+        ObjectInputStream entrada;
+        ArrayList<Event> eventos;
+        
+        try
+        {
+        entrada=new ObjectInputStream(new FileInputStream(fileName));
+        eventos=(ArrayList<Event>)entrada.readObject();
+        entrada.close();
+        return eventos;
+        
+        }
+        catch(IOException error)
+        {
+            System.out.println("No se puede abrir el archivo "+ fileName);
+        }
+        catch (ClassNotFoundException error)
+        {
+            System.out.println("las clases no son sompatibles");
+        }
+        
+        return null;
+    }
+    
+    
+ 
 
     
     static public ArrayList<Event> tidyEvents(ArrayList<Event> lisEve)
@@ -43,25 +115,49 @@ public class  ManagerEvents{
         return lisEven;
     }
     
+    public static void addEvent(Event event){
+        
+        ArrayList <Event> events =ManagerEvents.readEvents();
+        boolean iscreated = false;
+        for(Event e: events){
+            if(event.equals(e)){
+                iscreated=true;
+            }
+        }
+        if(iscreated==false){
+            events.add(event);
+        }else{
+            JOptionPane.showMessageDialog(null, "El evento ya fue creado ");
+            //System.out.println("El evento ya fue creado ");
+        }
+    }
+    /*public Event makeEvent(String name,String description,String place, Date date, int importance){
+       ArrayList <Event> events =ManagerEvents.readEvents();
+       ArrayList<Person> guestList = new ArrayList();
+       ArrayList<Alarm> alarm =new ArrayList();
+        
+    }*/
     
-    public void makeEvent()
-    {
+    public void deleteEvent(Event event){
+        
+        ArrayList <Event> events =ManagerEvents.readEvents();
+        for(Event e: events){
+            if(event.equals(e)){
+                events.remove(e);
+            }
+        }
         
     }
     
-    public void deleteEvent()
-    {
+    public void editEvent(){
         
     }
     
-    public void editEvent()
-    {
+    public void createguestList(){
         
     }
     
-    
-    public ArrayList<Event> searchEvent()
-    {
+    public ArrayList<Event> searchEvent(){
         return null;
     }
     
