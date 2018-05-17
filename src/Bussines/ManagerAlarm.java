@@ -19,7 +19,7 @@ import java.util.Collections;
 
 /**
  *
- * @author Esteban
+ * @author
  */
 public class ManagerAlarm{
     static String fileName="Alarms.ser";
@@ -95,7 +95,7 @@ public class ManagerAlarm{
     {
         ArrayList<Event> lisEve= new ArrayList();
         
-        for(Event evento: ManagerEvents.readEvents())
+        for(Event evento: ReadSaveDatas.readEvents())
         {
             if(!evento.isExpire())
             {    

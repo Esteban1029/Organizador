@@ -16,7 +16,7 @@ public class Event implements Serializable, Comparable<Event>{
     private String description;
     private String place;
     
-    private final Date made;  // fecha de creación
+    private final Date made;  //   fecha de creación
     private Date date;
 
     private ArrayList<Person> guestList;

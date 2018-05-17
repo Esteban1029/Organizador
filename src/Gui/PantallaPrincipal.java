@@ -1,6 +1,10 @@
 
 package Gui;
 
+/**
+ * @author Andrés
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.JMenu;
@@ -120,8 +124,5 @@ public class PantallaPrincipal {
         frame.setSize(500, 500);
         frame.setVisible(true);
     }
-
-
-
 
 }

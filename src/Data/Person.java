@@ -18,33 +18,12 @@ import java.util.ArrayList;
  * @author Esteban
  */
 public class Person implements Serializable{
+
    private static final long serialVersionUID= 112233445566778899l; 
    static String fileName="Invitados.ser"; 
    private String nombre;
    private String correo;
    private boolean user;
-
-    public Person(String nombre, String correo, boolean user) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.user = user;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
 
     public boolean isUser() {
         return user;
@@ -101,4 +80,5 @@ public class Person implements Serializable{
         
         return null;
     }
+
 }

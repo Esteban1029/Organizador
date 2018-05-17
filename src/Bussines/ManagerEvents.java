@@ -10,6 +10,7 @@ package Bussines;
 
 import Data.Alarm;
 import Data.Event;
+
 import Data.Person;
 import com.toedter.calendar.JCalendar;
 import java.io.FileInputStream;
@@ -17,6 +18,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -33,6 +35,7 @@ import Gui.Invitados;
  */
 public class  ManagerEvents{
     
+
     static String fileName="Events.ser";
     
     
@@ -87,8 +90,9 @@ public class  ManagerEvents{
     
     
  
+
     
-    static ArrayList<Event> tidyEvents(ArrayList<Event> lisEve)
+    static public ArrayList<Event> tidyEvents(ArrayList<Event> lisEve)
     {
         // EL programa necesita que devuelva en ArrayList
       Collections.sort(lisEve);
@@ -100,7 +104,7 @@ public class  ManagerEvents{
         ArrayList<Event> lisEven=new ArrayList();
         
         
-        for(Event evento:readEvents())
+        for(Event evento:ReadSaveDatas.readEvents())
         {
             if(evento.isExpire())
                 lisEven.add(evento);
