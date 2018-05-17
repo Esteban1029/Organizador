@@ -14,37 +14,29 @@ import java.io.Serializable;
 public class Person implements Serializable{
     
     
-   private String nombre;
-   private String correo;
-   private boolean user;
+   private String name;
+   private String emailAddress;
 
-    public Person(String nombre, String correo, boolean user) {
-        this.nombre = nombre;
-        this.correo = correo;
-        this.user = user;
+    public Person(String name, String emailAddress) {
+        this.name = name;
+        this.emailAddress = emailAddress;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCorreo() {
-        return correo;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
-
-    public boolean isUser() {
-        return user;
-    }
-
-    public void setUser(boolean user) {
-        this.user = user;
-    }  
+   
+         
 }

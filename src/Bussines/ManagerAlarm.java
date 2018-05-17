@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Esteban
+ * @author
  */
 public class ManagerAlarm {
     
@@ -40,7 +40,7 @@ public class ManagerAlarm {
     {
         ArrayList<Event> lisEve= new ArrayList();
         
-        for(Event evento: ManagerEvents.readEvents())
+        for(Event evento: ReadSaveDatas.readEvents())
         {
             if(!evento.isExpire())
             {    

@@ -11,7 +11,7 @@ package Bussines;
 
 /**
  *
- * @author Esteban Ladino
+ * @author
  */
 public class MainManager{
  
@@ -19,9 +19,10 @@ public class MainManager{
        
       
        //Pantalla principal
-       ManagerGui.showMainScreen();
        
- 
+       ManagerGui m=new ManagerGui();
+       m.showIcons();      
+       
     }
       
 }
