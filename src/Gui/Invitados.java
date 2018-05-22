@@ -144,7 +144,9 @@ public class Invitados extends javax.swing.JFrame {
         }
         EventGui.guestListmain= a;
         int size = EventGui.guestListmain.size();
-        EventGui.jTextPane1.setText(String.valueOf(size));      
+        EventGui.jTextPane1.setText(String.valueOf(size));
+        JOptionPane.showMessageDialog(null, "Los Invitados Han Sido Agregados a Su Evento!! ");
+        
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
