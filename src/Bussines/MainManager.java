@@ -3,6 +3,7 @@
 package Bussines;
 
 import Data.*;
+import Gui.PantallaPrincipal;
 import java.util.ArrayList;
 
 /*
@@ -22,10 +23,16 @@ public class MainManager{
        
       
        //Pantalla principal
+
+       //ManagerGui m=new ManagerGui();
+       //m.showIcons();
+       //Alarm.notificacionCorreo("andres.ardila.agudelo@gmail.com","Andres","Ricardo","Party","Feb 19,2019","we would have fun");
+       PantallaPrincipal.createAndShowGUI();
+
        
 
-       ManagerGui m=new ManagerGui();
-       m.showIcons();      
+       //ManagerGui m=new ManagerGui();
+       //m.showIcons();      
 
     }
       
