@@ -111,7 +111,7 @@ public class  ManagerEvents{
         return lisEven;
     }
     
-    public static void addEvent(Event event){
+    public static boolean addEvent(Event event){
         
         ArrayList <Event> events =ManagerEvents.readEvents();
         boolean iscreated = false;
@@ -122,9 +122,10 @@ public class  ManagerEvents{
         }
         if(iscreated==false){
             events.add(event);
+            return true;
         }else{
-            JOptionPane.showMessageDialog(null, "El evento ya fue creado ");
-            //System.out.println("El evento ya fue creado ");
+            
+            return false;
         }
     }
     /*public Event makeEvent(String name,String description,String place, Date date, int importance){

@@ -254,7 +254,14 @@ public class EventGui extends javax.swing.JFrame {
         ArrayList <Alarm> alarmList = new ArrayList();
         String importance = jSpinner1.getValue().toString();
         Event event = new Event(jTextField1.getText(),jTextArea1.getText(),jTextField2.getText(),jDateChooser1.getDate(),Integer.parseInt(importance),guestListmain,alarmList);
-        ManagerEvents.addEvent(event);
+        boolean a = ManagerEvents.addEvent(event);
+        if (a){
+            JOptionPane.showMessageDialog(null, "El Evento a sido Exitosamente Guardado!! ");
+        }else {
+            JOptionPane.showMessageDialog(null, "El evento ya fue creado ");
+        }
+        
+        
         
         
         
