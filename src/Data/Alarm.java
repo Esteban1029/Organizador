@@ -49,6 +49,7 @@ public class Alarm implements Serializable  {
         this.date = date;
     }
     
+
     public boolean isActivated() {
         return activated;
     }
@@ -66,6 +67,7 @@ public class Alarm implements Serializable  {
     }
     
     
+
     public static void notificacionCorreo(String destino, String usuario, String nombreInvitado, String eventName, String date, String descripcion){
         String remitente = "meetingmanagerpoo";
         String clave ="POOAponte1";
@@ -101,7 +103,5 @@ public class Alarm implements Serializable  {
             transport.close();
         }catch(MessagingException me){
             me.printStackTrace();
-        }
-}
 
 }
