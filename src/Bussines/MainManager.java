@@ -30,6 +30,7 @@ public class MainManager{
        //Alarm.notificacionCorreo("andres.ardila.agudelo@gmail.com","Andres","Ricardo","Party","Feb 19,2019","we would have fun");
        PantallaPrincipal.createAndShowGUI();
        
+       
     }
       
 }

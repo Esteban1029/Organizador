@@ -71,7 +71,7 @@ public class Alarm implements Serializable  {
         String clave ="POOAponte1";
         
         String asunto ="MEETING FROM: "+usuario;
-        String cuerpo ="Hello "+nombreInvitado+",\n" +
+        String cuerpo ="Hello "+nombreInvitado+",\n"+
         "\n" +
         "You have been invited to "+eventName+ " by "+usuario+" on "+date+" where "+descripcion+" \n" +
         "\n" +
