@@ -54,14 +54,14 @@ public class Person implements Serializable{
     }
 
     public Person(String nombre, String correo, boolean user) {
-        this.nombre = nombre;
-        this.correo = correo;
+        this.nombre = nombre.trim();
+        this.correo = correo.trim();
         this.user = user;
     }
 
     public Person(String nombre, String correo) {
-        this.nombre = nombre;
-        this.correo = correo;
+        this.nombre = nombre.trim();
+        this.correo = correo.trim();
     }
 
     public String getNombre() {
@@ -69,7 +69,7 @@ public class Person implements Serializable{
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre = nombre.trim();
     }
 
     public String getCorreo() {
@@ -77,7 +77,7 @@ public class Person implements Serializable{
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
+        this.correo = correo.trim();
     }
     
     

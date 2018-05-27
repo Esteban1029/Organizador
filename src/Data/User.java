@@ -19,8 +19,8 @@ public class User extends Person implements Serializable{
 
     public User(String occupation, String contact, String name, String emailAddress) {
         super(name, emailAddress);
-        this.occupation = occupation;
-        this.contact = contact;
+        this.occupation = occupation.trim();
+        this.contact = contact.trim();
     }
     
     public User(String name,String emailAddress)
@@ -33,14 +33,14 @@ public class User extends Person implements Serializable{
     }
 
     public void setOccupation(String occupation) {
-        this.occupation = occupation;
+        this.occupation = occupation.toString();
     }
 
     public String getContact() {
         return contact;
     }
     public void setContact(String contact) {
-        this.contact = contact;
+        this.contact = contact.trim();
     }
 
     public String getPassword() {
@@ -48,7 +48,7 @@ public class User extends Person implements Serializable{
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.trim();
     }
     
 }

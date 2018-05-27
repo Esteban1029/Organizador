@@ -26,7 +26,8 @@ public class Searcher {
         output.clear();
         for(Event e:input)
         {
-            if(word.equals(e.getName()))
+            if(word.toLowerCase().
+                    equals(e.getName().toLowerCase()))
             {
                 output.add(e);
             }
@@ -40,7 +41,8 @@ public class Searcher {
         {
             for(Person p:e.getGuestList())
             {
-                if(p.getNombre().equals(p))
+                if(p.getNombre().toLowerCase().equals
+                    (word.toLowerCase()))
                 {
                     output.add(e);
                 }
@@ -53,7 +55,8 @@ public class Searcher {
      output.clear();
         for(Event e:input)
         {
-            if(word.equals(e.getPlace()))
+            if(word.toLowerCase().equals
+             (e.getPlace().toLowerCase()))
             {
                 output.add(e);
             }
@@ -75,7 +78,32 @@ public class Searcher {
     }
     
     public ArrayList<Event> searchDescription(String word){
-     return null;   
+     int range=5;
+     boolean verificador=false;
+     
+     if(word.length()>=range)
+     {
+         word=word.substring(0,range).toLowerCase();
+     }
+     
+     output.clear();
+        for(Event e:input)
+        {
+            if(e.getDescription().length()>=range)
+            {
+                verificador = true;
+            }
+            
+            if(!verificador) continue;
+            
+            if(e.getDescription().toLowerCase().
+                    contains(word.toLowerCase()))
+            {
+                output.add(e);
+            }
+        }
+        return output;
+     
     }
 
 }

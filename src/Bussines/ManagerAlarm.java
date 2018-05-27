@@ -5,7 +5,6 @@
  */
 package Bussines;
 
-import static Bussines.ManagerEvents.fileName;
 import Data.Alarm;
 import Data.Event;
 import Data.Person;
@@ -16,7 +15,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -97,7 +95,9 @@ public class ManagerAlarm{
     public ArrayList<Person> sendGmail(Event e,ArrayList<Person> guestList,Person user)
     {
         for(Person persona: guestList){
-            Alarm.notificacionCorreo(persona.getCorreo(), user.getNombre(), persona.getNombre(), e.getName(), e.getDate().toString(), e.getDescription());
+            Alarm.notificacionCorreo(persona.getCorreo(), user.getNombre(), 
+                    persona.getNombre(), e.getName(), e.getDate().toString(),
+                    e.getDescription());
         
     }
         return null;

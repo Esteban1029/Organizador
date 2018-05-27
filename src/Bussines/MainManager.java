@@ -39,6 +39,9 @@ public class MainManager{
        
        
        PantallaPrincipal.createAndShowGUI();
+    
+  
+
 
        
      
