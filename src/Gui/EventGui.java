@@ -25,7 +25,7 @@ public class EventGui extends javax.swing.JFrame {
     
     public EventGui() {
         initComponents();
-        
+        this.setLocationRelativeTo(null);
         
     }
 

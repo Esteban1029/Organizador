@@ -31,7 +31,8 @@ public class Invitados extends javax.swing.JFrame {
             }
 
             jList1.setModel(listModel);
-        
+            
+            this.setLocationRelativeTo(null);
         
     }
 

@@ -5,8 +5,12 @@ package Gui;
  * @author Andrés
  */
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
@@ -24,6 +28,7 @@ class listener implements ActionListener{
         EventGui obj=new EventGui();
         obj.setVisible(true);
         
+        
     } 
 }
 
@@ -33,6 +38,7 @@ class listener implements ActionListener{
 public class PantallaPrincipal {
     JTextArea output;
     JScrollPane scrollPane;
+    
 
     public JMenuBar createMenuBar() {
         JMenuBar menuBar;
@@ -122,7 +128,9 @@ public class PantallaPrincipal {
         //Display the window.
         frame.getContentPane().setBackground(Color.CYAN);
         frame.setSize(500, 500);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        
     }
 
 }

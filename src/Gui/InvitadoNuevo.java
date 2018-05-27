@@ -19,6 +19,7 @@ public class InvitadoNuevo extends javax.swing.JFrame {
      */
     public InvitadoNuevo() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
