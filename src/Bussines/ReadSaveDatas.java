@@ -6,6 +6,7 @@
 package Bussines;
 
 import Data.Event;
+import Data.Person;
 import Data.User;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -21,7 +22,8 @@ import java.util.ArrayList;
 public class ReadSaveDatas {
     static String fileNameEvents="Events.ser";
     static String fileNameUser="User.ser";
-
+    static String fileNamePerson="Invitados.ser";
+    
     static public boolean saveEvents(ArrayList<Event> lisEve)
     {
         
@@ -117,5 +119,53 @@ public class ReadSaveDatas {
         return true;
    
     }
+   
+    
+    public static boolean savePerson(ArrayList<Person> lisEve)
+    {
+        ObjectOutputStream salida;
+        try
+        {
+            salida=new ObjectOutputStream(new FileOutputStream(fileNamePerson));
+            //Ordena los eventos antes de guardarlos
+            
+            
+            salida.writeObject(lisEve);
+            salida.close();
+            
+        }
+        catch(IOException error)
+        {
+            return false;
+        }
+        return true;
+
+    }
+
+    public static ArrayList<Person> readPersons()
+    {
         
+        ObjectInputStream entrada;
+        ArrayList<Person> personas;
+        
+        try
+        {
+        entrada=new ObjectInputStream(new FileInputStream(fileNamePerson));
+        personas=(ArrayList<Person>)entrada.readObject();
+        entrada.close();
+        return personas;
+        
+        }
+        catch(IOException error)
+        {
+            System.out.println("No se puede abrir el archivo "+ fileNamePerson);
+        }
+        catch (ClassNotFoundException error)
+        {
+            System.out.println("las clases no son sompatibles");
+        }
+        
+        return null;
+    }
+
 }

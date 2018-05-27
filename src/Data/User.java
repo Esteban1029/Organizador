@@ -33,7 +33,7 @@ public class User extends Person implements Serializable{
     }
 
     public void setOccupation(String occupation) {
-        this.occupation = occupation.toString();
+        this.occupation = occupation.trim();
     }
 
     public String getContact() {
