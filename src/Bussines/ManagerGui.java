@@ -42,7 +42,7 @@ public class ManagerGui {
     
       AvailableIcons mostrarIconos=new AvailableIcons(arrayIcons());
       mostrarIconos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      mostrarIconos.setSize(300,500);
+      mostrarIconos.setSize(300,400);
       mostrarIconos.setVisible(true);
     }
    

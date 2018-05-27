@@ -26,11 +26,11 @@ public class Event implements Serializable, Comparable<Event>{
     public Event(String name,String description,String place, Date date,  int importance, 
             ArrayList<Person> guestList, ArrayList<Alarm> alarm) 
     {
-        this.name = name;
+        this.name = name.trim();
         this.date=date;
         this.made = new Date();
-        this.description = description;
-        this.place = place;
+        this.description = description.trim();
+        this.place = place.trim();
         this.importance = importance;
         this.guestList = guestList;
         this.alarm=alarm;
@@ -44,7 +44,7 @@ public class Event implements Serializable, Comparable<Event>{
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.trim();
     }
     
     public Date getMade() 
@@ -57,7 +57,7 @@ public class Event implements Serializable, Comparable<Event>{
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.trim();
     }
 
     public String getPlace() {
@@ -65,7 +65,7 @@ public class Event implements Serializable, Comparable<Event>{
     }
 
     public void setPlace(String place) {
-        this.place = place;
+        this.place = place.trim();
     }
 
     public int getImportance() {
@@ -90,6 +90,11 @@ public class Event implements Serializable, Comparable<Event>{
 
     public Date getDate() {
         return date;
+    }
+    
+    public String toStringDate() {
+        String d=String.format("%d,%d,%d",date.getYear(),date.getMonth(),date.getDay());
+        return d;
     }
 
     public void setDate(Date date) {

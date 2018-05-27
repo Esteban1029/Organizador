@@ -20,19 +20,36 @@ import java.util.ArrayList;
 public class MainManager{
  
     public static void main(String[] args) {
+       /**
+        * Prueba de correo
+        * 
+        *Alarm.notificacionCorreo("andres.ardila.estebanfajardo445@gmail.com","Andres",
+        * "Ricardo","Party","Feb 19,2019","we would have fun"); 
+        */
+    
        
+       
+      /**
+       * Prueba íconos
+       * ManagerGui m=new ManagerGui();
+         m.showIcons();
+       */  
       
+
+
        //Pantalla principal
 
        //ManagerGui m=new ManagerGui();
        //m.showIcons();
        //Alarm.notificacionCorreo("andres.ardila.agudelo@gmail.com","Andres","Ricardo","Party","Feb 19,2019","we would have fun");
        
-       new PrincipalPantalla().setVisible(true);
        
+    
+  
 
-       //ManagerGui m=new ManagerGui();
-       //m.showIcons();      
+
+       
+     
 
     }
       

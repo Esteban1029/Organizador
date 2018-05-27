@@ -6,8 +6,7 @@
 
 package Gui;
 
-import Data.Person;
-import static Gui.Invitados.jList1;
+
 import javax.swing.DefaultListModel;
 
 /**
@@ -26,6 +25,7 @@ public class guestjoined extends javax.swing.JFrame {
             }
 
             jList1.setModel(listModel);
+            this.setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to

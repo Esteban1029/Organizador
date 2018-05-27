@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gui;
-import Data.*;
-import Bussines.*;
+
+import Bussines.ManagerEvents;
+import Data.Alarm;
+import Data.Event;
+import Data.Person;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 
 /**
