@@ -101,8 +101,19 @@ public class Alarm implements Serializable  {
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
         }catch(MessagingException me){
-            me.printStackTrace();
+            me.
+                    printStackTrace();
 
         }
-  }
+     }
+    
+        @Override
+        public String toString() {
+            return date + " Tipo de alarma:" + tipoAlarma;
+        }
 }
+    
+
+    
+    
+
