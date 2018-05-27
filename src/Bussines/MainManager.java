@@ -4,6 +4,8 @@ package Bussines;
 
 import Data.*;
 import Gui.PantallaPrincipal;
+import Gui.Principal;
+import Gui.PrincipalPantalla;
 import java.util.ArrayList;
 
 /*
@@ -27,8 +29,8 @@ public class MainManager{
        //ManagerGui m=new ManagerGui();
        //m.showIcons();
        //Alarm.notificacionCorreo("andres.ardila.agudelo@gmail.com","Andres","Ricardo","Party","Feb 19,2019","we would have fun");
-       PantallaPrincipal.createAndShowGUI();
-
+       
+       new PrincipalPantalla().setVisible(true);
        
 
        //ManagerGui m=new ManagerGui();
