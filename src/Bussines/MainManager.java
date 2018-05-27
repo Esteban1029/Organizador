@@ -3,8 +3,6 @@
 package Bussines;
 
 import Data.*;
-import Gui.PantallaPrincipal;
-import Gui.Principal;
 import Gui.PrincipalPantalla;
 import java.util.ArrayList;
 
