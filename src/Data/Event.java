@@ -1,6 +1,7 @@
 package Data;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 /**
@@ -90,6 +91,11 @@ public class Event implements Serializable, Comparable<Event>{
 
     public Date getDate() {
         return date;
+    }
+    
+    public String toStringDate() {
+        String d=String.format("%d,%d,%d",date.getYear(),date.getMonth(),date.getDay());
+        return d;
     }
 
     public void setDate(Date date) {

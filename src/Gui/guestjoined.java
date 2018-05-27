@@ -6,8 +6,7 @@
 
 package Gui;
 
-import Data.Person;
-import static Gui.Invitados.jList1;
+
 import javax.swing.DefaultListModel;
 
 /**

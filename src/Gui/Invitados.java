@@ -6,7 +6,6 @@
 package Gui;
 
 import Data.Person;
-import static Gui.EventGui.guestListmain;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
