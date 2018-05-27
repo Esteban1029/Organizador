@@ -107,4 +107,10 @@ public class Alarm implements Serializable  {
 
 }
     }
+
+    @Override
+    public String toString() {
+        return date + " Tipo de alarma:" + tipoAlarma;
+    }
+    
 }
