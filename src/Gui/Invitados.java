@@ -5,7 +5,7 @@
  */
 package Gui;
 
-import Bussines.ReadSaveDatas;
+import Bussines.LoadDatas;
 import Data.Person;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -25,9 +25,9 @@ public class Invitados extends javax.swing.JFrame {
     
     public Invitados() {
         initComponents();
-            for(int i=0; i<ReadSaveDatas.readPersons().size(); i++) {
-                listModel.add(i, ReadSaveDatas.readPersons().
-                        get(i).getNombre()+"           "+ReadSaveDatas.readPersons().get(i).getCorreo());
+            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
+                listModel.add(i, LoadDatas.readPersons().
+                        get(i).getNombre()+"           "+LoadDatas.readPersons().get(i).getCorreo());
                 //listModel.addElement(i);
             }
 
@@ -139,7 +139,7 @@ public class Invitados extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int[]x=jList1.getSelectedIndices();
-        ArrayList<Person> List=ReadSaveDatas.readPersons();
+        ArrayList<Person> List=LoadDatas.readPersons();
         ArrayList<Person> a =new ArrayList();
         for (int i = 0; i<x.length;i++){
             a.add(List.get(x[i]));
@@ -164,10 +164,10 @@ public class Invitados extends javax.swing.JFrame {
         int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar este invitado?");
         if(answer==0){
             int position=jList1.getSelectedIndex();
-            ArrayList<Person> guestList= ReadSaveDatas.readPersons();
+            ArrayList<Person> guestList= LoadDatas.readPersons();
             Person remove= guestList.get(position);
             guestList.remove(remove);
-            ReadSaveDatas.savePerson(guestList);
+            LoadDatas.savePerson(guestList);
             listModel.remove(position);
             
             
@@ -182,8 +182,8 @@ public class Invitados extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultListModel listModel2 = new DefaultListModel();    
        
-            for(int i=0; i<ReadSaveDatas.readPersons().size(); i++) {
-                listModel2.add(i, ReadSaveDatas.readPersons().get(i).getNombre()+"           "+ReadSaveDatas.readPersons().get(i).getCorreo());
+            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
+                listModel2.add(i, LoadDatas.readPersons().get(i).getNombre()+"           "+LoadDatas.readPersons().get(i).getCorreo());
                 //listModel.addElement(i);
             }
 

@@ -14,35 +14,20 @@ import java.util.ArrayList;
  * @author Esteban
  */
 public class Searcher {
-    private ArrayList<Event> input=ReadSaveDatas.readEvents();
+    private ArrayList<Event> input=LoadDatas.readEvents();
     private ArrayList<Event> output= new ArrayList();
     
-    public Searcher()
-    {
-        this.output=null;
-    }
-    
+
     public ArrayList<Event> searchEvent(String word){
-        output.clear();
+        System.out.println("a");
+        
         for(Event e:input)
         {
-            if(word.toLowerCase().
-                    equals(e.getName().toLowerCase()))
+            if(e.getName()!=null)
             {
-                output.add(e);
-            }
-        }
-        return output;   
-    }
-    
-    public ArrayList<Event> searchPerson(String word){
-      output.clear();
-        for(Event e:input)
-        {
-            for(Person p:e.getGuestList())
-            {
-                if(p.getNombre().toLowerCase().equals
-                    (word.toLowerCase()))
+
+                if(word.toLowerCase().
+                        equals(e.getName().toLowerCase()))
                 {
                     output.add(e);
                 }
@@ -51,14 +36,36 @@ public class Searcher {
         return output;   
     }
     
-    public ArrayList<Event> searchPlace(String word){
-     output.clear();
+    public ArrayList<Event> searchPerson(String word){
+      System.out.println("b");
         for(Event e:input)
         {
-            if(word.toLowerCase().equals
-             (e.getPlace().toLowerCase()))
+            if(e.getGuestList()!=null)
+            {                
+                for(Person p:e.getGuestList())
+                {
+                    if(p.getNombre().toLowerCase().equals
+                        (word.toLowerCase()))
+                    {
+                        output.add(e);
+                    }
+                } 
+            }
+        }
+        return output;   
+    }
+    
+    public ArrayList<Event> searchPlace(String word){
+     System.out.println("c");
+        for(Event e:input)
+        {
+            if(e.getPlace()!=null)
             {
-                output.add(e);
+                if(word.toLowerCase().equals
+                 (e.getPlace().toLowerCase()))
+                {
+                    output.add(e);
+                }
             }
         }
         return output;   
@@ -66,44 +73,60 @@ public class Searcher {
     
     public ArrayList<Event> searchDate(String word){
         // El formato de entrada debe ser: yyyy,MM,dd
-        output.clear();
+       System.out.println("d");
         for(Event e:input)
         {
-            if(word.equals(e.toStringDate()))
+            if(e.toStringDate()!=null)
             {
-                output.add(e);
+   
+                if(word.equals(e.toStringDate()))
+                {
+                    output.add(e);
+                }
             }
         }
         return output;
     }
     
     public ArrayList<Event> searchDescription(String word){
-     int range=5;
-     boolean verificador=false;
-     
-     if(word.length()>=range)
-     {
-         word=word.substring(0,range).toLowerCase();
-     }
-     
-     output.clear();
+     System.out.println("e");
         for(Event e:input)
-        {
-            if(e.getDescription().length()>=range)
+        {   
+            if(e.getDescription()!=null)
             {
-                verificador = true;
-            }
-            
-            if(!verificador) continue;
-            
-            if(e.getDescription().toLowerCase().
-                    contains(word.toLowerCase()))
-            {
-                output.add(e);
-            }
+                if(e.getDescription().toLowerCase().
+                        contains(word.toLowerCase()))
+                {
+                    output.add(e);
+                }
+            }   
         }
         return output;
      
     }
+    
+    public ArrayList<Event> generalSearch(String word)
+    {
+        searchEvent(word);
+        searchPerson(word);
+        searchPlace(word);
+        searchDate(word);
+        searchDescription(word);
+        return output;
+    }
+    
+    public int[] availableSearch(String word)
+    {
+        int bqd[]={searchEvent(word).size(),
+            searchPerson(word).size(),
+            searchPlace(word).size(),
+            searchDate(word).size(),
+            searchDescription(word).size(),};
+        
+      return bqd;
+        
+            
+    }
+    
 
 }

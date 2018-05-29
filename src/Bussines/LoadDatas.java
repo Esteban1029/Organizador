@@ -5,6 +5,8 @@
  */
 package Bussines;
 
+
+import Data.Alarm;
 import Data.Event;
 import Data.Person;
 import Data.User;
@@ -19,10 +21,12 @@ import java.util.ArrayList;
  *
  * @author Esteban
  */
-public class ReadSaveDatas {
+public class LoadDatas {
     static String fileNameEvents="Events.ser";
     static String fileNameUser="User.ser";
     static String fileNamePerson="Invitados.ser";
+    static String fileNameAlarm="Alarms.ser";
+    
     
     static public boolean saveEvents(ArrayList<Event> lisEve)
     {
@@ -159,6 +163,55 @@ public class ReadSaveDatas {
         catch(IOException error)
         {
             System.out.println("No se puede abrir el archivo "+ fileNamePerson);
+        }
+        catch (ClassNotFoundException error)
+        {
+            System.out.println("las clases no son sompatibles");
+        }
+        
+        return null;
+    }
+    
+    public static boolean saveAlarms(ArrayList<Event> lisEve)
+    {
+        ObjectOutputStream salida;
+        try
+        {
+            salida=new ObjectOutputStream(new FileOutputStream(fileNameAlarm));
+            //Ordena los eventos antes de guardarlos
+            
+            
+            salida.writeObject(lisEve);
+            salida.close();
+            
+        }
+        catch(IOException error)
+        {
+            return false;
+        }
+        return true;
+
+    }
+    
+    
+    
+    public static ArrayList<Alarm> readAlarms()
+    {
+        
+        ObjectInputStream entrada;
+        ArrayList<Alarm> Alarms;
+        
+        try
+        {
+        entrada=new ObjectInputStream(new FileInputStream(fileNameAlarm));
+        Alarms=(ArrayList<Alarm>)entrada.readObject();
+        entrada.close();
+        return Alarms;
+        
+        }
+        catch(IOException error)
+        {
+            System.out.println("No se puede abrir el archivo "+ fileNameAlarm);
         }
         catch (ClassNotFoundException error)
         {

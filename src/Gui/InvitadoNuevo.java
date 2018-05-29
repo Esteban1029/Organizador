@@ -124,10 +124,10 @@ public class InvitadoNuevo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        ArrayList <Person> guestList = ReadSaveDatas.readPersons();
+        ArrayList <Person> guestList = LoadDatas.readPersons();
         Person persona = new Person(jTextField1.getText(),jTextField2.getText(),false);
         guestList.add(persona);
-        boolean a = ReadSaveDatas.savePerson(guestList);
+        boolean a = LoadDatas.savePerson(guestList);
        // Invitados.jList1.gets
         jTextField1.setText("");
         jTextField2.setText("");
