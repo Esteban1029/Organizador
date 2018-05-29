@@ -42,6 +42,7 @@ public class AlarmasPendientes extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     
     Vector<CheckListItem> listaS = new Vector<CheckListItem> ();
+    
     public Vector<CheckListItem> DatosAMostrar(ArrayList<Alarm> alarmas){
         Vector<CheckListItem> lista = new  Vector<CheckListItem>() ;
         for(Alarm alarma:alarmas){
@@ -53,6 +54,8 @@ public class AlarmasPendientes extends javax.swing.JFrame {
         return lista;
     }
     
+    
+    
     /*DatosAMostrar(ManagerAlarm.readAlarms()*/
     
     
@@ -63,8 +66,11 @@ public class AlarmasPendientes extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-
-        jList1 = new JList(listaS/*DatosAMostrar(ManagerAlarm.readAlarms()*/);
+        
+        //listaBase para cuando ya se vaya a usar las alarmas guardadas
+        //Vector<CheckListItem> listaBase = DatosAMostrar(ManagerAlarm.readAlarms());
+        
+        jList1 = new JList(listaS/*listaBase*/);
         jList1.setToolTipText("");
 
         jList1.setCellRenderer(new CheckListRenderer());
@@ -133,16 +139,19 @@ public class AlarmasPendientes extends javax.swing.JFrame {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.dispose();// TODO add your handling code here:
+        this.dispose();//Cierra la ventana
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        for(CheckListItem CheckListItem: listaS/*listaBase*/){
+            if(CheckListItem.isSelected()){
+                //HACER QUE SALGA UNA VENTANA POR EVENTO CON LA OPCION DE EDITAR
+                System.out.println(CheckListItem.toString());
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -204,6 +213,7 @@ class CheckListItem {
   public String toString() {
     return label;
   }
+  
 }
 
 class CheckListRenderer extends JCheckBox implements ListCellRenderer {
