@@ -22,7 +22,7 @@ import javax.swing.event.ListSelectionListener;
 
 public class AvailableIcons  extends JFrame{
     private final JList<Icon> listaIconos;
-    
+    static Icon path;
     
     public AvailableIcons(Icon[] icons)
     {
@@ -40,13 +40,8 @@ public class AvailableIcons  extends JFrame{
                     @Override
                     public void valueChanged(ListSelectionEvent evento)
                     {
-                        String ruta=icons[listaIconos.getSelectedIndex()].toString();
-                      
-                       JOptionPane.showMessageDialog(AvailableIcons.this,"imagen seleccionada es: " +
-                               ruta);
-                       
-                       
-                       
+                         path=icons[listaIconos.getSelectedIndex()];
+                         AvailableIcons.super.setVisible(false);
                     }
                     
                 }
@@ -54,6 +49,10 @@ public class AvailableIcons  extends JFrame{
         
         
     }
+
+  
+    
+    
         
         
  }
