@@ -146,9 +146,19 @@ public class PrincipalPantalla extends javax.swing.JFrame {
         jMenu3.setText("Opciones");
 
         jMenuItem9.setText("Datos personales");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem9);
 
         jMenuItem10.setText("Contactos");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem10);
 
         jMenuBar1.add(jMenu3);
@@ -211,6 +221,14 @@ public class PrincipalPantalla extends javax.swing.JFrame {
         new Alarmas().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        new DatosOpciones().setVisible(true);        // TODO add your handling code here:
+    }  
+    
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        //Contactos
+    }  
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new AlarmasPendientes().setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
