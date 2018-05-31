@@ -91,7 +91,7 @@ public class PrincipalPantalla extends javax.swing.JFrame {
         
         
        //listaBase para cuando ya se vaya a usar las alarmas guardadas
-        Vector<CheckListItem> listaBase = DatosAMostrar(ManagerEvents.readEvents());
+        //Vector<CheckListItem> listaBase = DatosAMostrar(ManagerEvents.readEvents());
         
         jList1 = new JList(listaS/*listaBase*/);
         jList1.setToolTipText("");
