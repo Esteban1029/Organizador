@@ -15,11 +15,11 @@ import java.util.ArrayList;
  */
 public class Searcher {
     private ArrayList<Event> input=LoadDatas.readEvents();
-    private ArrayList<Event> output= new ArrayList();
+    private ArrayList<Event> resultSearcher= new ArrayList();
+    static ArrayList<Event> auxResultSearcher= new ArrayList();
     
 
     public ArrayList<Event> searchEvent(String word){
-        System.out.println("a");
         
         for(Event e:input)
         {
@@ -29,15 +29,14 @@ public class Searcher {
                 if(word.toLowerCase().
                         equals(e.getName().toLowerCase()))
                 {
-                    output.add(e);
+                    resultSearcher.add(e);
                 }
             }
         }
-        return output;   
+        return resultSearcher;   
     }
     
     public ArrayList<Event> searchPerson(String word){
-      System.out.println("b");
         for(Event e:input)
         {
             if(e.getGuestList()!=null)
@@ -47,16 +46,15 @@ public class Searcher {
                     if(p.getNombre().toLowerCase().equals
                         (word.toLowerCase()))
                     {
-                        output.add(e);
+                        resultSearcher.add(e);
                     }
                 } 
             }
         }
-        return output;   
+        return resultSearcher;   
     }
     
     public ArrayList<Event> searchPlace(String word){
-     System.out.println("c");
         for(Event e:input)
         {
             if(e.getPlace()!=null)
@@ -64,16 +62,15 @@ public class Searcher {
                 if(word.toLowerCase().equals
                  (e.getPlace().toLowerCase()))
                 {
-                    output.add(e);
+                    resultSearcher.add(e);
                 }
             }
         }
-        return output;   
+        return resultSearcher;   
     }
     
     public ArrayList<Event> searchDate(String word){
         // El formato de entrada debe ser: yyyy,MM,dd
-       System.out.println("d");
         for(Event e:input)
         {
             if(e.toStringDate()!=null)
@@ -81,15 +78,14 @@ public class Searcher {
    
                 if(word.equals(e.toStringDate()))
                 {
-                    output.add(e);
+                    resultSearcher.add(e);
                 }
             }
         }
-        return output;
+        return resultSearcher;
     }
     
     public ArrayList<Event> searchDescription(String word){
-     System.out.println("e");
         for(Event e:input)
         {   
             if(e.getDescription()!=null)
@@ -97,23 +93,28 @@ public class Searcher {
                 if(e.getDescription().toLowerCase().
                         contains(word.toLowerCase()))
                 {
-                    output.add(e);
+                    resultSearcher.add(e);
                 }
             }   
         }
-        return output;
+        return resultSearcher;
      
     }
     
     public ArrayList<Event> generalSearch(String word)
     {
+        
         searchEvent(word);
         searchPerson(word);
         searchPlace(word);
         searchDate(word);
         searchDescription(word);
-        return output;
+        auxResultSearcher=resultSearcher;
+        resultSearcher.clear();
+        return auxResultSearcher;
     }
+    
+     
     
     public int[] availableSearch(String word)
     {
@@ -127,6 +128,9 @@ public class Searcher {
         
             
     }
-    
+
+    static public ArrayList<Event> getResultSearcher() {
+        return auxResultSearcher;
+    }
 
 }
