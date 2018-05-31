@@ -3,11 +3,12 @@ package Data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.Icon;
 /**
  * El String date se convierte a tipo Date
  * Cuando de instancie en el String date poner: yyyy mm dd hr o los tres primeros
  */
-public class Event implements Serializable, Comparable<Event>{
+public final class Event implements Serializable, Comparable<Event>{
     
     private static final long serialVersionUID= 112233445566778899l;
     
@@ -21,19 +22,21 @@ public class Event implements Serializable, Comparable<Event>{
 
     private ArrayList<Person> guestList;
     private ArrayList<Alarm> alarm;
+    
+    private Icon icon;
 
     
     public Event(String name,String description,String place, Date date,  int importance, 
             ArrayList<Person> guestList, ArrayList<Alarm> alarm) 
     {
-        this.name = name;
-        this.date=date;
+        setName(name);
+        setDate(date);
         this.made = new Date();
-        this.description = description;
-        this.place = place;
-        this.importance = importance;
-        this.guestList = guestList;
-        this.alarm=alarm;
+        setDescription(description);
+        setPlace(place);
+        setImportance(importance);
+        setGuestList(guestList);
+        setAlarm(alarm);
         
     }
     
@@ -44,7 +47,8 @@ public class Event implements Serializable, Comparable<Event>{
     }
 
     public void setName(String name) {
-        this.name = name;
+        if(name==null) name="";    
+        this.name = name.trim();
     }
     
     public Date getMade() 
@@ -57,7 +61,8 @@ public class Event implements Serializable, Comparable<Event>{
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        if(description==null) description="";
+        this.description = description.trim();
     }
 
     public String getPlace() {
@@ -65,7 +70,8 @@ public class Event implements Serializable, Comparable<Event>{
     }
 
     public void setPlace(String place) {
-        this.place = place;
+        if(place==null) place="";
+        this.place = place.trim();
     }
 
     public int getImportance() {
@@ -80,6 +86,13 @@ public class Event implements Serializable, Comparable<Event>{
         return guestList;
     }
 
+    public void setGuestList(ArrayList<Person> guestList) {
+        
+        
+        this.guestList = guestList;
+    }
+
+
     public void setGuestList(ArrayList<Person> guestList, String name, String correo,boolean isuser) {
         
         Person guest = new Person(name,correo,isuser);
@@ -90,6 +103,11 @@ public class Event implements Serializable, Comparable<Event>{
 
     public Date getDate() {
         return date;
+    }
+    
+    public String toStringDate() {
+        String d=String.format("%d,%d,%d",date.getYear()+1900,date.getMonth(),date.getDay());
+        return d;
     }
 
     public void setDate(Date date) {
@@ -103,7 +121,16 @@ public class Event implements Serializable, Comparable<Event>{
     public void setAlarm(ArrayList<Alarm> alarm) {
         this.alarm = alarm;
     }
+
+    public Icon getIcon() {
+        return icon;
+    }
+
+    public void setIcon(Icon icon) {
+        this.icon = icon;
+    }
         
+    
     public String restTime()
     {
         System.out.println("Dias,horas,minutos");
@@ -157,6 +184,15 @@ public class Event implements Serializable, Comparable<Event>{
         return date.compareTo(e.getDate());
     }
     
+    @Override
+    public String toString()
+    {
+    String a=String.format("Nombre: %s\n Lugar: %s\n Descripcion: %s\n Fecha: %s\n"
+            + " Icon: %s\n"
+            ,getName(),getPlace(),getDescription(),toStringDate(),
+            getIcon()==null?"":getIcon().toString());
+      return a;
+    }
 }
 
 

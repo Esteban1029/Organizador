@@ -2,9 +2,10 @@
 
 package Bussines;
 
-import Data.*;
-import Gui.PantallaPrincipal;
+import Data.Event;
+import Gui.PrincipalPantalla;
 import java.util.ArrayList;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -20,19 +21,28 @@ import java.util.ArrayList;
 public class MainManager{
  
     public static void main(String[] args) {
-       
-      
-       //Pantalla principal
+        //pantalla principal
 
-       //ManagerGui m=new ManagerGui();
-       //m.showIcons();
-       //Alarm.notificacionCorreo("andres.ardila.agudelo@gmail.com","Andres","Ricardo","Party","Feb 19,2019","we would have fun");
-       PantallaPrincipal.createAndShowGUI();
+//        Prueba de correo
+//         
+//        Alarm.notificacionCorreo("andres.ardila.estebanfajardo445@gmail.com","Andres",
+//         "Ricardo","Party","Feb 19,2019","we would have fun"); 
+//        
 
-       
 
-       //ManagerGui m=new ManagerGui();
-       //m.showIcons();      
+////    prueba de Search
+//            
+  Searcher s= new Searcher();
+
+       new PrincipalPantalla().setVisible(true);
+
+  
+  for(Event ew:s.generalSearch("esteban"))
+    {
+        System.out.println(ew);
+    } 
+
+   
 
     }
       

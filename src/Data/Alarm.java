@@ -5,7 +5,6 @@ package Data;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Properties;
-import javax.mail.Address;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -102,8 +101,21 @@ public class Alarm implements Serializable  {
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
         }catch(MessagingException me){
-            me.printStackTrace();
+            me.
+                    printStackTrace();
 
         }
-    }
+
+     }
+    
+        @Override
+        public String toString() {
+            return date + " Tipo de alarma:" + tipoAlarma;
+        }
+
 }
+    
+
+    
+    
+

@@ -1,15 +1,18 @@
+package Gui;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gui;
-import Data.*;
-import Bussines.*;
+
+
+import Bussines.LoadDatas;
+import Data.Alarm;
+import Data.Event;
+import Data.Person;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 
 /**
@@ -24,7 +27,7 @@ public class tets {
         Event event = new Event("sd","sd","sd",new Date(),10,lista,lista1);
         ArrayList <Event> a = new ArrayList();
         a.add(event);
-        ManagerEvents.saveEvents(a);
+        LoadDatas.saveEvents(a);
         
     }
     

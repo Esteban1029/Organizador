@@ -9,8 +9,9 @@ package Bussines;
 import Data.Event;
 import Data.Person;
 import Gui.AvailableIcons;
+import Gui.PrincipalPantalla;
 
-import Gui.PantallaPrincipal;
+
 import java.io.File;
 import java.util.ArrayList;
 import javax.swing.Icon;
@@ -31,7 +32,7 @@ public class ManagerGui {
        javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                PantallaPrincipal.createAndShowGUI();
+                new PrincipalPantalla().setVisible(true);
             }
         });
    }
@@ -41,7 +42,7 @@ public class ManagerGui {
     
       AvailableIcons mostrarIconos=new AvailableIcons(arrayIcons());
       mostrarIconos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      mostrarIconos.setSize(300,500);
+      mostrarIconos.setSize(300,400);
       mostrarIconos.setVisible(true);
     }
    
