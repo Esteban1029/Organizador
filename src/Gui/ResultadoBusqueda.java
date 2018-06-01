@@ -5,19 +5,52 @@
  */
 package Gui;
 
+
+import Bussines.LoadDatas;
+import Bussines.Searcher;
+import Data.Event;
+import Data.Imagen;
+import java.awt.Component;
+import java.awt.Image;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.ListCellRenderer;
+
 /**
  *
  * @author andresardilaagudelo
  */
 public class ResultadoBusqueda extends javax.swing.JFrame {
+    DefaultListModel ds= new DefaultListModel();
+    ImageIcon icon= new ImageIcon("Icons\\Koala.PNG");
 
+    
     /**
      * Creates new form ResultadoBusqueda
      */
     public ResultadoBusqueda() {
         initComponents();
+        populate();
     }
 
+    private void populate()
+    {
+        ds.clear();
+        
+       for(Event e: Searcher.getResultSearcher())
+       {
+           ds.addElement(e);
+           
+       }
+        
+        
+        listEvents.setCellRenderer(new Renderer());
+        listEvents.setModel(ds);
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -33,7 +66,7 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        listEvents = new javax.swing.JList<>();
         jButton3 = new javax.swing.JButton();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
@@ -63,13 +96,13 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
             }
         });
 
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]", "ICONO - NOMBRE - FECHA [CHECKBOX]" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        listEvents.setToolTipText("");
+        listEvents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listEventsMouseClicked(evt);
+            }
         });
-        jList2.setToolTipText("");
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(listEvents);
 
         jButton3.setText("Nueva busqueda");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +159,12 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void listEventsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listEventsMouseClicked
+        
+        JOptionPane.showMessageDialog(null,listEvents.getSelectedValue().toString());
+        
+    }//GEN-LAST:event_listEventsMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -160,6 +199,8 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
             }
         });
     }
+    
+ 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -167,8 +208,50 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<Event> listEvents;
     // End of variables declaration//GEN-END:variables
+
+
+    
+    private class Renderer extends DefaultListCellRenderer implements ListCellRenderer<Object>
+    {
+        public Component getListCellRendererComponent(JList<?> list,
+                                                   Object value,
+                                                   int index,
+                                                   boolean isSelected,
+                                                   boolean cellHasFocus){
+            
+            
+            Event is=(Event)value;
+            setText(is.getName()+"-"+is.getDate());
+            ImageIcon image=is.getIcon();
+           
+            if(is.getIcon()==null) image=icon;  
+           
+            
+            setIcon(new ImageIcon(image.getImage().
+                       getScaledInstance(50, 50,Image.SCALE_DEFAULT)));
+
+            if(isSelected)
+            {
+                setBackground(list.getSelectionBackground());
+                this.setForeground(list.getSelectionForeground());
+
+            }else
+            {
+                this.setBackground(list.getBackground());
+                this.setForeground(list.getForeground());
+            }
+
+            setEnabled(true);
+            setFont(list.getFont());
+            
+            return this;
+
+        }
+    }
+
+    
 }

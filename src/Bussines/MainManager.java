@@ -22,7 +22,7 @@ public class MainManager{
  
     public static void main(String[] args) {
         //pantalla principal
-
+          ManagerGui.showMainScreen();
 //        Prueba de correo
 //         
 //        Alarm.notificacionCorreo("andres.ardila.estebanfajardo445@gmail.com","Andres",
@@ -32,18 +32,17 @@ public class MainManager{
 
 ////    prueba de Search
 //            
-  Searcher s= new Searcher();
-
-       new PrincipalPantalla().setVisible(true);
-
-  
-  for(Event ew:s.generalSearch("esteban"))
-    {
-        System.out.println(ew);
-    } 
-
-   
-
+//  Searcher s= new Searcher();
+//
+//       new PrincipalPantalla().setVisible(true);
+//
+//  
+//  for(Event ew:s.generalSearch("esteban"))
+//    {
+//        System.out.println(ew);
+//    } 
+//
+//   
+//
     }
-      
 }

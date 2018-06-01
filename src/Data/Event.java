@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 /**
  * El String date se convierte a tipo Date
  * Cuando de instancie en el String date poner: yyyy mm dd hr o los tres primeros
@@ -23,7 +24,7 @@ public final class Event implements Serializable, Comparable<Event>{
     private ArrayList<Person> guestList;
     private ArrayList<Alarm> alarm;
     
-    private Icon icon;
+    private ImageIcon icon;
 
     
     public Event(String name,String description,String place, Date date,  int importance, 
@@ -122,11 +123,11 @@ public final class Event implements Serializable, Comparable<Event>{
         this.alarm = alarm;
     }
 
-    public Icon getIcon() {
+    public ImageIcon getIcon() {
         return icon;
     }
 
-    public void setIcon(Icon icon) {
+    public void setIcon(ImageIcon icon) {
         this.icon = icon;
     }
         
