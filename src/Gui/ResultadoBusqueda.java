@@ -23,7 +23,7 @@ import javax.swing.ListCellRenderer;
  */
 public class ResultadoBusqueda extends javax.swing.JFrame {
     DefaultListModel ds= new DefaultListModel();
-    ImageIcon icon= new ImageIcon("Icons\\Koala.PNG");
+   
 
     
     /**
@@ -211,45 +211,6 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
     private javax.swing.JList<Event> listEvents;
     // End of variables declaration//GEN-END:variables
 
-
-    
-    private class Renderer extends DefaultListCellRenderer implements ListCellRenderer<Object>
-    {
-        public Component getListCellRendererComponent(JList<?> list,
-                                                   Object value,
-                                                   int index,
-                                                   boolean isSelected,
-                                                   boolean cellHasFocus){
-            
-            
-            Event is=(Event)value;
-            setText(is.getName()+"-"+is.getDate());
-            ImageIcon image=is.getIcon();
-           
-            if(is.getIcon()==null) image=icon;  
-           
-            
-            setIcon(new ImageIcon(image.getImage().
-                       getScaledInstance(50, 50,Image.SCALE_DEFAULT)));
-
-            if(isSelected)
-            {
-                setBackground(list.getSelectionBackground());
-                this.setForeground(list.getSelectionForeground());
-
-            }else
-            {
-                this.setBackground(list.getBackground());
-                this.setForeground(list.getForeground());
-            }
-
-            setEnabled(true);
-            setFont(list.getFont());
-            
-            return this;
-
-        }
-    }
 
     
 }
