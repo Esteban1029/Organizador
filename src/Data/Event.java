@@ -30,6 +30,7 @@ public final class Event implements Serializable, Comparable<Event>{
     public Event(String name,String description,String place, Date date,  int importance, 
             ArrayList<Person> guestList, ArrayList<Alarm> alarm) 
     {
+        this.alarm= new ArrayList();
         setName(name);
         setDate(date);
         this.made = new Date();

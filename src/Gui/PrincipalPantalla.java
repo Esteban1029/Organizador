@@ -12,6 +12,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
@@ -47,6 +49,8 @@ public class PrincipalPantalla extends javax.swing.JFrame {
         }
         return lista;
     }
+    
+   
     
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">
@@ -219,8 +223,9 @@ public class PrincipalPantalla extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         
-        
-        new Alarmas().setVisible(true);        // TODO add your handling code here:
+        new Events().setVisible(true);
+
+                // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {                                           
@@ -285,7 +290,8 @@ public class PrincipalPantalla extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-class CheckListItem {
+
+    class CheckListItem {
 
   private String label;
   private boolean isSelected = false;

@@ -5,17 +5,27 @@
  */
 package Gui;
 
+import Data.Alarm;
+import Data.Event;
+import java.util.ArrayList;
+
 /**
  *
  * @author Ivan Solano
  */
 public class Alarmas extends javax.swing.JFrame {
 
+    private Event event;
+    private ArrayList<Alarm> listAlarms;
+    private Alarm alarm;
     /**
      * Creates new form Alarmas
      */
     public Alarmas() {
         initComponents();
+        listAlarms=new ArrayList();
+        event=null;
+        alarm=null;
     }
 
     /**
@@ -160,7 +170,19 @@ public class Alarmas extends javax.swing.JFrame {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+      
+        event=Events.eventChoose;
+        System.out.println(Events.eventChoose);
+        alarm= new Alarm(jCheckBox1.isSelected()?jCheckBox1.getName():
+                jCheckBox2.getName(),jDateChooser1.getDate());
+        System.out.println(jDateChooser1.getDate());
+        listAlarms=event.getAlarm();
+        listAlarms.add(alarm);
+        event.setAlarm(listAlarms);
+        this.setVisible(false);
+        
+       
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

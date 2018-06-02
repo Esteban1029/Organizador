@@ -5,7 +5,10 @@
  */
 package Gui;
 
+import Bussines.LoadDatas;
 import Data.Event;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -13,12 +16,40 @@ import Data.Event;
  */
 public class Events extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Events
-     */
+    DefaultListModel dl= new DefaultListModel();
+    ArrayList<Event> listEvents= new ArrayList();
+    static Event eventChoose;
+    
+
+    
     public Events() {
+        
+        
         initComponents();
+        
+        for(Event e:LoadDatas.readEvents())
+        {
+           if(!e.isExpire()) listEvents.add(e);
+        }
+        
+        
+        chargeList();
+        
+        
     }
+    
+   private void chargeList()
+   {
+       
+       for(Event e:listEvents)
+       {
+           dl.addElement(e);
+       }
+       
+       jList1.setCellRenderer(new Renderer());
+       jList1.setModel(dl);
+       
+   }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,9 +87,19 @@ public class Events extends javax.swing.JFrame {
             }
         });
 
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jButton2.setText("Ver todos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Eventos");
 
@@ -101,9 +142,30 @@ public class Events extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         this.setVisible(false);
+        new Alarmas().setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       
+        dl.clear();
+        for(Event e: LoadDatas.readEvents())
+        {
+            dl.addElement(e);
+        }
+        chargeList();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        
+        eventChoose=jList1.getSelectedValue();
+        
+    }//GEN-LAST:event_jList1MouseClicked
+
+    
+
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -138,6 +200,7 @@ public class Events extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
