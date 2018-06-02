@@ -6,6 +6,7 @@
 package Gui;
 import Data.*;
 import Bussines.*;
+import static Gui.Invitados.jList1;
 import java.util.ArrayList;
 import javax.swing.*;
 /**
@@ -136,7 +137,16 @@ public class InvitadoNuevo extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "El Invitado NO a sido Guardado!! ");
         }
+        DefaultListModel listModel2 = new DefaultListModel();    
+       
+            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
+                listModel2.add(i, LoadDatas.readPersons().get(i).getNombre()+"           "+LoadDatas.readPersons().get(i).getCorreo());
+                //listModel.addElement(i);
+            }
+
+            jList1.setModel(listModel2);
         
+                                     
         
         
     }//GEN-LAST:event_jButton1ActionPerformed

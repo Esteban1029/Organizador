@@ -44,8 +44,6 @@ public class Busqueda extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setText("Buscar Evento");
 

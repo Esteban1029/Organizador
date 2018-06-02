@@ -36,14 +36,11 @@ public class DatosOpciones extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel1.setText("Datos Usuario");
 
         jLabel2.setText("Nombre");
 
-        jTextField1.setText("jTextField1");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -51,8 +48,6 @@ public class DatosOpciones extends javax.swing.JFrame {
         });
 
         jLabel3.setText("Email");
-
-        jTextField2.setText("jTextField1");
 
         jLabel4.setText("Ingrese sus datos");
 

@@ -7,6 +7,8 @@ package Gui;
 
 import Bussines.LoadDatas;
 import Data.Person;
+import static Gui.EventEdit.evento;
+import static Gui.EditGuest.jList1editguest;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -53,7 +55,6 @@ public class Invitados extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
 
         setTitle("GUIguest");
 
@@ -86,13 +87,6 @@ public class Invitados extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Actualizar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,15 +99,13 @@ public class Invitados extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(23, 23, 23)
                 .addComponent(jButton1)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
-                .addGap(26, 26, 26)
-                .addComponent(jButton3)
-                .addGap(34, 34, 34)
-                .addComponent(jButton4)
-                .addContainerGap())
+                .addGap(52, 52, 52)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,12 +117,12 @@ public class Invitados extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton2)))
+                .addContainerGap())
         );
 
         pack();
@@ -144,10 +136,30 @@ public class Invitados extends javax.swing.JFrame {
         for (int i = 0; i<x.length;i++){
             a.add(List.get(x[i]));
         }
-        EventGui.guestListmain= a;
-        int size = EventGui.guestListmain.size();
-        EventGui.jTextPane1.setText(String.valueOf(size));
-        JOptionPane.showMessageDialog(null, "Los Invitados Han Sido Agregados a Su Evento!! ");
+        
+        EventGui obj = new EventGui();
+        EventEdit obj1= new EventEdit();
+        
+        if(obj.isShowing()){
+            EventGui.guestListmain= a;
+            int size = EventGui.guestListmain.size();
+            EventGui.jTextPane1.setText(String.valueOf(size));
+            JOptionPane.showMessageDialog(null, "Los Invitados Han Sido Agregados a Su Evento!! ");
+        }
+        if(obj1.isShowing()){
+            
+            ArrayList<Person> listainvitados =evento.getGuestList();
+            listainvitados.addAll(a);
+            evento.setGuestList(listainvitados);
+            for(int i=0; i<evento.getGuestList().size(); i++) {
+                listModel.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+                //listModel.addElement(i);
+            }
+
+            jList1editguest.setModel(listModel);
+            
+            JOptionPane.showMessageDialog(null, "Los Invitados Han Sido Agregados a Su Evento!! ");
+        }
         
         
         
@@ -177,19 +189,6 @@ public class Invitados extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        DefaultListModel listModel2 = new DefaultListModel();    
-       
-            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
-                listModel2.add(i, LoadDatas.readPersons().get(i).getNombre()+"           "+LoadDatas.readPersons().get(i).getCorreo());
-                //listModel.addElement(i);
-            }
-
-            jList1.setModel(listModel2);
-        
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,7 +229,6 @@ public class Invitados extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     public static javax.swing.JList<String> jList1;

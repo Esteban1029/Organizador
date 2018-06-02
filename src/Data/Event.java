@@ -25,6 +25,17 @@ public final class Event implements Serializable, Comparable<Event>{
     
     private Icon icon;
 
+    public Event() {
+        setName("");
+        setDate(date);
+        this.made = new Date();
+        setDescription("");
+        setPlace("");
+        setImportance(0);
+        setGuestList(guestList);
+        setAlarm(alarm);
+    }
+
     
     public Event(String name,String description,String place, Date date,  int importance, 
             ArrayList<Person> guestList, ArrayList<Alarm> alarm) 

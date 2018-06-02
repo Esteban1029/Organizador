@@ -3,7 +3,8 @@
 package Bussines;
 
 import Data.Event;
-import Gui.PrincipalPantalla;
+import Gui.MainScreen;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -32,15 +33,12 @@ public class MainManager{
 
 ////    prueba de Search
 //            
-  Searcher s= new Searcher();
+  
 
-       new PrincipalPantalla().setVisible(true);
+       new MainScreen().setVisible(true);
 
   
-  for(Event ew:s.generalSearch("esteban"))
-    {
-        System.out.println(ew);
-    } 
+  
 
    
 

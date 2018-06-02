@@ -8,8 +8,8 @@ package Bussines;
 
 import Data.Event;
 import Data.Person;
-import Gui.AvailableIcons;
-import Gui.PrincipalPantalla;
+import Gui.*;
+
 
 
 import java.io.File;
@@ -32,7 +32,7 @@ public class ManagerGui {
        javax.swing.SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new PrincipalPantalla().setVisible(true);
+                new MainScreen().setVisible(true);
             }
         });
    }
