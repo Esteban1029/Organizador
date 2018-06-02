@@ -35,7 +35,7 @@ public class MainManager{
 //            
   
 
-       new MainScreen().setVisible(true);
+       //new MainScreen().setVisible(true);
 
   
   
