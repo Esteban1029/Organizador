@@ -16,8 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Busqueda extends javax.swing.JFrame {
 
-    private boolean validar;
-    private String esteban;
+    private boolean empty=true;
 
     /**
      * Creates new form Busqueda
@@ -167,28 +166,42 @@ public class Busqueda extends javax.swing.JFrame {
         int[] resultado;
         ArrayList<Event> listResultados;
         
-        if(input.getText()!=null)
+        
+         if(!input.getText().equals(""))
         {
-            validar= true;
+            empty=false;
             listResultados=searcher.generalSearch(input.getText());
             resultado=searcher.availableSearch(input.getText());
         }
-        else if(!validar&&input.getText()!=null)
+         
+         if(inputDate.getDate()!=null)
         {
+            empty=false;
+            System.out.println(inputDate.getDate());
             date=String.format("%d,%d,%d",inputDate.getDate().getYear(),
                     inputDate.getDate().getMonth(),inputDate.getDate().getDay());
             listResultados=searcher.generalSearch(date);
             resultado=searcher.availableSearch(date);
         }
-        else
+         
+        if(empty)
         {
             JOptionPane.showMessageDialog(this,"Ingrese algún valor");
+           
+        }
+        
+        if(!empty)
+        {
+            inputDate.setDate(null);
+            input.setText("");
+            
+            new ResultadoBusqueda().setVisible(true);
+            
         }
         
         
         
-        
-        new ResultadoBusqueda().setVisible(true);// TODO add your handling code here:
+        // TODO add your handling code here:
         
         
     }//GEN-LAST:event_btSearchActionPerformed

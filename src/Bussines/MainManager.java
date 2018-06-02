@@ -22,9 +22,14 @@ public class MainManager{
  
     public static void main(String[] args) {
         //pantalla principal
-         // ManagerGui.showMainScreen();
-        ManagerGui m = new ManagerGui();
-        m.showIcons();
+        ManagerGui.showMainScreen();
+       
+        //prueba iconos
+        
+//        ManagerGui m = new ManagerGui();
+//        m.showIcons();
+        
+        
 //        Prueba de correo
 //         
 //        Alarm.notificacionCorreo("andres.ardila.estebanfajardo445@gmail.com","Andres",
