@@ -8,7 +8,7 @@ package Gui;
 import Bussines.LoadDatas;
 import Bussines.ManagerEvents;
 import Data.*;
-import static Gui.Invitados.jList1;
+
 import static Gui.MainScreen.jList1MainScreen;
 import java.util.ArrayList;
 import java.util.Date;

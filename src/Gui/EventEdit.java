@@ -14,6 +14,7 @@ import static Gui.VisualizeEvent.workEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 
 /**
@@ -26,6 +27,7 @@ public class EventEdit extends javax.swing.JFrame {
      * Creates new form EventEdit
      */
     public static Event evento = new Event();
+    static JTable jTable1EventEdit;
     
     DefaultListModel listModel1 = new DefaultListModel();
     DefaultListModel listModel2 = new DefaultListModel();
