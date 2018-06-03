@@ -48,20 +48,30 @@ public class  ManagerEvents{
     
     public static boolean addEvent(Event event){
         
-        ArrayList <Event> events =LoadDatas.readEvents();
-        boolean iscreated = false;
-        for(Event e: events){
-            if(event.equals(e)){
-                iscreated=true;
+        try
+        {
+            ArrayList <Event> events =LoadDatas.readEvents();
+            boolean iscreated = false;
+            for(Event e: events){
+                if(event.equals(e)){
+                    iscreated=true;
+                }
             }
-        }
-        if(iscreated==false){
+            if(iscreated==false){
+                events.add(event);
+                LoadDatas.saveEvents(events);
+                return true;
+            }else{
+
+                return false;
+            }
+        }catch(NullPointerException e)
+        {
+            ArrayList<Event> events= new ArrayList();
             events.add(event);
             LoadDatas.saveEvents(events);
-            return true;
-        }else{
-            
             return false;
+            
         }
     }
     /*public Event makeEvent(String name,String description,String place, Date date, int importance){

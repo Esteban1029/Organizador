@@ -22,10 +22,11 @@ public class MainManager{
  
     public static void main(String[] args) {
         //pantalla principal
-       // ManagerGui.showMainScreen();
-        ArrayList<Event> e= LoadDatas.readEvents();
-        e.clear();
-        LoadDatas.saveAlarms(e);
+       ManagerGui.showMainScreen();
+   for( Event e:LoadDatas.readEvents() )
+   {
+    System.out.println(e);
+   }
        
         //prueba iconos
         

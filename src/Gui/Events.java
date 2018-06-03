@@ -26,12 +26,19 @@ public class Events extends javax.swing.JFrame {
         
         
         initComponents();
+        try{
+            
         
-        for(Event e:LoadDatas.readEvents())
+            for(Event e:LoadDatas.readEvents())
+            {
+               if(!e.isExpire()) listEvents.add(e);
+            }
+        }catch(NullPointerException e)
         {
-           if(!e.isExpire()) listEvents.add(e);
+            
         }
-        
+                
+       
         
         chargeList();
         

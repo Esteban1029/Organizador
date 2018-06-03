@@ -36,7 +36,7 @@ public class LoadDatas {
         {
             salida=new ObjectOutputStream(new FileOutputStream(fileNameEvents));
             //Ordena los eventos antes de guardarlos
-            ManagerEvents.tidyEvents(lisEve);
+            if(lisEve!=null)ManagerEvents.tidyEvents(lisEve);
             
             salida.writeObject(lisEve);
             salida.close();
