@@ -7,7 +7,9 @@ package Gui;
 
 import Bussines.LoadDatas;
 import Data.Person;
+import static Gui.EditGuest.jTable1EditGuest;
 import static Gui.EventEdit.evento;
+
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -17,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Ivan Solano
  */
-public class Invitados extends javax.swing.JFrame {
+public class Invitados1 extends javax.swing.JFrame {
 
     /**
      * Creates new form Invitados
@@ -27,7 +29,7 @@ public class Invitados extends javax.swing.JFrame {
     DefaultTableModel model;
     String data [][]={ };
     String cabeza []={ "Nombre","Correo"};
-    public Invitados() {
+    public Invitados1() {
         initComponents();
         model= new DefaultTableModel(data,cabeza);
         for(int i =0; i<LoadDatas.readPersons().size();i++){
@@ -36,10 +38,6 @@ public class Invitados extends javax.swing.JFrame {
         }
         
         jTable1.setModel(model);
-        
-        
-        
-        
 //            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
 //                listModel.add(i, LoadDatas.readPersons().
 //                        get(i).getNombre()+"           "+LoadDatas.readPersons().get(i).getCorreo());
@@ -161,20 +159,37 @@ public class Invitados extends javax.swing.JFrame {
             a.add(List.get(x[i]));
         }
         
-               
-        EventGui.guestListmain= a;
-        int size = EventGui.guestListmain.size();
-        EventGui.jTextPane1.setText(String.valueOf(size));
+            
+        ArrayList<Person> listainvitados =evento.getGuestList();
+        listainvitados.addAll(a);
+        evento.setGuestList(listainvitados);
+        
+        String data [][]={ };
+        String cabeza []={ "Nombre","Correo"};
+        DefaultTableModel model1= new DefaultTableModel(data,cabeza);
+        for(int i =0; i<evento.getGuestList().size();i++){
+            String datos []={evento.getGuestList().get(i).getNombre(),evento.getGuestList().get(i).getCorreo()};
+            model1.addRow(datos);
+        }
+        jTable1EditGuest.setModel(model1);
+//        DefaultListModel listModel1 = new DefaultListModel();
+//        for(int i=0; i<evento.getGuestList().size(); i++) {
+//            listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+//                //listModel.addElement(i);
+//            }
+//
+//        jTable1EditGuest.setModel(listModel1);
+            
         JOptionPane.showMessageDialog(null, "Los Invitados Han Sido Agregados a Su Evento!! ");
         this.setVisible(false);
-             
+        
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        InvitadoNuevo obj=new InvitadoNuevo();
+        InvitadoNuevo1 obj=new InvitadoNuevo1();
         obj.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -214,20 +229,21 @@ public class Invitados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Invitados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invitados1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Invitados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invitados1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Invitados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invitados1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Invitados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invitados1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Invitados().setVisible(true);
+                new Invitados1().setVisible(true);
             }
         });
     }

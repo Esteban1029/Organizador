@@ -31,7 +31,8 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
             
             
             Event is=(Event)value;
-            setText(is.getName()+"-"+is.getDate());
+            setText(is.getName()+"   "+String.format("%d-%d-%d",is.getDate().getYear()+1900,
+                    is.getDate().getMonth()+1,is.getDate().getDate()));
             ImageIcon image=is.getIcon();
            
             if(is.getIcon()==null) image=defaultIcon;  

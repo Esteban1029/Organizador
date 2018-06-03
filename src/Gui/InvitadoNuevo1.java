@@ -6,7 +6,7 @@
 package Gui;
 import Data.*;
 import Bussines.*;
-import static Gui.Invitados.jTable1;
+import static Gui.Invitados1.jTable1;
 import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,13 +14,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Ivan Solano
  */
-public class InvitadoNuevo extends javax.swing.JFrame {
+public class InvitadoNuevo1 extends javax.swing.JFrame {
 
     /**
      * Creates new form Invitados
      */
     
-    public InvitadoNuevo() {
+    public InvitadoNuevo1() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -188,20 +188,21 @@ public class InvitadoNuevo extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(InvitadoNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InvitadoNuevo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(InvitadoNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InvitadoNuevo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(InvitadoNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InvitadoNuevo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(InvitadoNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InvitadoNuevo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new InvitadoNuevo().setVisible(true);
+                new InvitadoNuevo1().setVisible(true);
             }
         });
     }
