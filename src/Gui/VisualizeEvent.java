@@ -47,7 +47,7 @@ public class VisualizeEvent extends javax.swing.JFrame {
         //System.out.println(Posicion);
         ArrayList<Event> List=LoadDatas.readEvents();
         workEvent = List.get(Posicion);
-        this.jLabel1.setText(workEvent.getName());
+        this.jLabel1.setText(workEvent.getName().toUpperCase());
         this.jLabel6.setText(workEvent.getPlace());
             Date fecha = new Date();
             fecha = workEvent.getDate();
