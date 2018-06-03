@@ -22,12 +22,10 @@ import java.util.Date;
 public class tets {
     
     public static void main(String[] args) {
-        ArrayList <Person> lista = new ArrayList();
-        ArrayList <Alarm> lista1 = new ArrayList();
-        Event event = new Event("sd","sd","sd",new Date(),10,lista,lista1);
-        ArrayList <Event> a = new ArrayList();
-        a.add(event);
-        LoadDatas.saveEvents(a);
+        ArrayList <Event> lista = LoadDatas.readEvents();
+        
+        lista.remove(0);
+        LoadDatas.saveEvents(lista);
         
     }
     

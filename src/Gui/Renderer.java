@@ -31,7 +31,7 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
             
             
             Event is=(Event)value;
-            setText(is.getName()+"-"+is.getDate());
+            setText(is.getName()+"             "+is.getDate().toString());
             ImageIcon image=is.getIcon();
            
             if(is.getIcon()==null) image=defaultIcon;  

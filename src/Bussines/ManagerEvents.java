@@ -50,21 +50,21 @@ public class  ManagerEvents{
         
         try
         {
-            ArrayList <Event> events =LoadDatas.readEvents();
-            boolean iscreated = false;
-            for(Event e: events){
-                if(event.equals(e)){
-                    iscreated=true;
-                }
+        ArrayList <Event> events =LoadDatas.readEvents();
+        boolean iscreated = false;
+        for(Event e: events){
+            if(event.equals(e)){
+                iscreated=true;
             }
-            if(iscreated==false){
-                events.add(event);
-                LoadDatas.saveEvents(events);
-                return true;
-            }else{
-
-                return false;
-            }
+        }
+        if(iscreated==false){
+            events.add(event);
+            LoadDatas.saveEvents(events);
+            return true;
+        }else{
+            
+            return false;
+        }
         }catch(NullPointerException e)
         {
             ArrayList<Event> events= new ArrayList();
@@ -72,7 +72,7 @@ public class  ManagerEvents{
             LoadDatas.saveEvents(events);
             return false;
             
-        }
+    }
     }
     /*public Event makeEvent(String name,String description,String place, Date date, int importance){
        ArrayList <Event> events =ManagerEvents.readEvents();

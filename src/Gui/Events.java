@@ -32,10 +32,10 @@ public class Events extends javax.swing.JFrame {
             for(Event e:LoadDatas.readEvents())
             {
                if(!e.isExpire()) listEvents.add(e);
-            }
+    }
         }catch(NullPointerException e)
         {
-            
+
         }
                 
        
@@ -94,19 +94,9 @@ public class Events extends javax.swing.JFrame {
             }
         });
 
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jList1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jButton2.setText("Ver todos");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
 
         jLabel1.setText("Eventos");
 
@@ -147,7 +137,7 @@ public class Events extends javax.swing.JFrame {
     }// </editor-fold>                        
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-
+        eventChoose=jList1.getSelectedValue();
         this.setVisible(false);
         new Alarmas().setVisible(true);
         
@@ -207,7 +197,7 @@ public class Events extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton jButton1;

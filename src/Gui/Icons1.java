@@ -6,7 +6,8 @@
 package Gui;
 
 import Bussines.ManagerGui;
-import static Gui.EventGui.iconoseleccion;
+import static Gui.EventEdit.evento;
+import static Gui.EventEdit.jLabel8EvenEdit;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author Esteban
  */
-public class Icons extends javax.swing.JFrame {
+public class Icons1 extends javax.swing.JFrame {
 
     ManagerGui arrayIcons= new ManagerGui();
     DefaultListModel dl= new DefaultListModel();
@@ -23,7 +24,7 @@ public class Icons extends javax.swing.JFrame {
     /**
      * Creates new form Icons
      */
-    public Icons() {
+    public Icons1() {
         initComponents();
         addIcons();
     }
@@ -57,7 +58,7 @@ public class Icons extends javax.swing.JFrame {
         listIcons = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
-        jButton1.setText("Salir");
+        jButton1.setText("Crear");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -122,8 +123,10 @@ public class Icons extends javax.swing.JFrame {
         // TODO add your handling code here:
         int index= listIcons.getSelectedIndex();
         
-        iconoseleccion = iconos[index];     
+        ImageIcon iconoseleccion = iconos[index];
+        evento.setIcon(iconoseleccion);
         JOptionPane.showMessageDialog(null, "El icono Fue seleccionado Exitosamente!! ");
+        jLabel8EvenEdit.setIcon(evento.getIcon());
         this.setVisible(false);
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -145,20 +148,21 @@ public class Icons extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Icons.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Icons1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Icons.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Icons1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Icons.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Icons1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Icons.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Icons1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Icons().setVisible(true);
+                new Icons1().setVisible(true);
             }
         });
     }
