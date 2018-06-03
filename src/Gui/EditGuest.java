@@ -5,9 +5,11 @@
  */
 package Gui;
 import static Gui.EventEdit.evento;
-import static Gui.EventEdit.jList1EventEdit;
+import static Gui.EventEdit.jTable1EventEdit;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,17 +21,26 @@ public class EditGuest extends javax.swing.JFrame {
      * Creates new form EditGuest
      */
     DefaultListModel listModel = new DefaultListModel();
+    DefaultTableModel model;
+    String data [][]={ };
+    String cabeza []={ "Nombre","Correo"};
     public EditGuest() {
         initComponents();
         setResizable(false);
         this.setLocationRelativeTo(null);
+        model= new DefaultTableModel(data,cabeza);
+        for(int i =0; i<evento.getGuestList().size();i++){
+            String datos []={evento.getGuestList().get(i).getNombre(),evento.getGuestList().get(i).getCorreo()};
+            model.addRow(datos);
+        }
         
-        for(int i=0; i<evento.getGuestList().size(); i++) {
-                listModel.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
-                //listModel.addElement(i);
-            }
-
-            jList1editguest.setModel(listModel);
+        jTable1EditGuest.setModel(model);
+//        for(int i=0; i<evento.getGuestList().size(); i++) {
+//                listModel.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+//                //listModel.addElement(i);
+//            }
+//
+//            jList1editguest.setModel(listModel);
     }
 
     /**
@@ -45,7 +56,7 @@ public class EditGuest extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1editguest = new javax.swing.JList<>();
+        jTable1EditGuest = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
@@ -65,7 +76,18 @@ public class EditGuest extends javax.swing.JFrame {
             }
         });
 
-        jScrollPane1.setViewportView(jList1editguest);
+        jTable1EditGuest.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1EditGuest);
 
         jButton3.setText("Eliminar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -144,16 +166,17 @@ public class EditGuest extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        int index =jList1editguest.getSelectedIndex();
+        int index =jTable1EditGuest.getSelectedRow();
         evento.getGuestList().remove(index);
         DefaultListModel listModel1 = new DefaultListModel();
-        for(int i=0; i<evento.getGuestList().size(); i++) {
-            
-                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
-                //listModel.addElement(i);
-            }
+        model.removeRow(index);
+//        for(int i=0; i<evento.getGuestList().size(); i++) {
+//            
+//                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+//                //listModel.addElement(i);
+//            }
 
-            jList1editguest.setModel(listModel1);
+            jTable1EditGuest.setModel(model);
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -168,13 +191,23 @@ public class EditGuest extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Los Cambios han sido Guardados!!");
-        DefaultListModel listModel1 = new DefaultListModel();
-        for(int i=0; i<evento.getGuestList().size(); i++) {
-                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
-                //listModel.addElement(i);
-            }
-
-            jList1EventEdit.setModel(listModel1);
+        String data [][]={ };
+        String cabeza []={ "Nombre","Correo"};
+        DefaultTableModel model1= new DefaultTableModel(data,cabeza);
+        for(int i =0; i<evento.getGuestList().size();i++){
+            String datos []={evento.getGuestList().get(i).getNombre(),evento.getGuestList().get(i).getCorreo()};
+            model1.addRow(datos);
+        }
+        jTable1EventEdit.setModel(model1);
+        
+        
+//        DefaultListModel listModel1 = new DefaultListModel();
+//        for(int i=0; i<evento.getGuestList().size(); i++) {
+//                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+//                //listModel.addElement(i);
+//            }
+//
+//            jList1EventEdit.setModel(listModel1);
         
         
         
@@ -222,8 +255,8 @@ public class EditGuest extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    public static javax.swing.JList<String> jList1editguest;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    public static javax.swing.JTable jTable1EditGuest;
     // End of variables declaration//GEN-END:variables
 }

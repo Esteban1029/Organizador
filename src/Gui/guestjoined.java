@@ -7,7 +7,10 @@
 package Gui;
 
 
+import Data.Person;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,15 +20,31 @@ public class guestjoined extends javax.swing.JFrame {
 
     /** Creates new form guestjoined */
     DefaultListModel listModel = new DefaultListModel();
+    DefaultTableModel model;
+    String data [][]={ };
+    String cabeza []={ "Nombre","Correo"};
     public guestjoined() {
         initComponents();
-        for(int i=0; i<EventGui.guestListmain.size(); i++) {
-                listModel.add(i, EventGui.guestListmain.get(i).getNombre()+"           "+EventGui.guestListmain.get(i).getCorreo());
-                //listModel.addElement(i);
-            }
+        model= new DefaultTableModel(data,cabeza);
+        for(int i =0; i<EventGui.guestListmain.size();i++){
+            String datos []={EventGui.guestListmain.get(i).getNombre(),EventGui.guestListmain.get(i).getCorreo()};
+            model.addRow(datos);
+        }
+        
+        jTable2.setModel(model);
+        
+        
+        
+//        for(int i=0; i<EventGui.guestListmain.size(); i++) {
+//                listModel.add(i, EventGui.guestListmain.get(i).getNombre()+"           "+EventGui.guestListmain.get(i).getCorreo());
+//                //listModel.addElement(i);
+//            }
+//
+//            jList1.setModel(listModel);
+        
 
-            jList1.setModel(listModel);
-            this.setLocationRelativeTo(null);
+
+        this.setLocationRelativeTo(null);
     }
 
     /** This method is called from within the constructor to
@@ -38,14 +57,20 @@ public class guestjoined extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
+        jTable2 = new javax.swing.JTable();
 
-        jList1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jScrollPane1.setViewportView(jList1);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel1.setText("Nombre             Correo");
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,20 +78,14 @@ public class guestjoined extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 361, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -109,9 +128,8 @@ public class guestjoined extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
 
 }

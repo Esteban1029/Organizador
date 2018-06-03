@@ -34,6 +34,7 @@ public class MainScreen extends javax.swing.JFrame {
        
         
         initComponents();
+        this.setLocationRelativeTo(null);
                 for(int i=0; i<LoadDatas.readEvents().size(); i++) {
                 listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
                 //listModel.addElement(i);
@@ -216,7 +217,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
-        Alarmas obj= new Alarmas();
+        Events obj= new Events();
         obj.setVisible(true);
         
         
