@@ -26,11 +26,21 @@ public final class Event implements Serializable, Comparable<Event>{
     
     private ImageIcon icon;
 
+    public Event() {
+        setName("");
+        setDate(date);
+        this.made = new Date();
+        setDescription("");
+        setPlace("");
+        setImportance(0);
+        setGuestList(guestList);
+        setAlarm(alarm);
+    }
+
     
     public Event(String name,String description,String place, Date date,  int importance, 
             ArrayList<Person> guestList, ArrayList<Alarm> alarm) 
     {
-        this.alarm= new ArrayList();
         setName(name);
         setDate(date);
         this.made = new Date();
@@ -108,15 +118,8 @@ public final class Event implements Serializable, Comparable<Event>{
     }
     
     public String toStringDate() {
-        try
-        {
-            String d=String.format("%d,%d,%d",date.getYear()+1900,date.getMonth(),date.getDay());
+        String d=String.format("%d,%d,%d",date.getYear()+1900,date.getMonth(),date.getDay());
         return d;
-        }catch(NullPointerException e)
-        {
-            return "";
-        }
-        
     }
 
     public void setDate(Date date) {

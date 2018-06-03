@@ -5,13 +5,17 @@
  */
 package Gui;
 
+
 import Bussines.Searcher;
 import Data.Event;
+import java.awt.Component;
+import java.awt.Image;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
-
-
-
+import javax.swing.ListCellRenderer;
 
 /**
  *

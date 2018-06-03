@@ -3,7 +3,8 @@
 package Bussines;
 
 import Data.Event;
-import Gui.PrincipalPantalla;
+import Gui.MainScreen;
+//import Gui.PrincipalPantalla;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -22,11 +23,7 @@ public class MainManager{
  
     public static void main(String[] args) {
         //pantalla principal
-       ManagerGui.showMainScreen();
-   for( Event e:LoadDatas.readEvents() )
-   {
-    System.out.println(e);
-   }
+        ManagerGui.showMainScreen();
        
         //prueba iconos
         
