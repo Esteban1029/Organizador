@@ -8,9 +8,9 @@ package Bussines;
 
 import Data.Event;
 import Data.Person;
-import Gui.Icons;
+import Gui.*;
 
-import Gui.PrincipalPantalla;
+
 import java.awt.Image;
 
 
@@ -34,8 +34,8 @@ public class ManagerGui {
    static public void showMainScreen()
    {
        javax.swing.SwingUtilities.invokeLater(() -> {
-           new PrincipalPantalla().setVisible(true);
-       });
+           new MainScreen().setVisible(true);
+        });
    }
     
     

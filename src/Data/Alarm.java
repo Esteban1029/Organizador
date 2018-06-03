@@ -105,12 +105,14 @@ public class Alarm implements Serializable  {
                     printStackTrace();
 
         }
+
      }
     
         @Override
         public String toString() {
             return date + " Tipo de alarma:" + tipoAlarma;
         }
+
 }
     
 

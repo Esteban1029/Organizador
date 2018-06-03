@@ -5,10 +5,13 @@
  */
 package Gui;
 
+import Bussines.LoadDatas;
 import Bussines.ManagerEvents;
 import Data.*;
 import static Gui.Invitados.jList1;
+import static Gui.MainScreen.jList1MainScreen;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.*;
 
 /**
@@ -25,6 +28,7 @@ public class EventGui extends javax.swing.JFrame {
     
     public EventGui() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
         
     }
@@ -275,11 +279,38 @@ public class EventGui extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+        if("".equals(jTextField1.getText())){
+           JOptionPane.showMessageDialog(null, "El evento debe tener un nombre!! "); 
+        }
+        if("".equals(jTextField2.getText())){
+           JOptionPane.showMessageDialog(null, "El evento debe tener un Lugar!! "); 
+        }
+        if("".equals(jTextArea1.getText())){
+           JOptionPane.showMessageDialog(null, "El evento debe tener una Descripcion!! "); 
+        }
+        if(guestListmain.isEmpty()){
+            JOptionPane.showMessageDialog(null, "El evento debe tener al menos un invitado!! ");
+            
+        }
+        else{
+            ArrayList <Alarm> alarmList = new ArrayList();
+            String importance = jSpinner1.getValue().toString();
+            Event event = new Event(jTextField1.getText(),jTextArea1.getText(),jTextField2.getText(),jDateChooser1.getDate(),Integer.parseInt(importance),guestListmain,alarmList);
+            boolean a = ManagerEvents.addEvent(event);
+            if(a){
+                JOptionPane.showMessageDialog(null, "El evento Fue guardado Exitosamente!! ");
+                DefaultListModel listModel = new DefaultListModel();
+            for(int i=0; i<LoadDatas.readEvents().size(); i++) {
+                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
+                //listModel.addElement(i);
+            }
+
+            jList1MainScreen.setModel(listModel);
+            }if(!a){
+                JOptionPane.showMessageDialog(null, "No pudo guardarse el Evento!! ");
+            }
+        }
         
-        ArrayList <Alarm> alarmList = new ArrayList();
-        String importance = jSpinner1.getValue().toString();
-        Event event = new Event(jTextField1.getText(),jTextArea1.getText(),jTextField2.getText(),jDateChooser1.getDate(),Integer.parseInt(importance),guestListmain,alarmList);
-        ManagerEvents.addEvent(event);
         
         
         

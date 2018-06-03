@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author Ivan Solano
  */
-public class Invitados extends javax.swing.JFrame {
+public class Invitados1 extends javax.swing.JFrame {
 
     /**
      * Creates new form Invitados
@@ -25,7 +25,7 @@ public class Invitados extends javax.swing.JFrame {
     
     DefaultListModel listModel = new DefaultListModel();
     
-    public Invitados() {
+    public Invitados1() {
         initComponents();
             for(int i=0; i<LoadDatas.readPersons().size(); i++) {
                 listModel.add(i, LoadDatas.readPersons().
@@ -137,13 +137,21 @@ public class Invitados extends javax.swing.JFrame {
             a.add(List.get(x[i]));
         }
         
-               
-        EventGui.guestListmain= a;
-        int size = EventGui.guestListmain.size();
-        EventGui.jTextPane1.setText(String.valueOf(size));
+            
+        ArrayList<Person> listainvitados =evento.getGuestList();
+        listainvitados.addAll(a);
+        evento.setGuestList(listainvitados);
+        DefaultListModel listModel1 = new DefaultListModel();
+        for(int i=0; i<evento.getGuestList().size(); i++) {
+            listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+                //listModel.addElement(i);
+            }
+
+        jList1editguest.setModel(listModel1);
+            
         JOptionPane.showMessageDialog(null, "Los Invitados Han Sido Agregados a Su Evento!! ");
         this.setVisible(false);
-             
+        
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -190,20 +198,21 @@ public class Invitados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Invitados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invitados1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Invitados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invitados1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Invitados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invitados1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Invitados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Invitados1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Invitados().setVisible(true);
+                new Invitados1().setVisible(true);
             }
         });
     }
