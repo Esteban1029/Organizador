@@ -6,9 +6,10 @@
 package Gui;
 import Data.*;
 import Bussines.*;
-import static Gui.Invitados.jList1;
+import static Gui.Invitados.jTable1;
 import java.util.ArrayList;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Ivan Solano
@@ -18,6 +19,7 @@ public class InvitadoNuevo extends javax.swing.JFrame {
     /**
      * Creates new form Invitados
      */
+    
     public InvitadoNuevo() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -137,14 +139,24 @@ public class InvitadoNuevo extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "El Invitado NO a sido Guardado!! ");
         }
-        DefaultListModel listModel2 = new DefaultListModel();    
+        DefaultTableModel model;
+        String data [][]={ };
+        String cabeza []={ "Nombre","Correo"};
+        model= new DefaultTableModel(data,cabeza);
+        for(int i =0; i<LoadDatas.readPersons().size();i++){
+            String datos []={LoadDatas.readPersons().get(i).getNombre(),LoadDatas.readPersons().get(i).getCorreo()};
+            model.addRow(datos);
+        }
+        
+        jTable1.setModel(model);
+//        DefaultListModel listModel2 = new DefaultListModel();    
        
-            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
-                listModel2.add(i, LoadDatas.readPersons().get(i).getNombre()+"           "+LoadDatas.readPersons().get(i).getCorreo());
-                //listModel.addElement(i);
-            }
-
-            jList1.setModel(listModel2);
+//            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
+//                listModel2.add(i, LoadDatas.readPersons().get(i).getNombre()+"           "+LoadDatas.readPersons().get(i).getCorreo());
+//                //listModel.addElement(i);
+//            }
+//
+//            jList1.setModel(listModel2);
         
                                      
         
