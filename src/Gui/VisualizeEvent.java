@@ -48,7 +48,7 @@ public class VisualizeEvent extends javax.swing.JFrame {
                 //listModel.addElement(i);
             }
 
-            jList1.setModel(listModel1);
+            jList1VisualizeEvent.setModel(listModel1);
         }
         if(workEvent.getAlarm().isEmpty()){
             
@@ -89,7 +89,7 @@ public class VisualizeEvent extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1VisualizeEvent = new javax.swing.JList<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -118,7 +118,7 @@ public class VisualizeEvent extends javax.swing.JFrame {
 
         jLabel4.setText("Invitados: ");
 
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane3.setViewportView(jList1VisualizeEvent);
 
         jLabel5.setText("Fecha:");
 
@@ -306,7 +306,7 @@ public class VisualizeEvent extends javax.swing.JFrame {
         // TODO add your handling code here:
         EventEdit obj=new EventEdit();
         obj.setVisible(true);
-        
+        this.setVisible(false);
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -362,7 +362,7 @@ public class VisualizeEvent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
+    public static javax.swing.JList<String> jList1VisualizeEvent;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

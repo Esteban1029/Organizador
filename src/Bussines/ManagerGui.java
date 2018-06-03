@@ -9,14 +9,16 @@ package Bussines;
 import Data.Event;
 import Data.Person;
 import Gui.*;
-//import Gui.PrincipalPantalla;
+
+
+import java.awt.Image;
 
 
 import java.io.File;
 import java.util.ArrayList;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
 
 /**
  *
@@ -24,26 +26,26 @@ import javax.swing.JFrame;
  */
 public class ManagerGui {
    
-   private static String[] nameIcons;
+   private static String[] nameImageIcons;
    private final String pathFile= "Icons";
+   private ImageIcon auxIcon;
+   public int sizeIcon=150;
    
    static public void showMainScreen()
    {
-       javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainScreen().setVisible(true);
-            }
+       javax.swing.SwingUtilities.invokeLater(() -> {
+           new MainScreen().setVisible(true);
         });
    }
+    
     
    public void showIcons()
     {
     
-      AvailableIcons mostrarIconos=new AvailableIcons(arrayIcons());
-      mostrarIconos.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-      mostrarIconos.setSize(300,400);
-      mostrarIconos.setVisible(true);
+       Icons icons = new Icons();
+       icons.setVisible(true);
+       icons.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        
     }
    
    /**
@@ -86,7 +88,7 @@ public class ManagerGui {
   
     
     // leer las imágenes disponibles en un archivo
-    public String[] searchIconPath()
+    public String[] searchImageIconPath()
    {
        File file=new File(pathFile);
        String[] contenido;
@@ -94,7 +96,7 @@ public class ManagerGui {
        {
            if(file.isDirectory())
            { 
-               nameIcons=file.list();
+               nameImageIcons=file.list();
                contenido=file.list(); 
                 for (int i = 0; i < contenido.length; i++) {
                    contenido[i]=pathFile+"\\"+"\\"+contenido[i];
@@ -109,32 +111,34 @@ public class ManagerGui {
    }
    
    // mostrar solo los nombres de las imágenes sin extensiones.
-    public String[] nameIcon()
+    public String[] nameImageIcon()
    {
-       String[] name=new String[nameIcons.length]; 
-       for (int i = 0; i < nameIcons.length; i++) {
-          name[i]=nameIcons[i].substring(0, nameIcons[i].length()-4);
+       String[] name=new String[nameImageIcons.length]; 
+       for (int i = 0; i < nameImageIcons.length; i++) {
+          name[i]=nameImageIcons[i].substring(0, nameImageIcons[i].length()-4);
        }
 
            return name;
    }
     
     
-    public Icon[] arrayIcons()
+    public ImageIcon[] arrayImageIcons()
     {
+        
       
-        ArrayList<Icon> iconos=new ArrayList();
-      for(String a:searchIconPath())
+        ArrayList<ImageIcon> ImageIcon=new ArrayList();
+      for(String a:searchImageIconPath())
       {
           
-          iconos.add(new ImageIcon(a));
+          auxIcon = new ImageIcon(a);
+          ImageIcon.add(new ImageIcon(auxIcon.getImage().getScaledInstance(sizeIcon, sizeIcon,Image.SCALE_DEFAULT)));
       }
       
-      Icon[] arrayIcons = new Icon[iconos.size()];
+      ImageIcon[] arrayImageIcons = new ImageIcon[ImageIcon.size()];
       
-      arrayIcons=iconos.toArray(arrayIcons);
+      arrayImageIcons=ImageIcon.toArray(arrayImageIcons);
       
-      return arrayIcons;
+      return arrayImageIcons;
        
     }
    

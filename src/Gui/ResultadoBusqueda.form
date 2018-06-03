@@ -124,31 +124,18 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jList2">
+        <Component class="javax.swing.JList" name="listEvents">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="15">
-                <StringItem index="0" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="1" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="2" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="3" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="4" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="5" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="6" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="7" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="8" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="9" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="10" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="11" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="12" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="13" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-                <StringItem index="14" value="ICONO - NOMBRE - FECHA [CHECKBOX]"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listEventsMouseClicked"/>
+          </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Event&gt;"/>
           </AuxValues>
         </Component>
       </SubComponents>

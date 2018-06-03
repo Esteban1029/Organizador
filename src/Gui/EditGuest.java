@@ -5,6 +5,7 @@
  */
 package Gui;
 import static Gui.EventEdit.evento;
+import static Gui.EventEdit.jList1EventEdit;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -145,19 +146,21 @@ public class EditGuest extends javax.swing.JFrame {
         
         int index =jList1editguest.getSelectedIndex();
         evento.getGuestList().remove(index);
+        DefaultListModel listModel1 = new DefaultListModel();
         for(int i=0; i<evento.getGuestList().size(); i++) {
-                listModel.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+            
+                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
                 //listModel.addElement(i);
             }
 
-            jList1editguest.setModel(listModel);
+            jList1editguest.setModel(listModel1);
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        Invitados obj = new Invitados();
+        Invitados1 obj = new Invitados1();
         obj.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -165,8 +168,17 @@ public class EditGuest extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Los Cambios han sido Guardados!!");
-        EditGuest obj=new EditGuest();
-        obj.setVisible(false);
+        DefaultListModel listModel1 = new DefaultListModel();
+        for(int i=0; i<evento.getGuestList().size(); i++) {
+                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+                //listModel.addElement(i);
+            }
+
+            jList1EventEdit.setModel(listModel1);
+        
+        
+        
+        this.setVisible(false);
         
     }//GEN-LAST:event_jButton4ActionPerformed
 

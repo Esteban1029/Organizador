@@ -9,6 +9,7 @@ import Data.*;
 import Bussines.*;
 import static Gui.MainScreen.jList1MainScreen;
 import static Gui.VisualizeEvent.Posicion;
+import static Gui.VisualizeEvent.jList1VisualizeEvent;
 import static Gui.VisualizeEvent.workEvent;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -47,7 +48,7 @@ public class EventEdit extends javax.swing.JFrame {
                 //listModel.addElement(i);
             }
 
-            jList1.setModel(listModel1);
+            jList1EventEdit.setModel(listModel1);
        for(int i=0; i<evento.getAlarm().size(); i++) {
                 
            String activate;
@@ -94,7 +95,7 @@ public class EventEdit extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jList1EventEdit = new javax.swing.JList<>();
         jLabel5 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -167,7 +168,7 @@ public class EventEdit extends javax.swing.JFrame {
 
         jButton3.setText("Cambiar Icono");
 
-        jScrollPane3.setViewportView(jList1);
+        jScrollPane3.setViewportView(jList1EventEdit);
 
         jLabel5.setText("Lista de Invitados:");
 
@@ -314,7 +315,6 @@ public class EventEdit extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(39, 39, 39)
                         .addComponent(jButton2)
@@ -373,6 +373,7 @@ public class EventEdit extends javax.swing.JFrame {
         evento.setImportance(Integer.parseInt(importance));
         
         
+      
         
         ArrayList <Event> eventos = LoadDatas.readEvents();
         eventos.remove(Posicion);
@@ -390,10 +391,13 @@ public class EventEdit extends javax.swing.JFrame {
             jList1MainScreen.setModel(listModel);
             
             
-            
         }else {
             JOptionPane.showMessageDialog(null, "El evento NO sido Modificado");
         }
+        
+        
+        this.setVisible(false);
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -471,7 +475,7 @@ public class EventEdit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
+    public static javax.swing.JList<String> jList1EventEdit;
     private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

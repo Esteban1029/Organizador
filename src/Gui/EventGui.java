@@ -5,9 +5,11 @@
  */
 package Gui;
 
+import Bussines.LoadDatas;
 import Bussines.ManagerEvents;
 import Data.*;
 import static Gui.Invitados.jList1;
+import static Gui.MainScreen.jList1MainScreen;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.*;
@@ -297,6 +299,13 @@ public class EventGui extends javax.swing.JFrame {
             boolean a = ManagerEvents.addEvent(event);
             if(a){
                 JOptionPane.showMessageDialog(null, "El evento Fue guardado Exitosamente!! ");
+                DefaultListModel listModel = new DefaultListModel();
+            for(int i=0; i<LoadDatas.readEvents().size(); i++) {
+                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
+                //listModel.addElement(i);
+            }
+
+            jList1MainScreen.setModel(listModel);
             }if(!a){
                 JOptionPane.showMessageDialog(null, "No pudo guardarse el Evento!! ");
             }

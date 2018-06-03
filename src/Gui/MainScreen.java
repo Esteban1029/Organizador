@@ -6,6 +6,7 @@
 package Gui;
 
 import Bussines.LoadDatas;
+import Bussines.Searcher;
 import Data.Event;
 import java.awt.Image;
 import java.awt.Rectangle;
@@ -29,6 +30,9 @@ public class MainScreen extends javax.swing.JFrame {
     DefaultListModel listModel = new DefaultListModel();
    
     public MainScreen() {
+        
+       
+        
         initComponents();
                 for(int i=0; i<LoadDatas.readEvents().size(); i++) {
                 listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
@@ -267,7 +271,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    public static javax.swing.JList<JLabel> jList1MainScreen;
+    public static javax.swing.JList<Event> jList1MainScreen;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
