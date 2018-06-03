@@ -32,6 +32,7 @@ public class VisualizeEvent extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         this.setLocationRelativeTo(null);
+        
         Event evento123 = jList1MainScreen.getSelectedValue();
         ArrayList <Event> eventicos=LoadDatas.readEvents();
         
