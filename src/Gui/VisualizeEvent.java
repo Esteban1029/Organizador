@@ -33,8 +33,16 @@ public class VisualizeEvent extends javax.swing.JFrame {
         setResizable(false);
         this.setLocationRelativeTo(null);
         Event evento123 = jList1MainScreen.getSelectedValue();
-                
-        Posicion=LoadDatas.readEvents().indexOf(evento123);
+        ArrayList <Event> eventicos=LoadDatas.readEvents();
+        
+        for(Event e : eventicos){
+            if(e.getName().equals(evento123.getName())&&e.getDate().equals(evento123.getDate())){
+                Posicion= eventicos.indexOf(e);
+            }
+        }
+        
+        
+        //Posicion
         System.out.println(Posicion);
         ArrayList<Event> List=LoadDatas.readEvents();
         workEvent = List.get(Posicion);
@@ -363,14 +371,27 @@ public class VisualizeEvent extends javax.swing.JFrame {
             
             if(eliminated){
                 JOptionPane.showMessageDialog(null, "El evento ha sido eliminado con Exito!!");
-                
                 DefaultListModel listModel = new DefaultListModel();
-                for(int i=0; i<LoadDatas.readEvents().size(); i++) {
-                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
-                
-                }
+                try
+            {
+               for(Event e: LoadDatas.readEvents())
+               {
+                   if(!e.isExpire()) listModel.addElement(e);
+               }
+            }catch(NullPointerException e)
+            {
 
+            }
+                jList1MainScreen.setCellRenderer(new Renderer());
                 jList1MainScreen.setModel(listModel);
+                
+              
+//                for(int i=0; i<LoadDatas.readEvents().size(); i++) {
+//                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
+//                
+//                }
+//
+//                jList1MainScreen.setModel(listModel);
                 this.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(null, "El evento NO a sido eliminado");

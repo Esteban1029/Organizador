@@ -252,12 +252,12 @@ public class EventGui extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addComponent(jLabel4))
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel9)))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,12 +335,24 @@ public class EventGui extends javax.swing.JFrame {
             if(a){
                 JOptionPane.showMessageDialog(null, "El evento Fue guardado Exitosamente!! ");
                 DefaultListModel listModel = new DefaultListModel();
-            for(int i=0; i<LoadDatas.readEvents().size(); i++) {
-                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
-                //listModel.addElement(i);
-            }
+                try
+            {
+               for(Event e: LoadDatas.readEvents())
+               {
+                   if(!e.isExpire()) listModel.addElement(e);
+               }
+            }catch(NullPointerException e)
+            {
 
-            jList1MainScreen.setModel(listModel);
+            }
+                jList1MainScreen.setCellRenderer(new Renderer());
+                jList1MainScreen.setModel(listModel);
+//            for(int i=0; i<LoadDatas.readEvents().size(); i++) {
+//                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
+//                //listModel.addElement(i);
+//            }
+//
+//            jList1MainScreen.setModel(listModel);
             }if(!a){
                 JOptionPane.showMessageDialog(null, "No pudo guardarse el Evento!! ");
             }
