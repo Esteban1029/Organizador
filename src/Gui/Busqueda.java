@@ -193,7 +193,9 @@ public class Busqueda extends javax.swing.JFrame {
             inputDate.setDate(null);
             input.setText("");
             
-            new ResultadoBusqueda().setVisible(true);
+          ResultadoBusqueda r= new ResultadoBusqueda();
+          r.setVisible(true);
+          r.setLocationRelativeTo(this);
             
         }
         

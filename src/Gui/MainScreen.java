@@ -6,16 +6,11 @@
 package Gui;
 
 import Bussines.LoadDatas;
-import Bussines.Searcher;
 import Data.Event;
-import java.awt.Image;
-import java.awt.Rectangle;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -245,6 +240,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         Busqueda obj = new Busqueda();
         obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
         
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -253,6 +249,8 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         Events obj= new Events();
         obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
+        
         
         
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -266,6 +264,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         DatosOpciones obj = new DatosOpciones();
         obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 

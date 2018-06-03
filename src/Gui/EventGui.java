@@ -383,6 +383,7 @@ public class EventGui extends javax.swing.JFrame {
         // TODO add your handling code here:
         Alarmas obj=new Alarmas();
         obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -410,6 +411,7 @@ public class EventGui extends javax.swing.JFrame {
         // TODO add your handling code here:
         Icons obj = new Icons();
         obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
         
         
     }//GEN-LAST:event_jButton6ActionPerformed

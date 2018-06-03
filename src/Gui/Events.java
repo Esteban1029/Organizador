@@ -139,8 +139,9 @@ public class Events extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         eventChoose=jList1.getSelectedValue();
         this.setVisible(false);
-        new Alarmas().setVisible(true);
-        
+        Alarmas obj= new Alarmas();
+        obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
     }                                        
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                         
