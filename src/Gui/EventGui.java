@@ -329,7 +329,7 @@ public class EventGui extends javax.swing.JFrame {
             }
             
             
-            Event event = new Event(jTextField1.getText(),jTextArea1.getText(),jTextField2.getText(), fecha ,Integer.parseInt(importance),guestListmain,alarmList);
+            Event event = new Event(jTextField1.getText().toUpperCase(),jTextArea1.getText(),jTextField2.getText(), fecha ,Integer.parseInt(importance),guestListmain,alarmList);
             event.setIcon(iconoseleccion);
             boolean a = ManagerEvents.addEvent(event);
             if(a){
