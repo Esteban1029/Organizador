@@ -28,6 +28,7 @@ public class VisualizeEvent extends javax.swing.JFrame {
     
     
     
+    
     public VisualizeEvent() {
         initComponents();
         setResizable(false);
