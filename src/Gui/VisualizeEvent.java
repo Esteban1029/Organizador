@@ -286,9 +286,9 @@ public class VisualizeEvent extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El evento ha sido eliminado con Exito!!");
                 
                 DefaultListModel listModel = new DefaultListModel();
-                for(int i=0; i<LoadDatas.readEvents().size(); i++) {
-                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
-                
+                for(Event e: LoadDatas.readEvents())
+                {
+                    if(!e.isExpire())listModel.addElement(e);
                 }
 
                 jList1MainScreen.setModel(listModel);

@@ -135,6 +135,7 @@ public final class Event implements Serializable, Comparable<Event>{
     public void setDate(Date date) {
         this.date = date;
     }
+    
 
     public ArrayList<Alarm> getAlarm() {
         return alarm;

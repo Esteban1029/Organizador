@@ -388,7 +388,7 @@ public class EventEdit extends javax.swing.JFrame {
             DefaultListModel listModel = new DefaultListModel();
             for(Event e: LoadDatas.readEvents()) {
                 
-               listModel.addElement(e);
+               if(!e.isExpire())listModel.addElement(e);
             }
 
             jList1MainScreen.setModel(listModel);

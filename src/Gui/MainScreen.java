@@ -45,15 +45,6 @@ public class MainScreen extends javax.swing.JFrame {
         
     }
     
-    public  void updateList()
-    {
-        for(Event e: LoadDatas.readEvents())
-           {
-               if(!e.isExpire()) listModel.addElement(e);
-           }
-        jList1MainScreen.setCellRenderer(new Renderer());
-        jList1MainScreen.setModel(listModel);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
