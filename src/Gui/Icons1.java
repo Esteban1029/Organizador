@@ -58,7 +58,7 @@ public class Icons1 extends javax.swing.JFrame {
         listIcons = new javax.swing.JList<>();
         jLabel1 = new javax.swing.JLabel();
 
-        jButton1.setText("Crear");
+        jButton1.setText("Salir");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

@@ -48,8 +48,6 @@ public class  ManagerEvents{
     
     public static boolean addEvent(Event event){
         
-        try
-        {
         ArrayList <Event> events =LoadDatas.readEvents();
         boolean iscreated = false;
         for(Event e: events){
@@ -65,14 +63,6 @@ public class  ManagerEvents{
             
             return false;
         }
-        }catch(NullPointerException e)
-        {
-            ArrayList<Event> events= new ArrayList();
-            events.add(event);
-            LoadDatas.saveEvents(events);
-            return false;
-            
-    }
     }
     /*public Event makeEvent(String name,String description,String place, Date date, int importance){
        ArrayList <Event> events =ManagerEvents.readEvents();

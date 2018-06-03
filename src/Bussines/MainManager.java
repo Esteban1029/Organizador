@@ -2,7 +2,11 @@
 
 package Bussines;
 
-
+import Data.Event;
+import Gui.MainScreen;
+//import Gui.PrincipalPantalla;
+import java.util.ArrayList;
+import java.util.Date;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,9 +23,7 @@ public class MainManager{
  
     public static void main(String[] args) {
         //pantalla principal
-        
         ManagerGui.showMainScreen();
-        //
        
         //prueba iconos
         

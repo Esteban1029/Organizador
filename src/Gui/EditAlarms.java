@@ -7,6 +7,7 @@ package Gui;
 
 import static Gui.EventEdit.evento;
 import javax.swing.DefaultListModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,25 +18,30 @@ public class EditAlarms extends javax.swing.JFrame {
     /**
      * Creates new form EditAlarms
      */
-    
+    DefaultTableModel model;
     DefaultListModel listModel = new DefaultListModel();
     public EditAlarms() {
         initComponents();
         setResizable(false);
         this.setLocationRelativeTo(null);
+        String data [][]={ };
+        String cabeza []={ "Tipo","Activada","fecha"};
+        model= new DefaultTableModel(data,cabeza);
         for(int i=0; i<evento.getAlarm().size(); i++) {
                 String activate;
             if(evento.getAlarm().get(i).isActivated()){
-                activate = "La Alarma esta activada para ";
+                activate = "SI!! ";
             }else{
-                activate = "La Alarma NO esta activada!!";
+                activate = "NO!!";
                     
             }
-                listModel.add(i, evento.getAlarm().get(i).getTipoAlarma()+"       "+activate +evento.getAlarm().get(i).getDate());
+                String datos []={evento.getAlarm().get(i).getTipoAlarma(),activate,evento.getAlarm().get(i).getDate().toString()};
+                 model.addRow(datos);
+                //listModel.add(i, evento.getAlarm().get(i).getTipoAlarma()+"       "+activate +evento.getAlarm().get(i).getDate());
                 //listModel.addElement(i);
             }
-
-            jList1editalarms.setModel(listModel);
+            jTable1EditAlarms.setModel(model);
+            //jList1editalarms.setModel(listModel);
         
         
         
@@ -52,16 +58,32 @@ public class EditAlarms extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1editalarms = new javax.swing.JList<>();
+        jTable1EditAlarms = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar Alarmas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
-        jScrollPane1.setViewportView(jList1editalarms);
+        jTable1EditAlarms.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1EditAlarms);
 
         jButton1.setText("Agregar Alarma");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Cancelar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -137,17 +159,22 @@ public class EditAlarms extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int index =jList1editalarms.getSelectedIndex();
+        int index =jTable1EditAlarms.getSelectedRow();
         evento.getAlarm().remove(index);
-        for(int i=0; i<evento.getGuestList().size(); i++) {
-                listModel.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
-                //listModel.addElement(i);
-            }
+        model.removeRow(index);
+//        for(int i=0; i<evento.getGuestList().size(); i++) {
+//                listModel.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+//                //listModel.addElement(i);
+//            }
 
-            jList1editalarms.setModel(listModel);
+         jTable1EditAlarms.setModel(model);
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,8 +215,8 @@ public class EditAlarms extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JList<String> jList1editalarms;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1EditAlarms;
     // End of variables declaration//GEN-END:variables
 }

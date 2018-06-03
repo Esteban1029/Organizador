@@ -7,11 +7,13 @@ package Gui;
 
 import Bussines.LoadDatas;
 import Data.Person;
+import static Gui.EditGuest.jTable1EditGuest;
 import static Gui.EventEdit.evento;
-import static Gui.EditGuest.jList1editguest;
+
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,16 +26,25 @@ public class Invitados1 extends javax.swing.JFrame {
      */
     
     DefaultListModel listModel = new DefaultListModel();
-    
+    DefaultTableModel model;
+    String data [][]={ };
+    String cabeza []={ "Nombre","Correo"};
     public Invitados1() {
         initComponents();
-            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
-                listModel.add(i, LoadDatas.readPersons().
-                        get(i).getNombre()+"           "+LoadDatas.readPersons().get(i).getCorreo());
-                //listModel.addElement(i);
-            }
-
-            jList1.setModel(listModel);
+        model= new DefaultTableModel(data,cabeza);
+        for(int i =0; i<LoadDatas.readPersons().size();i++){
+            String datos []={LoadDatas.readPersons().get(i).getNombre(),LoadDatas.readPersons().get(i).getCorreo()};
+            model.addRow(datos);
+        }
+        
+        jTable1.setModel(model);
+//            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
+//                listModel.add(i, LoadDatas.readPersons().
+//                        get(i).getNombre()+"           "+LoadDatas.readPersons().get(i).getCorreo());
+//                //listModel.addElement(i);
+//            }
+//
+//            jList1.setModel(listModel);
             
             this.setLocationRelativeTo(null);
         
@@ -51,7 +62,7 @@ public class Invitados1 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -64,7 +75,18 @@ public class Invitados1 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Selecciona los invitados que deseas agregar al Evento con ayuda de la tecla Ctrl");
 
-        jScrollPane3.setViewportView(jList1);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
 
         jButton1.setText("Agregar Invitado Nuevo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -130,7 +152,7 @@ public class Invitados1 extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int[]x=jList1.getSelectedIndices();
+        int[]x=jTable1.getSelectedRows();
         ArrayList<Person> List=LoadDatas.readPersons();
         ArrayList<Person> a =new ArrayList();
         for (int i = 0; i<x.length;i++){
@@ -141,13 +163,22 @@ public class Invitados1 extends javax.swing.JFrame {
         ArrayList<Person> listainvitados =evento.getGuestList();
         listainvitados.addAll(a);
         evento.setGuestList(listainvitados);
-        DefaultListModel listModel1 = new DefaultListModel();
-        for(int i=0; i<evento.getGuestList().size(); i++) {
-            listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
-                //listModel.addElement(i);
-            }
-
-        jList1editguest.setModel(listModel1);
+        
+        String data [][]={ };
+        String cabeza []={ "Nombre","Correo"};
+        DefaultTableModel model1= new DefaultTableModel(data,cabeza);
+        for(int i =0; i<evento.getGuestList().size();i++){
+            String datos []={evento.getGuestList().get(i).getNombre(),evento.getGuestList().get(i).getCorreo()};
+            model1.addRow(datos);
+        }
+        jTable1EditGuest.setModel(model1);
+//        DefaultListModel listModel1 = new DefaultListModel();
+//        for(int i=0; i<evento.getGuestList().size(); i++) {
+//            listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+//                //listModel.addElement(i);
+//            }
+//
+//        jTable1EditGuest.setModel(listModel1);
             
         JOptionPane.showMessageDialog(null, "Los Invitados Han Sido Agregados a Su Evento!! ");
         this.setVisible(false);
@@ -158,7 +189,7 @@ public class Invitados1 extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        InvitadoNuevo obj=new InvitadoNuevo();
+        InvitadoNuevo1 obj=new InvitadoNuevo1();
         obj.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -166,12 +197,12 @@ public class Invitados1 extends javax.swing.JFrame {
         // TODO add your handling code here:
         int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar este invitado?");
         if(answer==0){
-            int position=jList1.getSelectedIndex();
+            int position=jTable1.getSelectedRow();
             ArrayList<Person> guestList= LoadDatas.readPersons();
             Person remove= guestList.get(position);
             guestList.remove(remove);
             LoadDatas.savePerson(guestList);
-            listModel.remove(position);
+            model.removeRow(position);
             
             
         }
@@ -223,7 +254,7 @@ public class Invitados1 extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    public static javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane3;
+    public static javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
