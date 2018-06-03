@@ -121,9 +121,11 @@ public final class Event implements Serializable, Comparable<Event>{
     }
     
     public String toStringDate() {
+
         try
         {
-        String d=String.format("%d,%d,%d",date.getYear()+1900,date.getMonth(),date.getDay());
+        String d=String.format("%d,%d,%d",date.getYear(),date.getMonth(),date.getDay());
+
         return d;
         }catch(NullPointerException e)
         {
