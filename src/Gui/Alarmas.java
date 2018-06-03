@@ -18,9 +18,11 @@ public class Alarmas extends javax.swing.JFrame {
     private Event event;
     private ArrayList<Alarm> listAlarms;
     private Alarm alarm;
+    
     /**
      * Creates new form Alarmas
      */
+    
     public Alarmas() {
         initComponents();
         listAlarms=new ArrayList();
