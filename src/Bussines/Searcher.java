@@ -14,8 +14,8 @@ import java.util.ArrayList;
  * @author Esteban
  */
 public class Searcher {
-    private ArrayList<Event> input=LoadDatas.readEvents();
-    private ArrayList<Event> resultSearcher= new ArrayList();
+    private final ArrayList<Event> input=LoadDatas.readEvents();
+    private final ArrayList<Event> resultSearcher= new ArrayList();
     static ArrayList<Event> auxResultSearcher= new ArrayList();
     
 
@@ -26,8 +26,8 @@ public class Searcher {
             if(e.getName()!=null)
             {
 
-                if(word.toLowerCase().
-                        equals(e.getName().toLowerCase()))
+                if(e.getName().toLowerCase().contains
+                        (word.toLowerCase()))
                 {
                     resultSearcher.add(e);
                 }
@@ -43,7 +43,7 @@ public class Searcher {
             {                
                 for(Person p:e.getGuestList())
                 {
-                    if(p.getNombre().toLowerCase().equals
+                    if(p.getNombre().toLowerCase().contains
                         (word.toLowerCase()))
                     {
                         resultSearcher.add(e);
@@ -59,8 +59,8 @@ public class Searcher {
         {
             if(e.getPlace()!=null)
             {
-                if(word.toLowerCase().equals
-                 (e.getPlace().toLowerCase()))
+                if(e.getPlace().toLowerCase().contains
+                 (word.toLowerCase()))
                 {
                     resultSearcher.add(e);
                 }
@@ -76,7 +76,7 @@ public class Searcher {
             if(e.toStringDate()!=null)
             {
    
-                if(word.equals(e.toStringDate()))
+                if(e.toStringDate().contains(word))
                 {
                     resultSearcher.add(e);
                 }
