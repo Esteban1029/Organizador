@@ -388,9 +388,18 @@ public class EventEdit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El evento ha sido Modificado con Exito!!");
             this.setVisible(false);
             DefaultListModel listModel = new DefaultListModel();
-            for(Event e: LoadDatas.readEvents()) {
-                
-               if(!e.isExpire())listModel.addElement(e);
+
+            try
+            {
+               for(Event e: LoadDatas.readEvents())
+               {
+                   if(!e.isExpire()) listModel.addElement(e);
+               }
+            }catch(NullPointerException e)
+            {
+
+
+
             }
 
             jList1MainScreen.setModel(listModel);
