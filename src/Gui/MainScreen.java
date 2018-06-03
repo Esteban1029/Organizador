@@ -35,12 +35,24 @@ public class MainScreen extends javax.swing.JFrame {
         
         initComponents();
         this.setLocationRelativeTo(null);
-                for(int i=0; i<LoadDatas.readEvents().size(); i++) {
-                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
-                //listModel.addElement(i);
-            }
-
+        try
+        {
+           for(Event e: LoadDatas.readEvents())
+           {
+               if(!e.isExpire()) listModel.addElement(e);
+           }
+        }catch(NullPointerException e)
+        {
+            
+        }
+            jList1MainScreen.setCellRenderer(new Renderer());
             jList1MainScreen.setModel(listModel);
+//                for(int i=0; i<LoadDatas.readEvents().size(); i++) {
+//                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
+//                //listModel.addElement(i);
+//            }
+//
+//            jList1MainScreen.setModel(listModel);
         
     }
 
@@ -193,7 +205,11 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+        
         int indexmain = jList1MainScreen.getSelectedIndex();
+        Event evento123 = jList1MainScreen.getSelectedValue();
         ArrayList <Event> eventosmain = LoadDatas.readEvents();
         if(eventosmain.isEmpty()){
             JOptionPane.showMessageDialog(null, "No hay eventos en la lista!!");

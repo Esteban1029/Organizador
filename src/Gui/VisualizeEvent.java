@@ -32,8 +32,10 @@ public class VisualizeEvent extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         this.setLocationRelativeTo(null);
-        
-        Posicion=jList1MainScreen.getSelectedIndex();
+        Event evento123 = jList1MainScreen.getSelectedValue();
+                
+        Posicion=LoadDatas.readEvents().indexOf(evento123);
+        System.out.println(Posicion);
         ArrayList<Event> List=LoadDatas.readEvents();
         workEvent = List.get(Posicion);
         this.jLabel1.setText(workEvent.getName());
