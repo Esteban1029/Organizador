@@ -292,6 +292,7 @@ public class VisualizeEvent extends javax.swing.JFrame {
                 }
 
                 jList1MainScreen.setModel(listModel);
+                this.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(null, "El evento NO a sido eliminado");
             }

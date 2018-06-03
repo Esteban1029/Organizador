@@ -23,6 +23,7 @@ public class EventGui extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    public static ImageIcon iconoseleccion;
     public static ArrayList <Person> guestListmain = new ArrayList();
     
     
@@ -296,6 +297,7 @@ public class EventGui extends javax.swing.JFrame {
             ArrayList <Alarm> alarmList = new ArrayList();
             String importance = jSpinner1.getValue().toString();
             Event event = new Event(jTextField1.getText(),jTextArea1.getText(),jTextField2.getText(),jDateChooser1.getDate(),Integer.parseInt(importance),guestListmain,alarmList);
+            event.setIcon(iconoseleccion);
             boolean a = ManagerEvents.addEvent(event);
             if(a){
                 JOptionPane.showMessageDialog(null, "El evento Fue guardado Exitosamente!! ");
@@ -361,6 +363,10 @@ public class EventGui extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        Icons obj = new Icons();
+        obj.setVisible(true);
+        
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

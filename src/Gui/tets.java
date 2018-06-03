@@ -24,7 +24,7 @@ public class tets {
     public static void main(String[] args) {
         ArrayList <Event> lista = LoadDatas.readEvents();
         
-        lista.remove(1);
+        lista.remove(0);
         LoadDatas.saveEvents(lista);
         
     }
