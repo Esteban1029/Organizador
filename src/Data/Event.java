@@ -3,12 +3,13 @@ package Data;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
+
 /**
  * El String date se convierte a tipo Date
  * Cuando de instancie en el String date poner: yyyy mm dd hr o los tres primeros
  */
+
 public final class Event implements Serializable, Comparable<Event>{
     
     private static final long serialVersionUID= 112233445566778899l;
