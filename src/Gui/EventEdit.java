@@ -539,6 +539,7 @@ public class EventEdit extends javax.swing.JFrame {
         {
             Icons1 obj = new Icons1();
             obj.setVisible(true);
+            obj.setLocationRelativeTo(this);
         }
         else
         {
