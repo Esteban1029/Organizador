@@ -2,6 +2,9 @@
 
 package Bussines;
 
+import Data.Alarm;
+import Data.Event;
+
 
 
 /*
@@ -19,6 +22,18 @@ public class MainManager{
  
     public static void main(String[] args) {
         //pantalla principal
+        
+        
+        for(Event e: LoadDatas.readEvents())
+        {
+            for(Alarm a:e.getAlarm())
+            {
+                a.setActivated(true);
+                System.out.println(e);
+            }
+            
+        }
+        
         
         ManagerGui.showMainScreen();
 

@@ -166,11 +166,16 @@ public class EditGuest extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+    try
+    {
         int index =jTable1EditGuest.getSelectedRow();
         evento.getGuestList().remove(index);
         DefaultListModel listModel1 = new DefaultListModel();
         model.removeRow(index);
+    }catch(ArrayIndexOutOfBoundsException e)
+    {
+        JOptionPane.showMessageDialog(this,"No se eliminó el evento");
+    }
 //        for(int i=0; i<evento.getGuestList().size(); i++) {
 //            
 //                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
