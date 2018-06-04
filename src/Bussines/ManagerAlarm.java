@@ -7,6 +7,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -21,7 +28,8 @@ import javax.swing.JOptionPane;
 public class ManagerAlarm{
 
     //Background method que revisa la vigencia de los eventos y alarmas
-    public void actionAlarms(){
+    public static void actionAlarms(){
+        System.out.println("actionAlarms ON");
         while(true){
             Date auxDate=new Date();
             Person usuario=null;
@@ -30,43 +38,71 @@ public class ManagerAlarm{
                     usuario = persona;
                 }
             }
-            for(Event evento: pendingAlarm()){
-                for(Alarm alarma:evento.getAlarm()){
-                    if(auxDate.compareTo(alarma.getDate())==1){
-                        notification(alarma,evento,evento.getGuestList(), usuario);
-                        alarma.setActivated(true);
+            ArrayList<Event> events = LoadDatas.readEvents();
+            try{
+            for(Event evento: events){
+                if(!evento.isExpire()){
+                    for(Alarm alarma:evento.getAlarm()){
+                    
+                        System.out.println(evento.getAlarm().size());
+                        System.out.println(alarma.toString()+ " "+alarma.isActivated());
+                        
+                        System.out.println();
+                    
+                        if(alarma.getDate().compareTo(new Date())==-1&&!alarma.isActivated()){
+                        
+                            System.out.println("inIF");
+                            notification(alarma,evento,evento.getGuestList(), usuario);
+                            alarma.setActivated();
+                            LoadDatas.saveEvents(events);
+                        }else{
+                        
+                            System.out.println("outIF");
+                        
+                        }
                     }
                 }
+                
+            };
+            }catch(NullPointerException ne){
+                System.out.println("No pending");
             }
         }
     }
     //Utiliza los dos métodos de abajo para notificar.
-    public void notification(Alarm a,Event e,ArrayList<Person> guestList,Person user){
+    public static void notification(Alarm a,Event e,ArrayList<Person> guestList,Person user){
         switch (a.getTipoAlarma()) {
-            case "sonido,correo":
+            case "Sonido,Correo":
+                soundAlarm(e);
                 sendGmail(e, guestList, user);
+                break;
+            case "Sonido":
                 soundAlarm(e);
                 break;
-            case "sonido":
-                soundAlarm(e);
-                break;
-            case "correo":
+            case "Correo":
                 sendGmail(e, guestList, user);
+                System.out.println(a.toString()+" "+e.toString());
+                //System.exit(0);
                 break;
             default:
                 System.out.println("Error notification");
+                System.out.println(a.toString()+" "+e.toString());
+                //System.exit(0);
                 break;
         }
     }
     //Alarma Correo.
-    public ArrayList<Person> sendGmail(Event e,ArrayList<Person> guestList,Person user){
+    public static void sendGmail(Event e,ArrayList<Person> guestList,Person user){
         for(Person persona: guestList){
-            Alarm.notificacionCorreo(persona.getCorreo(), user.getNombre(), 
+            try{
+                emailSystem(persona.getCorreo(), user.getNombre(), 
                     persona.getNombre(), e.getName(), e.getDate().toString(),
                     e.getDescription());
-        
-    }
-        return null;
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "No se pudo enviar correo a: "+persona.getNombre(), "Error correo", JOptionPane.WARNING_MESSAGE);
+            
+            }
+        }
     }
     //Alarma sonido.
     public static void soundAlarm(Event e) {
@@ -105,6 +141,46 @@ public class ManagerAlarm{
          e.printStackTrace();
       }
     }
+    //Maneja el email de la alarma.
+    public static void emailSystem(String destino, String usuario, String nombreInvitado, String eventName, String date, String descripcion){
+        String remitente = "meetingmanagerpoo";
+        String clave ="POOAponte1";
+        
+        String asunto ="Reunion de: "+usuario;
+        String cuerpo ="Hola "+nombreInvitado+",\n"+
+        "\n" +
+        "Usted ha sido invitado a "+eventName+ " por "+usuario+" el dia "+date+" donde: "+descripcion+" \n" +
+        "\n" +
+        "Gracias,\n" +
+        "MeetingManager";
+        
+        Properties props = System.getProperties();
+        props.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
+        props.put("mail.smtp.user", remitente);
+        props.put("mail.smtp.clave", clave);    //La clave de la cuenta
+        props.put("mail.smtp.auth", "true");    //Usar autenticación mediante usuario y clave
+        props.put("mail.smtp.starttls.enable", "true"); //Para conectar de manera segura al servidor SMTP
+        props.put("mail.smtp.port", "587"); //El puerto SMTP seguro de Google
+        
+        Session session = Session.getDefaultInstance(props);
+        MimeMessage message = new MimeMessage(session);
+        
+        try{
+            message.setFrom(new InternetAddress(remitente));
+            
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(destino));   //Se podrían añadir varios de la misma manera
+            message.setSubject(asunto);
+            message.setText(cuerpo);
+            Transport transport = session.getTransport("smtp");
+            transport.connect("smtp.gmail.com", remitente, clave);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+        }catch(MessagingException me){
+            me.printStackTrace();
+
+        }
+
+     }
     // Eventos que tienen alarmas vencidas.
     public ArrayList<Event> ExpireAlarm(){
         ArrayList<Event> lisEve= new ArrayList();
@@ -130,7 +206,7 @@ public class ManagerAlarm{
         
     }
     //Eventos que tienen alarmas pendiendes.
-    public ArrayList<Event> pendingAlarm(){
+    public static ArrayList<Event> pendingAlarm(){
         ArrayList<Event> lisEve= new ArrayList();
         
         for(Event evento: LoadDatas.readEvents())
@@ -139,7 +215,7 @@ public class ManagerAlarm{
             {    
                 for(Alarm alarma:evento.getAlarm())
                 {
-                    if(!alarma.isExpire())
+                    if(!alarma.isExpire()&&!alarma.isActivated())
                     {
                         lisEve.add(evento);
                     }
