@@ -38,8 +38,8 @@ public class Alarm implements Serializable  {
         this.date = date;
     }
     
-    public void setActivated(boolean activated) {
-        this.activated = activated;
+    public void setActivated() {
+        this.activated = true;
     }
 
     //Comparadores
