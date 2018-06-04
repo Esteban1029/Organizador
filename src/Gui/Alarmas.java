@@ -9,6 +9,7 @@ import Bussines.LoadDatas;
 import Data.Alarm;
 import Data.Event;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +22,12 @@ public class Alarmas extends javax.swing.JFrame {
     private ArrayList<Alarm> listAlarms;
     private Alarm alarm;
     private ArrayList<Event> listEvents;
+    private Date date;
+    private String tipoAlarm;
+    private int posicion;
+    private String uxTime;
+    private String[] time;
+    private boolean valFecha;
     /**
      * Creates new form Alarmas
      */
@@ -28,6 +35,7 @@ public class Alarmas extends javax.swing.JFrame {
         initComponents();
         event=null;
         alarm=null;
+        valFecha=true;
     }
 
     /**
@@ -172,50 +180,83 @@ public class Alarmas extends javax.swing.JFrame {
     }                                          
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
-      
-        event=Events.eventChoose;
-        
-        listEvents=LoadDatas.readEvents();
-        
-        for(Event e: listEvents)
-        {
-            if(e.getName().equals(event.getName())&&e.getDate().equals(event.getDate())){
-                System.out.println(listEvents.remove(listEvents.indexOf(e)));
-            }
-        }
-        
+       try
+       {
+            uxTime=(String)jSpinner1.getValue();
+                time=uxTime.split(":");
+
+                date=jDateChooser1.getDate();
+                date.setHours(Integer.parseInt(time[0]));
+                date.setMinutes(Integer.parseInt(time[1]));
+       }catch(NullPointerException e)
+       {
+           JOptionPane.showMessageDialog(this,"Elija una fecha");
+           valFecha=false;
+       }
            
-        try 
-        {
-            
-            
-            
-            alarm= new Alarm(jCheckBox1.isSelected()?jCheckBox1.getLabel():
-            jCheckBox2.getLabel(),jDateChooser1.getDate());
-            
-            
-            listAlarms=event.getAlarm();
-            
-            listAlarms.add(alarm);
-            event.setAlarm(listAlarms);
- 
-            listEvents.add(event);
-            LoadDatas.saveEvents(listEvents);
-            
-            JOptionPane.showMessageDialog(this, event);
-            this.setVisible(false);
-            
-            
-            
-        }catch(NullPointerException e)
-        {
-            
-            listAlarms=new ArrayList();
-            listAlarms.add(alarm);
-            event.setAlarm(listAlarms);
-            
-        }
         
+        if(jDateChooser1.getDate()!=null&&date.compareTo(new Date())==1)
+        {
+            event=Events.eventChoose;
+            listEvents=LoadDatas.readEvents();
+            System.out.println(event);
+            
+            for (int i = 0; i <LoadDatas.readEvents().size(); i++) {
+                System.out.println("a");
+                if(listEvents.get(i).getName().equals(event.getName())&&listEvents.get(i).getDate()
+                        .equals(event.getDate())){
+                    posicion=i;
+                }
+                
+            }
+            
+            listEvents.remove(posicion);
+               
+            try 
+            {
+                
+                
+                
+                
+                if(jCheckBox1.isSelected()&&jCheckBox2.isSelected())
+                {
+                    tipoAlarm=jCheckBox1.getLabel()+","+jCheckBox2.getLabel();
+                }
+                else if(jCheckBox1.isSelected())
+                {
+                    tipoAlarm=jCheckBox1.getLabel();
+                }
+                else tipoAlarm=jCheckBox2.getLabel();
+                
+                
+                
+                
+                alarm= new Alarm(tipoAlarm,date);
+
+                listAlarms=event.getAlarm();
+
+                listAlarms.add(alarm);
+                event.setAlarm(listAlarms);
+
+                listEvents.add(event);
+                LoadDatas.saveEvents(listEvents);
+                this.setVisible(false);
+
+
+
+            }catch(NullPointerException e)
+            {
+
+                listAlarms=new ArrayList();
+                listAlarms.add(alarm);
+                event.setAlarm(listAlarms);
+
+            }
+        }else
+        {
+           if(valFecha) JOptionPane.showMessageDialog(this,"Ingrese los Datos de manera coherente");
+           valFecha=true;
+        }
             
         
        

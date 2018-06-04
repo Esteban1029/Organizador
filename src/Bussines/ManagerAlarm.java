@@ -34,7 +34,7 @@ public class ManagerAlarm{
                 for(Alarm alarma:evento.getAlarm()){
                     if(auxDate.compareTo(alarma.getDate())==1){
                         notification(alarma,evento,evento.getGuestList(), usuario);
-                        alarma.setActivated();
+                        alarma.setActivated(true);
                     }
                 }
             }

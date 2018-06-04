@@ -4,21 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Bussines/MainManager.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/EventEdit.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Bussines/Searcher.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Data/Event.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/EventGui.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/Icons.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Data/Alarm.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/Busqueda.java</file>
             <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/Alarmas.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/ResultadoBusqueda.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/MainScreen.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/Events.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Data/Person.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/Renderer.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Data/User.java</file>
-            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/AvailableIcons.java</file>
+            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Gui/VisualizeEvent.java</file>
+            <file>file:/D:/UNAL/semestre%202/Programción%20orientada%20a%20objetos/4.Proyecto/Organizador-POO/src/Data/Alarm.java</file>
         </group>
     </open-files>
 </project-private>
