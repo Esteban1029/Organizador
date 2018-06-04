@@ -124,7 +124,7 @@ public final class Event implements Serializable, Comparable<Event>{
 
         try
         {
-        String d=String.format("%d,%d,%d",date.getYear(),date.getMonth(),date.getDay());
+        String d=String.format("%d,%d,%d",date.getYear(),date.getMonth(),date.getDate());
 
         return d;
         }catch(NullPointerException e)
@@ -216,6 +216,24 @@ public final class Event implements Serializable, Comparable<Event>{
             + " Icon: %s\n"
             ,getName(),getPlace(),getDescription(),toStringDate(),
             getIcon()==null?"":getIcon().toString());
+    a+="\nIvitados: ";
+    if(guestList!=null)
+    {
+       for(Person p: guestList)
+       {
+           a+="\n"+p.getNombre()+" "+p.getCorreo();
+       }
+    }
+    a+="\nAlarmas";
+    
+    if(alarm!=null)
+    {
+        for(Alarm al: alarm)
+        {
+            a+="\n"+al.getTipoAlarma()+" "+al.getDate();
+        }
+    }
+    
       return a;
     }
 }

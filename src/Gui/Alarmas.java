@@ -5,9 +5,11 @@
  */
 package Gui;
 
+import Bussines.LoadDatas;
 import Data.Alarm;
 import Data.Event;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,12 +20,12 @@ public class Alarmas extends javax.swing.JFrame {
     private Event event;
     private ArrayList<Alarm> listAlarms;
     private Alarm alarm;
+    private ArrayList<Event> listEvents;
     /**
      * Creates new form Alarmas
      */
     public Alarmas() {
         initComponents();
-        listAlarms=new ArrayList();
         event=null;
         alarm=null;
     }
@@ -171,22 +173,44 @@ public class Alarmas extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
       
+        event=Events.eventChoose;
+        
+        listEvents=LoadDatas.readEvents();
+        
+        for(Event e: listEvents)
+        {
+            if(e.getName().equals(event.getName())&&e.getDate().equals(event.getDate())){
+                System.out.println(listEvents.remove(listEvents.indexOf(e)));
+            }
+        }
+        
+           
         try 
         {
-            System.out.println(Events.eventChoose);
-            event=Events.eventChoose;
-            System.out.println(Events.eventChoose);
-            alarm= new Alarm(jCheckBox1.isSelected()?jCheckBox1.getName():
-            jCheckBox2.getName(),jDateChooser1.getDate());
-            System.out.println(jDateChooser1.getDate());
-                        
+            
+            
+            
+            alarm= new Alarm(jCheckBox1.isSelected()?jCheckBox1.getLabel():
+            jCheckBox2.getLabel(),jDateChooser1.getDate());
+            
+            
             listAlarms=event.getAlarm();
+            
             listAlarms.add(alarm);
             event.setAlarm(listAlarms);
+ 
+            listEvents.add(event);
+            LoadDatas.saveEvents(listEvents);
+            
+            JOptionPane.showMessageDialog(this, event);
             this.setVisible(false);
+            
+            
+            
         }catch(NullPointerException e)
         {
             
+            listAlarms=new ArrayList();
             listAlarms.add(alarm);
             event.setAlarm(listAlarms);
             

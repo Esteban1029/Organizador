@@ -23,6 +23,7 @@ public class MainScreen extends javax.swing.JFrame {
      */
     
     DefaultListModel listModel = new DefaultListModel();
+    
    
     public MainScreen() {
         
@@ -66,9 +67,8 @@ public class MainScreen extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1MainScreen = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        allEvents = new javax.swing.JButton();
+        validEvents = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -96,11 +96,19 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Ver eventos Vencidos");
+        allEvents.setText("Ver Todos");
+        allEvents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allEventsActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Ver Todos");
-
-        jButton4.setText("Ver Eventos Vigentes");
+        validEvents.setText("Eventos Vigentes");
+        validEvents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validEventsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -109,14 +117,13 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(validEvents)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(allEvents)
+                        .addGap(10, 10, 10)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -127,9 +134,8 @@ public class MainScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(allEvents)
+                    .addComponent(validEvents))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -218,9 +224,7 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        
-        
+                
         int indexmain = jList1MainScreen.getSelectedIndex();
         Event evento123 = jList1MainScreen.getSelectedValue();
         ArrayList <Event> eventosmain = LoadDatas.readEvents();
@@ -268,6 +272,30 @@ public class MainScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
+    private void allEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allEventsActionPerformed
+        listModel.clear();
+        
+        for(Event e: LoadDatas.readEvents())
+        {
+            listModel.addElement(e);
+        }        
+        jList1MainScreen.setCellRenderer(new Renderer());
+        jList1MainScreen.setModel(listModel);
+        
+    }//GEN-LAST:event_allEventsActionPerformed
+
+    private void validEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validEventsActionPerformed
+        listModel.clear();
+        
+        for(Event e: LoadDatas.readEvents())
+        {
+            if(!e.isExpire())listModel.addElement(e);
+        }        
+        jList1MainScreen.setCellRenderer(new Renderer());
+        jList1MainScreen.setModel(listModel);
+        
+    }//GEN-LAST:event_validEventsActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -304,10 +332,8 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton allEvents;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     public static javax.swing.JList<Event> jList1MainScreen;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -322,5 +348,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton validEvents;
     // End of variables declaration//GEN-END:variables
 }

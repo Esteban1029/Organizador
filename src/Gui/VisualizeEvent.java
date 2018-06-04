@@ -18,14 +18,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Ivan Solano
  */
-public class VisualizeEvent extends javax.swing.JFrame {
+public final class VisualizeEvent extends javax.swing.JFrame {
 
     /**
      * Creates new form VisualizeEvent
      */
     public static int Posicion;
     public static Event workEvent = new Event();
-    
+    public static boolean listSearcher=false;
     
     
     
@@ -33,8 +33,27 @@ public class VisualizeEvent extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         this.setLocationRelativeTo(null);
+        searchComponent();
+        shapeDate();
         
-        Event evento123 = jList1MainScreen.getSelectedValue();
+        
+    }
+    
+    
+    public void searchComponent()
+    {
+         Event evento123;
+         
+        if(!listSearcher) evento123 = jList1MainScreen.getSelectedValue();
+        else
+        {
+            evento123= ResultadoBusqueda.listEvents.getSelectedValue();
+            listSearcher=false;
+        } 
+          
+        
+        
+        
         ArrayList <Event> eventicos=LoadDatas.readEvents();
         
         for(Event e : eventicos){
@@ -42,7 +61,10 @@ public class VisualizeEvent extends javax.swing.JFrame {
                 Posicion= eventicos.indexOf(e);
             }
         }
-        
+    }
+    
+    
+    public void shapeDate(){    
         
         //Posicion
         //System.out.println(Posicion);
