@@ -11,6 +11,7 @@ import Data.User;
 import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -75,6 +76,17 @@ public class MainScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No has agregado tus Datos!!, \nve al menu Opciones, Datos Personales y guarda tus datos!!");
         }
         
+    }
+    
+    public boolean verificador()
+    {
+        if(LoadDatas.readEvents()==null||LoadDatas.readEvents().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this,"No hay eventos creados");
+            return false;
+        }
+ 
+        return true;
     }
 
     /**
@@ -496,28 +508,40 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-        
-        Busqueda obj = new Busqueda();
-        obj.setVisible(true);
-        obj.setLocationRelativeTo(this);
-        
-        
+        if(verificador())
+        {
+             Busqueda obj = new Busqueda();
+                obj.setVisible(true);
+                obj.setLocationRelativeTo(this);
+        }
+
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-        Events obj= new Events();
-        obj.setVisible(true);
-        obj.setLocationRelativeTo(this);
+        // TODO add your handling code here
+        if(verificador())
+        {
+            Events obj= new Events();
+            obj.setVisible(true);
+            obj.setLocationRelativeTo(this);
+            obj.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        }
+   
         
-        
-        
+  
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        Contactos obj=new Contactos();
-        obj.setVisible(true);
+        if(verificador())
+        {
+          Contactos obj=new Contactos();
+           obj.setVisible(true);
+           obj.setLocationRelativeTo(this);
+           obj.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        }
+    
+        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -526,6 +550,7 @@ public class MainScreen extends javax.swing.JFrame {
         DatosOpciones obj = new DatosOpciones();
         obj.setVisible(true);
         obj.setLocationRelativeTo(this);
+        obj.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 

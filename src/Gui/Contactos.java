@@ -31,6 +31,7 @@ public class Contactos extends javax.swing.JFrame {
         setResizable(false);
         this.setLocationRelativeTo(null);
         model= new DefaultTableModel(data,cabeza);
+        
         for(int i =0; i<LoadDatas.readPersons().size();i++){
             String datos []={LoadDatas.readPersons().get(i).getNombre(),LoadDatas.readPersons().get(i).getCorreo()};
             model.addRow(datos);

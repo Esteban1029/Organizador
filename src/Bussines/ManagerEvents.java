@@ -70,7 +70,7 @@ public class  ManagerEvents{
             ArrayList<Event> events= new ArrayList();
             events.add(event);
             LoadDatas.saveEvents(events);
-            return false;
+            return true;
             
     }
     }

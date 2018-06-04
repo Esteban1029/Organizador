@@ -124,21 +124,26 @@ public class ManagerGui {
     
     public ImageIcon[] arrayImageIcons()
     {
-        
+    
+          
+      
       
         ArrayList<ImageIcon> ImageIcon=new ArrayList();
-      for(String a:searchImageIconPath())
-      {
-          
-          auxIcon = new ImageIcon(a);
-          ImageIcon.add(new ImageIcon(auxIcon.getImage().getScaledInstance(sizeIcon, sizeIcon,Image.SCALE_DEFAULT)));
-      }
-      
-      ImageIcon[] arrayImageIcons = new ImageIcon[ImageIcon.size()];
-      
-      arrayImageIcons=ImageIcon.toArray(arrayImageIcons);
+        for(String a:searchImageIconPath())
+        {
+
+            auxIcon = new ImageIcon(a);
+            ImageIcon.add(new ImageIcon(auxIcon.getImage().getScaledInstance(sizeIcon, sizeIcon,Image.SCALE_DEFAULT)));
+        }
+
+        ImageIcon[] arrayImageIcons = new ImageIcon[ImageIcon.size()];
+
+        arrayImageIcons=ImageIcon.toArray(arrayImageIcons);
       
       return arrayImageIcons;
+  
+             
+      
        
     }
    

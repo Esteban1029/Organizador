@@ -534,8 +534,18 @@ public class EventEdit extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Icons1 obj = new Icons1();
-        obj.setVisible(true);
+        ManagerGui mg= new ManagerGui();
+        if(mg.searchImageIconPath()!=null)
+        {
+            Icons1 obj = new Icons1();
+            obj.setVisible(true);
+            obj.setLocationRelativeTo(this);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"No hay Imagenes disponibles");
+        }
+            
         
     }//GEN-LAST:event_jButton3ActionPerformed
 

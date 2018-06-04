@@ -9,6 +9,7 @@ import Bussines.LoadDatas;
 import Data.Event;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,19 +24,34 @@ public class Events extends javax.swing.JFrame {
     DefaultListModel dt= new DefaultListModel();
     ArrayList<Event> listEvents= new ArrayList();
     static Event eventChoose;
+    private boolean emptyList;
     
     
     public Events() {
+        emptyList=false;
         initComponents();
-        for(Event e: LoadDatas.readEvents())
-        {
-           if(!e.isExpire()) dt.addElement(e);
-        }
+        loadDatas();
         
-        jList1.setCellRenderer(new Renderer());
-       jList1.setModel(dt);
+
     }
+    
+    private void loadDatas()
+    {
+       
+            for(Event e: LoadDatas.readEvents())
+            {
+               if(!e.isExpire()) dt.addElement(e);
+                      
+       
+            }
+            
+        jList1.setCellRenderer(new Renderer());
+        jList1.setModel(dt);   
    
+    }
+    
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -110,24 +126,30 @@ public class Events extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         
+       
+        
         dt.clear();
         for(Event e: LoadDatas.readEvents())
         {
             dt.addElement(e);
         }
-        
+
         jList1.setCellRenderer(new Renderer());
        jList1.setModel(dt);
-
+  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        
+        
         eventChoose=jList1.getSelectedValue();
         this.setVisible(false);
         Alarmas obj= new Alarmas();
         obj.setVisible(true);
         obj.setLocationRelativeTo(this);
         
+   
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
