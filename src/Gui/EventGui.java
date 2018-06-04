@@ -335,20 +335,14 @@ public class EventGui extends javax.swing.JFrame {
             if(a){
                 JOptionPane.showMessageDialog(null, "El evento Fue guardado Exitosamente!! ");
                 DefaultListModel listModel = new DefaultListModel();
-            try
-
+                try
             {
                for(Event e: LoadDatas.readEvents())
                {
                    if(!e.isExpire()) listModel.addElement(e);
                }
             }catch(NullPointerException e)
-            
-            }
-
-
-            }
-
+            {
 
             }
                 jList1MainScreen.setCellRenderer(new Renderer());

@@ -481,10 +481,7 @@ public class EventEdit extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El evento ha sido Modificado con Exito!!");
             this.setVisible(false);
             DefaultListModel listModel = new DefaultListModel();
-
-
-            try
-
+                try
             {
                for(Event e: LoadDatas.readEvents())
                {
@@ -492,8 +489,6 @@ public class EventEdit extends javax.swing.JFrame {
                }
             }catch(NullPointerException e)
             {
-
-            }
 
             }
                 jList1MainScreen.setCellRenderer(new Renderer());

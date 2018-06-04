@@ -22,7 +22,6 @@ public class MainManager{
         
         ManagerGui.showMainScreen();
         
-        
         //
        
         //prueba iconos
