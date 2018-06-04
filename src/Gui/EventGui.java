@@ -296,30 +296,7 @@ public class EventGui extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
-        if("".equals(jTextField1.getText())){
-           JOptionPane.showMessageDialog(null, "El evento debe tener un nombre!! "); 
-        }
-        if("".equals(jTextField2.getText())){
-           JOptionPane.showMessageDialog(null, "El evento debe tener un Lugar!! "); 
-        }
-        if("".equals(jTextArea1.getText())){
-           JOptionPane.showMessageDialog(null, "El evento debe tener una Descripcion!! "); 
-        }
-        
-        
-        if(jDateChooser1.getDate().compareTo(new Date())==-1){
-           JOptionPane.showMessageDialog(null, "Sea coherente con la fecha"); 
-        }
-        else if(guestListmain.isEmpty()){
-            JOptionPane.showMessageDialog(null, "El evento debe tener al menos un invitado!! ");
-            
-        }
-        else{
-            ArrayList <Alarm> alarmList = new ArrayList();
-            String importance = jSpinner1.getValue().toString();
-            
-            Date fecha = new Date();
+         Date fecha = new Date();
             fecha = jDateChooser1.getDate();
             
             if(jComboBox3.getSelectedItem().toString().equals("PM")){
@@ -336,10 +313,36 @@ public class EventGui extends javax.swing.JFrame {
                 fecha.setMinutes(minutos);
                 fecha.setSeconds(00);
             }
-            // en alarmas está defaultEvent
-            // este código es por si el usuario crea un alarma dentro de la cración
-            // de un evento
+        
+        
+        if("".equals(jTextField1.getText())){
+           JOptionPane.showMessageDialog(null, "El evento debe tener un nombre!! "); 
+        }
+        if("".equals(jTextField2.getText())){
+           JOptionPane.showMessageDialog(null, "El evento debe tener un Lugar!! "); 
+        }
+        if("".equals(jTextArea1.getText())){
+           JOptionPane.showMessageDialog(null, "El evento debe tener una Descripcion!! "); 
+        }
+        
+        
+        if(fecha.compareTo(new Date())==-1){
+           JOptionPane.showMessageDialog(null, "Por favor ingrese un nueva fecha"); 
+        }
+        else if(guestListmain.isEmpty()){
+            JOptionPane.showMessageDialog(null, "El evento debe tener al menos un invitado!! ");
             
+        }
+        else{
+            ArrayList <Alarm> alarmList = new ArrayList();
+            String importance = jSpinner1.getValue().toString();
+            
+           
+             // en alarmas está defaultEvent
+             // este código es por si el usuario crea un alarma dentro de la cración
+             // de un evento
+             //Inicializar alarmas para tener acceso a: Alarmas.defaultEvent;
+            new Alarmas();
             event=Alarmas.defaultEvent;
             boolean a=true;
             
