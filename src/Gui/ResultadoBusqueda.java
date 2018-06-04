@@ -8,6 +8,7 @@ package Gui;
 import Bussines.Searcher;
 import Data.Event;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 
 
@@ -142,11 +143,18 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(listEvents.getSelectedIndex()!=-1)
+        {
         
-        VisualizeEvent.listSearcher=true;
-        VisualizeEvent obj= new VisualizeEvent();
-        obj.setVisible(true);
-        this.setVisible(false);
+            VisualizeEvent.listSearcher=true;
+            VisualizeEvent obj= new VisualizeEvent();
+            obj.setVisible(true);
+            this.setVisible(false);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this," Seleccione algún evento");
+        }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 

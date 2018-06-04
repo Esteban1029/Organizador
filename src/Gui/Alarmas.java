@@ -28,14 +28,19 @@ public class Alarmas extends javax.swing.JFrame {
     private String uxTime;
     private String[] time;
     private boolean valFecha;
+    static Event defaultEvent;
+    static boolean saveEvent;
     /**
      * Creates new form Alarmas
      */
     public Alarmas() {
         initComponents();
-        event=null;
+        event=new Event();
         alarm=null;
         valFecha=true;
+        this.defaultEvent = new Event();
+        listEvents=new ArrayList();
+        saveEvent=true;
     }
 
     /**
@@ -193,9 +198,7 @@ public class Alarmas extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(this,"Elija una fecha");
            valFecha=false;
        }
-           
-        
-        if(jDateChooser1.getDate()!=null&&date.compareTo(new Date())==1)
+       try
         {
             event=Events.eventChoose;
             listEvents=LoadDatas.readEvents();
@@ -211,6 +214,22 @@ public class Alarmas extends javax.swing.JFrame {
             }
             
             listEvents.remove(posicion);
+        }catch(NullPointerException e)
+            
+        {
+            event=defaultEvent;
+        }
+        catch(IndexOutOfBoundsException e)
+        {
+            event=defaultEvent;
+        }
+       
+       
+           
+        
+        if(jDateChooser1.getDate()!=null&&date.compareTo(new Date())==1)
+        {
+           
                
             try 
             {
@@ -239,17 +258,22 @@ public class Alarmas extends javax.swing.JFrame {
                 event.setAlarm(listAlarms);
 
                 listEvents.add(event);
-                LoadDatas.saveEvents(listEvents);
+                if(saveEvent)LoadDatas.saveEvents(listEvents);
+                saveEvent=true;
                 this.setVisible(false);
 
 
 
             }catch(NullPointerException e)
             {
-
-                listAlarms=new ArrayList();
+                
+                listEvents=new ArrayList();
                 listAlarms.add(alarm);
                 event.setAlarm(listAlarms);
+                listEvents.add(event);
+                if(saveEvent)LoadDatas.saveEvents(listEvents);
+                saveEvent=true;
+                this.setVisible(false);
 
             }
         }else

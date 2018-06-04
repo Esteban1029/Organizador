@@ -75,7 +75,7 @@ public class LoadDatas {
             System.out.println("las clases no son sompatibles");
         }
         
-        return null;
+        return new ArrayList();
     }
     
     static public User readUser()
@@ -100,7 +100,7 @@ public class LoadDatas {
             System.out.println("las clases no son sompatibles");
         }
         
-        return null;       
+       return null;         
     }
     
     static public boolean saveUser(User user)
@@ -169,7 +169,7 @@ public class LoadDatas {
             System.out.println("las clases no son sompatibles");
         }
         
-        return null;
+        return new ArrayList();
     }
     
     public static boolean saveAlarms(ArrayList<Event> lisEve)
@@ -218,7 +218,7 @@ public class LoadDatas {
             System.out.println("las clases no son sompatibles");
         }
         
-        return null;
+        return new ArrayList();
     }
 
 }

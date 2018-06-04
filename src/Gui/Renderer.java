@@ -39,8 +39,21 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
             
             
             is=(Event)value;
-            setText(is.getName()+"   "+String.format("%d-%d-%d",is.getDate().getYear()+1900,
-                    is.getDate().getMonth()+1,is.getDate().getDate()));
+            System.out.println(is.getDate());
+            try
+            {
+            
+                this.setText(is.getName()+"   "+
+                        String. format("%d-%d-%d",
+
+                        is.getDate().getYear()+1900,
+                        is.getDate().getMonth()+1,
+                        is.getDate().getDate()));
+            }catch(NullPointerException e)
+            {
+                this.setText(is.getName()+"    sin fecha");
+            }
+            
             ImageIcon image=is.getIcon();
            
             if(is.getIcon()==null) image=defaultIcon;  

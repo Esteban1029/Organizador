@@ -7,6 +7,7 @@ package Gui;
 
 import Bussines.LoadDatas;
 import Bussines.ManagerEvents;
+import Bussines.ManagerGui;
 import Data.*;
 
 import static Gui.MainScreen.jList1MainScreen;
@@ -25,11 +26,14 @@ public class EventGui extends javax.swing.JFrame {
      */
     public static ImageIcon iconoseleccion;
     public static ArrayList <Person> guestListmain = new ArrayList();
+    private Event event;
+    private ArrayList<Event> listaEventos;
     
     
     public EventGui() {
         initComponents();
         this.setLocationRelativeTo(null);
+        listaEventos=LoadDatas.readEvents();
         
         
     }
@@ -302,7 +306,12 @@ public class EventGui extends javax.swing.JFrame {
         if("".equals(jTextArea1.getText())){
            JOptionPane.showMessageDialog(null, "El evento debe tener una Descripcion!! "); 
         }
-        if(guestListmain.isEmpty()){
+        
+        
+        if(jDateChooser1.getDate().compareTo(new Date())==-1){
+           JOptionPane.showMessageDialog(null, "Sea coherente con la fecha"); 
+        }
+        else if(guestListmain.isEmpty()){
             JOptionPane.showMessageDialog(null, "El evento debe tener al menos un invitado!! ");
             
         }
@@ -327,11 +336,35 @@ public class EventGui extends javax.swing.JFrame {
                 fecha.setMinutes(minutos);
                 fecha.setSeconds(00);
             }
+            // en alarmas está defaultEvent
+            // este código es por si el usuario crea un alarma dentro de la cración
+            // de un evento
             
+            event=Alarmas.defaultEvent;
+            boolean a=true;
             
-            Event event = new Event(jTextField1.getText().toUpperCase(),jTextArea1.getText(),jTextField2.getText(), fecha ,Integer.parseInt(importance),guestListmain,alarmList);
-            event.setIcon(iconoseleccion);
-            boolean a = ManagerEvents.addEvent(event);
+            if(event.getAlarm()==null||event.getAlarm().isEmpty())
+            {
+                event = new Event(jTextField1.getText().toUpperCase(),jTextArea1.getText(),jTextField2.getText(), fecha ,Integer.parseInt(importance),guestListmain,alarmList);
+                event.setIcon(iconoseleccion);
+                 a = ManagerEvents.addEvent(event);
+            }
+            
+            else
+            {
+              
+                event.setName(jTextField1.getText().toUpperCase());
+                event.setDescription(jTextArea1.getText());
+                event.setPlace(jTextField2.getText());
+                event.setDate(fecha);
+                event.setImportance(Integer.parseInt(importance));
+                event.setGuestList(guestListmain);
+                event.setIcon(iconoseleccion);
+                listaEventos.add(event);
+                LoadDatas.saveEvents(listaEventos);
+                Alarmas.defaultEvent= new Event();
+            }
+            
             if(a){
                 JOptionPane.showMessageDialog(null, "El evento Fue guardado Exitosamente!! ");
                 DefaultListModel listModel = new DefaultListModel();
@@ -381,9 +414,14 @@ public class EventGui extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        Alarmas.defaultEvent=event;
         Alarmas obj=new Alarmas();
+        // para que no guarde el evento
+        Alarmas.saveEvent=false;
         obj.setVisible(true);
         obj.setLocationRelativeTo(this);
+        
+        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -409,9 +447,20 @@ public class EventGui extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        Icons obj = new Icons();
-        obj.setVisible(true);
-        obj.setLocationRelativeTo(this);
+        ManagerGui mg= new ManagerGui();
+        
+        if(mg.searchImageIconPath()!=null)
+        {
+            Icons obj = new Icons();
+            obj.setVisible(true);
+            obj.setLocationRelativeTo(this);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"No hay Imagenes disponibles");
+        }
+            
+            
         
         
     }//GEN-LAST:event_jButton6ActionPerformed

@@ -18,89 +18,129 @@ public class Searcher {
     private final ArrayList<Event> resultSearcher= new ArrayList();
     static ArrayList<Event> auxResultSearcher= new ArrayList();
     
-
-    public ArrayList<Event> searchEvent(String word){
-        
-        for(Event e:input)
-        {
-            if(e.getName()!=null)
-            {
-
-                if(e.getName().toLowerCase().contains
-                        (word.toLowerCase()))
-                {
-                    resultSearcher.add(e);
-                }
-            }
-        }
-        return resultSearcher;   
-    }
     
-    public ArrayList<Event> searchPerson(String word){
-        for(Event e:input)
+   
+    public ArrayList<Event> searchEvent(String word){
+        try
         {
-            if(e.getGuestList()!=null)
-            {                
-                for(Person p:e.getGuestList())
+            for(Event e:input)
+            {
+                if(e.getName()!=null)
                 {
-                    if(p.getNombre().toLowerCase().contains
-                        (word.toLowerCase()))
+
+                    if(e.getName().toLowerCase().contains
+                            (word.toLowerCase()))
                     {
                         resultSearcher.add(e);
                     }
-                } 
+                }
             }
-        }
-        return resultSearcher;   
-    }
-    
-    public ArrayList<Event> searchPlace(String word){
-        for(Event e:input)
+            return resultSearcher;
+        
+        
+        }catch(NullPointerException e)
         {
-            if(e.getPlace()!=null)
-            {
-                if(e.getPlace().toLowerCase().contains
-                 (word.toLowerCase()))
-                {
-                    resultSearcher.add(e);
-                }
-            }
+            return resultSearcher;
         }
-        return resultSearcher;   
+           
     }
-    
-    public ArrayList<Event> searchDate(String word){
-        // El formato de entrada debe ser: yyyy,MM,dd
-        for(Event e:input)
+
+    public ArrayList<Event> searchPerson(String word){
+        try
         {
-            if(e.toStringDate()!=null)
+            for(Event e:input)
             {
-   
-                if(e.toStringDate().contains(word))
-                {
-                    resultSearcher.add(e);
+                if(e.getGuestList()!=null)
+                {                
+                    for(Person p:e.getGuestList())
+                    {
+                        if(p.getNombre().toLowerCase().contains
+                            (word.toLowerCase()))
+                        {
+                            resultSearcher.add(e);
+                        }
+                    } 
                 }
             }
+            return resultSearcher;
+            
+        }catch(NullPointerException e)
+        {
+            return resultSearcher;
         }
-        return resultSearcher;
-    }
-    
-    public ArrayList<Event> searchDescription(String word){
-        for(Event e:input)
-        {   
-            if(e.getDescription()!=null)
-            {
-                if(e.getDescription().toLowerCase().
-                        contains(word.toLowerCase()))
-                {
-                    resultSearcher.add(e);
-                }
-            }   
-        }
-        return resultSearcher;
      
     }
-    
+        
+    public ArrayList<Event> searchPlace(String word){
+        try
+        {
+            for(Event e:input)
+            {
+                if(e.getPlace()!=null)
+                {
+                    if(e.getPlace().toLowerCase().contains
+                     (word.toLowerCase()))
+                    {
+                        resultSearcher.add(e);
+                    }
+                }
+            }
+            return resultSearcher;
+        }catch(NullPointerException e)
+        {
+            return resultSearcher;
+        }
+        
+        
+           
+    }
+
+    public ArrayList<Event> searchDate(String word){
+        // El formato de entrada debe ser: yyyy,MM,dd
+        try
+        {
+            for(Event e:input)
+            {
+                if(e.toStringDate()!=null)
+                {
+
+                    if(e.toStringDate().contains(word))
+                    {
+                        resultSearcher.add(e);
+                    }
+                }
+            }
+            return resultSearcher;
+        }catch(NullPointerException e)
+        {
+            return resultSearcher;
+        }
+            
+    }
+        
+        
+    public ArrayList<Event> searchDescription(String word){
+        try
+        {
+            for(Event e:input)
+            {   
+                if(e.getDescription()!=null)
+                {
+                    if(e.getDescription().toLowerCase().
+                            contains(word.toLowerCase()))
+                    {
+                        resultSearcher.add(e);
+                    }
+                }   
+            }
+            return resultSearcher;
+
+        }catch(NullPointerException e)
+        {
+            return resultSearcher;
+        }
+    }
+
     public ArrayList<Event> generalSearch(String word)
     {
         

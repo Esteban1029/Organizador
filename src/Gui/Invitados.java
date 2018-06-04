@@ -30,9 +30,16 @@ public class Invitados extends javax.swing.JFrame {
     public Invitados() {
         initComponents();
         model= new DefaultTableModel(data,cabeza);
-        for(int i =0; i<LoadDatas.readPersons().size();i++){
-            String datos []={LoadDatas.readPersons().get(i).getNombre(),LoadDatas.readPersons().get(i).getCorreo()};
-            model.addRow(datos);
+        
+        try
+        {
+            for(int i =0; i<LoadDatas.readPersons().size();i++){
+                String datos []={LoadDatas.readPersons().get(i).getNombre(),LoadDatas.readPersons().get(i).getCorreo()};
+                model.addRow(datos);
+            }
+        }catch(NullPointerException e)
+        {
+            System.out.println("Error Class Ivitados linea 42");                 
         }
         
         jTable1.setModel(model);

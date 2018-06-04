@@ -42,7 +42,7 @@ public final class VisualizeEvent extends javax.swing.JFrame {
     
     public void searchComponent()
     {
-         Event evento123;
+        Event evento123;
          
         if(!listSearcher) evento123 = jList1MainScreen.getSelectedValue();
         else
@@ -56,11 +56,24 @@ public final class VisualizeEvent extends javax.swing.JFrame {
         
         ArrayList <Event> eventicos=LoadDatas.readEvents();
         
-        for(Event e : eventicos){
-            if(e.getName().equals(evento123.getName())&&e.getDate().equals(evento123.getDate())){
+        try
+        {
+            for(Event e : eventicos)
+            {
+                if(e.getName().equals(evento123.getName())&&e.getDate().equals(evento123.getDate())){
                 Posicion= eventicos.indexOf(e);
+                }
+            }
+        }catch(NullPointerException f)
+        {
+            for(Event e : eventicos)
+            {
+                if(e.getName().equals(evento123.getName())){
+                Posicion= eventicos.indexOf(e);
+                }
             }
         }
+
     }
     
     

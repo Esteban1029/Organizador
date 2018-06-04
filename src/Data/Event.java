@@ -28,14 +28,15 @@ public final class Event implements Serializable, Comparable<Event>{
     private ImageIcon icon;
 
     public Event() {
+        this.guestList=new ArrayList();
+        this.alarm= new ArrayList();
         setName("");
         setDate(date);
         this.made = new Date();
         setDescription("");
         setPlace("");
         setImportance(0);
-        setGuestList(guestList);
-        setAlarm(alarm);
+
     }
 
     
@@ -50,8 +51,6 @@ public final class Event implements Serializable, Comparable<Event>{
         setDescription(description);
         setPlace(place);
         setImportance(importance);
-        setGuestList(guestList);
-        setAlarm(alarm);
         
     }
     
@@ -206,7 +205,15 @@ public final class Event implements Serializable, Comparable<Event>{
     @Override 
     public int compareTo(Event e)
     {
-        return date.compareTo(e.getDate());
+        try
+        {
+            return date.compareTo(e.getDate());
+        }
+        catch(NullPointerException d)
+        {
+            return 1;
+        }
+        
     }
     
     @Override
