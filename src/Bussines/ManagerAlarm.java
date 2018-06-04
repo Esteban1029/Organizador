@@ -28,7 +28,8 @@ import javax.swing.JOptionPane;
 public class ManagerAlarm{
 
     //Background method que revisa la vigencia de los eventos y alarmas
-    public void actionAlarms(){
+    public static void actionAlarms(){
+        System.out.println("actionAlarms ON");
         while(true){
             Date auxDate=new Date();
             Person usuario=null;
@@ -37,36 +38,61 @@ public class ManagerAlarm{
                     usuario = persona;
                 }
             }
-            for(Event evento: pendingAlarm()){
-                for(Alarm alarma:evento.getAlarm()){
-                    if(auxDate.compareTo(alarma.getDate())==1){
-                        notification(alarma,evento,evento.getGuestList(), usuario);
-                        alarma.setActivated(true);
+            ArrayList<Event> events = LoadDatas.readEvents();
+            try{
+            for(Event evento: events){
+                if(!evento.isExpire()){
+                    for(Alarm alarma:evento.getAlarm()){
+                    
+                        System.out.println(evento.getAlarm().size());
+                        System.out.println(alarma.toString()+ " "+alarma.isActivated());
+                        
+                        System.out.println();
+                    
+                        if(alarma.getDate().compareTo(new Date())==-1&&!alarma.isActivated()){
+                        
+                            System.out.println("inIF");
+                            notification(alarma,evento,evento.getGuestList(), usuario);
+                            alarma.setActivated();
+                            LoadDatas.saveEvents(events);
+                        }else{
+                        
+                            System.out.println("outIF");
+                        
+                        }
                     }
                 }
+                
+            };
+            }catch(NullPointerException ne){
+                System.out.println("No pending");
             }
         }
     }
     //Utiliza los dos métodos de abajo para notificar.
-    public void notification(Alarm a,Event e,ArrayList<Person> guestList,Person user){
+    public static void notification(Alarm a,Event e,ArrayList<Person> guestList,Person user){
         switch (a.getTipoAlarma()) {
-            case "sonido,correo":
+            case "Sonido,Correo":
+                soundAlarm(e);
                 sendGmail(e, guestList, user);
+                break;
+            case "Sonido":
                 soundAlarm(e);
                 break;
-            case "sonido":
-                soundAlarm(e);
-                break;
-            case "correo":
+            case "Correo":
                 sendGmail(e, guestList, user);
+                System.out.println(a.toString()+" "+e.toString());
+                //System.exit(0);
                 break;
             default:
                 System.out.println("Error notification");
+                System.out.println(a.toString()+" "+e.toString());
+                //System.exit(0);
                 break;
         }
     }
     //Alarma Correo.
-    public void sendGmail(Event e,ArrayList<Person> guestList,Person user){
+    public static void sendGmail(Event e,ArrayList<Person> guestList,Person user){
         for(Person persona: guestList){
             try{
                 emailSystem(persona.getCorreo(), user.getNombre(), 
@@ -74,6 +100,7 @@ public class ManagerAlarm{
                     e.getDescription());
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, "No se pudo enviar correo a: "+persona.getNombre(), "Error correo", JOptionPane.WARNING_MESSAGE);
+            
             }
         }
     }
@@ -179,7 +206,7 @@ public class ManagerAlarm{
         
     }
     //Eventos que tienen alarmas pendiendes.
-    public ArrayList<Event> pendingAlarm(){
+    public static ArrayList<Event> pendingAlarm(){
         ArrayList<Event> lisEve= new ArrayList();
         
         for(Event evento: LoadDatas.readEvents())
@@ -188,7 +215,7 @@ public class ManagerAlarm{
             {    
                 for(Alarm alarma:evento.getAlarm())
                 {
-                    if(!alarma.isExpire())
+                    if(!alarma.isExpire()&&!alarma.isActivated())
                     {
                         lisEve.add(evento);
                     }
