@@ -69,6 +69,7 @@ public class MainScreen extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         allEvents = new javax.swing.JButton();
         validEvents = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -110,6 +111,13 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Eventos Vencidos");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -117,9 +125,11 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(validEvents)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(allEvents)
@@ -135,7 +145,8 @@ public class MainScreen extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(allEvents)
-                    .addComponent(validEvents))
+                    .addComponent(validEvents)
+                    .addComponent(jButton2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -298,6 +309,18 @@ public class MainScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_validEventsActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        listModel.clear();
+        
+        for(Event e: LoadDatas.readEvents())
+        {
+            if(e.isExpire())listModel.addElement(e);
+        }        
+        jList1MainScreen.setCellRenderer(new Renderer());
+        jList1MainScreen.setModel(listModel);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -336,6 +359,7 @@ public class MainScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton allEvents;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     public static javax.swing.JList<Event> jList1MainScreen;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
