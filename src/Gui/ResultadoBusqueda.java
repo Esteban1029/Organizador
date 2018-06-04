@@ -5,17 +5,13 @@
  */
 package Gui;
 
-
 import Bussines.Searcher;
 import Data.Event;
-import java.awt.Component;
-import java.awt.Image;
-import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-import javax.swing.ListCellRenderer;
+
+
+
+
 
 /**
  *
@@ -146,7 +142,12 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        
+        VisualizeEvent.listSearcher=true;
+        VisualizeEvent obj= new VisualizeEvent();
+        obj.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -158,9 +159,7 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void listEventsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listEventsMouseClicked
-        
-        JOptionPane.showMessageDialog(null,listEvents.getSelectedValue().toString());
-        
+       
     }//GEN-LAST:event_listEventsMouseClicked
 
     /**
@@ -208,7 +207,7 @@ public class ResultadoBusqueda extends javax.swing.JFrame {
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<Event> listEvents;
+    public static javax.swing.JList<Event> listEvents;
     // End of variables declaration//GEN-END:variables
 
 

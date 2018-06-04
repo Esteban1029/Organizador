@@ -8,6 +8,7 @@ package Gui;
 import Bussines.Searcher;
 import Data.Event;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -175,9 +176,8 @@ public class Busqueda extends javax.swing.JFrame {
          if(inputDate.getDate()!=null)
         {
             empty=false;
-            System.out.println(inputDate.getDate());
             date=String.format("%d,%d,%d",inputDate.getDate().getYear(),
-                    inputDate.getDate().getMonth(),inputDate.getDate().getDay());
+                    inputDate.getDate().getMonth(),inputDate.getDate().getDate());
             listResultados=searcher.generalSearch(date);
             resultado=searcher.availableSearch(date);
         }
@@ -193,7 +193,10 @@ public class Busqueda extends javax.swing.JFrame {
             inputDate.setDate(null);
             input.setText("");
             
-            new ResultadoBusqueda().setVisible(true);
+          ResultadoBusqueda r= new ResultadoBusqueda();
+          r.setVisible(true);
+          r.setLocationRelativeTo(this);
+          r.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             
         }
         

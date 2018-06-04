@@ -21,6 +21,7 @@ public class MainManager{
         //pantalla principal
         
         ManagerGui.showMainScreen();
+        
         //
        
         //prueba iconos

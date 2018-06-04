@@ -23,13 +23,14 @@ public class MainScreen extends javax.swing.JFrame {
      */
     
     DefaultListModel listModel = new DefaultListModel();
+    
    
     public MainScreen() {
         
        
         
         initComponents();
-            
+        this.setLocationRelativeTo(null);
         try
         {
            for(Event e: LoadDatas.readEvents())
@@ -42,9 +43,14 @@ public class MainScreen extends javax.swing.JFrame {
         }
             jList1MainScreen.setCellRenderer(new Renderer());
             jList1MainScreen.setModel(listModel);
+//                for(int i=0; i<LoadDatas.readEvents().size(); i++) {
+//                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
+//                //listModel.addElement(i);
+//            }
+//
+//            jList1MainScreen.setModel(listModel);
         
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,6 +67,8 @@ public class MainScreen extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1MainScreen = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
+        allEvents = new javax.swing.JButton();
+        validEvents = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -88,6 +96,20 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
+        allEvents.setText("Ver Todos");
+        allEvents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                allEventsActionPerformed(evt);
+            }
+        });
+
+        validEvents.setText("Eventos Vigentes");
+        validEvents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                validEventsActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,9 +117,13 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(validEvents)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(allEvents)
+                        .addGap(10, 10, 10)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
@@ -106,7 +132,10 @@ public class MainScreen extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(allEvents)
+                    .addComponent(validEvents))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -169,7 +198,7 @@ public class MainScreen extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -195,7 +224,9 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+                
         int indexmain = jList1MainScreen.getSelectedIndex();
+        Event evento123 = jList1MainScreen.getSelectedValue();
         ArrayList <Event> eventosmain = LoadDatas.readEvents();
         if(eventosmain.isEmpty()){
             JOptionPane.showMessageDialog(null, "No hay eventos en la lista!!");
@@ -213,6 +244,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         Busqueda obj = new Busqueda();
         obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
         
         
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -221,6 +253,8 @@ public class MainScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         Events obj= new Events();
         obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
+        
         
         
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -234,8 +268,33 @@ public class MainScreen extends javax.swing.JFrame {
         
         DatosOpciones obj = new DatosOpciones();
         obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
         
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void allEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_allEventsActionPerformed
+        listModel.clear();
+        
+        for(Event e: LoadDatas.readEvents())
+        {
+            listModel.addElement(e);
+        }        
+        jList1MainScreen.setCellRenderer(new Renderer());
+        jList1MainScreen.setModel(listModel);
+        
+    }//GEN-LAST:event_allEventsActionPerformed
+
+    private void validEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_validEventsActionPerformed
+        listModel.clear();
+        
+        for(Event e: LoadDatas.readEvents())
+        {
+            if(!e.isExpire())listModel.addElement(e);
+        }        
+        jList1MainScreen.setCellRenderer(new Renderer());
+        jList1MainScreen.setModel(listModel);
+        
+    }//GEN-LAST:event_validEventsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,6 +332,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton allEvents;
     private javax.swing.JButton jButton1;
     public static javax.swing.JList<Event> jList1MainScreen;
     private javax.swing.JMenu jMenu1;
@@ -288,5 +348,6 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton validEvents;
     // End of variables declaration//GEN-END:variables
 }
