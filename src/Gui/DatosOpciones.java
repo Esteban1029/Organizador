@@ -5,6 +5,11 @@
  */
 package Gui;
 
+import Bussines.LoadDatas;
+import Data.User;
+import static Gui.MainScreen.Usuario;
+import static Gui.MainScreen.jLabel8MainScreen;
+
 /**
  *
  * @author Estudiante
@@ -16,6 +21,8 @@ public class DatosOpciones extends javax.swing.JFrame {
      */
     public DatosOpciones() {
         initComponents();
+        setResizable(false);
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -118,6 +125,15 @@ public class DatosOpciones extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Guardar los datos del usuario
+        User usuario = new User("","","","");
+        usuario.setNombre(this.jTextField1.getText());
+        usuario.setCorreo(this.jTextField2.getText());
+        LoadDatas.saveUser(usuario);
+        jLabel8MainScreen.setText("Bienvenido "+this.jTextField1.getText());
+        
+        
+        
+        
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

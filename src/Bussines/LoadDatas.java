@@ -78,7 +78,7 @@ public class LoadDatas {
         return null;
     }
     
-    public User readUser()
+    static public User readUser()
     {
         ObjectInputStream entrada;
         User user;
@@ -103,7 +103,7 @@ public class LoadDatas {
         return null;       
     }
     
-    public boolean saveUser(User user)
+    static public boolean saveUser(User user)
     {
  
      ObjectOutputStream salida;

@@ -53,7 +53,8 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
             {
                 this.setBackground(list.getSelectionBackground());
                 this.setForeground(list.getSelectionForeground());
-                this.setForeground(Color.yellow);
+                this.setForeground(Color.BLUE);
+                
 
             }else
             {
@@ -72,11 +73,11 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
         private void importanceColor()
         {
             if(is.isExpire()) this.setBackground(Color.LIGHT_GRAY);
-            else if(is.getImportance()<=2) this.setBackground(new Color(0,204,204));
-            else if(is.getImportance()<=4) this.setBackground(new Color(102,102,255));
-            else if(is.getImportance()<=6) this.setBackground(new Color(30,238,44));
-            else if(is.getImportance()<=8) this.setBackground(new Color(251,187,97));
-            else this.setBackground(new Color(255,90,90));
+            else if(is.getImportance()<=2) this.setBackground(new Color(252,250,203));
+            else if(is.getImportance()<=4) this.setBackground(new Color(191,255,201));
+            else if(is.getImportance()<=6) this.setBackground(new Color(192,213,255));
+            else if(is.getImportance()<=8) this.setBackground(new Color(255,242,242));
+            else this.setBackground(new Color(255,229,230));
                
         }
         
