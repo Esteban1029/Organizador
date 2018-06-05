@@ -190,7 +190,12 @@ public class EditAlarms extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
-        
+        CrearAlarma obj= new CrearAlarma();
+        this.setVisible(false);
+        obj.setVisible(true);
+        obj.setLocationRelativeTo(this);
+        CrearAlarma.defaultEvent=EventEdit.evento;
+        CrearAlarma.isFromEditEvent=true;
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

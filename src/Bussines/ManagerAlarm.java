@@ -54,7 +54,7 @@ public class ManagerAlarm{
                             System.out.println("inIF");
                             notification(alarma,evento,evento.getGuestList(), usuario);
                             alarma.setActivated();
-                            
+                            LoadDatas.saveEvents(events);
                         }else{
                         
                             System.out.println("outIF");
@@ -64,7 +64,6 @@ public class ManagerAlarm{
                 }
                 
             };
-            LoadDatas.saveEvents(events);
             }catch(NullPointerException ne){
                 System.out.println("No pending");
             }

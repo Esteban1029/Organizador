@@ -140,14 +140,20 @@ public class Events extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
-        
-        
-        eventChoose=jList1.getSelectedValue();
-        this.setVisible(false);
-        CrearAlarma obj= new CrearAlarma();
-        obj.setVisible(true);
-        obj.setLocationRelativeTo(this);
+
+        if(jList1.getSelectedIndex()==-1)
+        {
+           JOptionPane.showMessageDialog(this,"No ha seleccionado nada");
+        }
+        else
+        {
+            eventChoose=jList1.getSelectedValue();
+            this.setVisible(false);
+            CrearAlarma obj= new CrearAlarma();
+            obj.setVisible(true);
+            obj.setLocationRelativeTo(this);
+            CrearAlarma.defaultEvent=eventChoose;
+        }
         
    
 
