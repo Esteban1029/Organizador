@@ -133,8 +133,6 @@ public class MainScreen extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -459,22 +457,6 @@ public class MainScreen extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem7);
 
-        jMenuItem9.setText("Eliminar Eventos Vencidos");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem9);
-
-        jMenuItem8.setText("Eliminar Todos los Eventos");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem8);
-
         jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
@@ -616,90 +598,6 @@ public class MainScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
-        DefaultListModel listModel1 = new DefaultListModel();
-        boolean hayvencidos=false;
-        
-        ArrayList <Event> eventos = LoadDatas.readEvents();
-                ArrayList <Event> vencidos = new ArrayList();
-                for(Event e:eventos){
-                    if(e.isExpire()){
-                        vencidos.add(e);
-                        hayvencidos=true;
-                    }
-
-                }
-        
-        if(hayvencidos){
-            int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar TODOS los Eventos VENCIDOS?");
-            if(answer==0){
-                
-                for(Event e:vencidos){
-                    eventos.remove(e);
-                }
-                LoadDatas.saveEvents(eventos);
-                try
-                {
-                   for(Event e: LoadDatas.readEvents())
-                   {
-                       if(!e.isExpire()) listModel1.addElement(e);
-                   }
-                }catch(NullPointerException e)
-                {
-
-                }
-                    jList1MainScreen.setCellRenderer(new Renderer());
-                    jList1MainScreen.setModel(listModel1);
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "No Hay Eventos Vencidos!!");
-        }
-        
-        
-        
-        
-        
-        
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-        
-        ArrayList <Event> eventos = LoadDatas.readEvents();
-        DefaultListModel listModel1 = new DefaultListModel();
-        
-        if(eventos.isEmpty()){
-            JOptionPane.showMessageDialog(null, "No Hay Eventos Guardados!!");
-        }else{
-            int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar TODOS los EVENTOS EXISTENTES?");
-            if(answer==0){
-                
-                eventos.clear();
-//                for(Event e:eventos){
-//                    if(e.isExpire()){
-//                        eventos.remove(e);
-//                    }
-//
-//                }
-                LoadDatas.saveEvents(eventos);
-                try
-                {
-                   for(Event e: LoadDatas.readEvents())
-                   {
-                       if(!e.isExpire()) listModel1.addElement(e);
-                   }
-                }catch(NullPointerException e)
-                {
-
-                }
-                    jList1MainScreen.setCellRenderer(new Renderer());
-                    jList1MainScreen.setModel(listModel1);
-            }
-        }
-        
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -761,13 +659,12 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;

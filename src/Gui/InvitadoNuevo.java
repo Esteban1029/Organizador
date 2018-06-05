@@ -45,7 +45,7 @@ public class InvitadoNuevo extends javax.swing.JFrame {
         setTitle("GUIguestNew");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Crear Contacto");
+        jLabel1.setText("Crear Invitados");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel2.setText("Nombre: ");
@@ -62,7 +62,7 @@ public class InvitadoNuevo extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Agregar Contacto");
+        jButton1.setText("Agregar Invitado");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -85,7 +85,7 @@ public class InvitadoNuevo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(0, 314, Short.MAX_VALUE))
+                        .addGap(0, 315, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -127,49 +127,38 @@ public class InvitadoNuevo extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jTextField2.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "El Contacto debe Tener Correo!! ");
-        }
-        if(jTextField1.getText().equals("")){
+        ArrayList <Person> guestList = LoadDatas.readPersons();
+        Person persona = new Person(jTextField1.getText(),jTextField2.getText(),false);
             
-            JOptionPane.showMessageDialog(null, "El Contacto debe Tener Nombre!! ");
+            try
+            {
+                guestList.add(persona);
+            }catch(NullPointerException e)
+            {
+                guestList= new ArrayList();
+                guestList.add(persona);
+            }
+
             
+        boolean a = LoadDatas.savePerson(guestList);
+       // Invitados.jList1.gets
+        jTextField1.setText("");
+        jTextField2.setText("");
+        if (a){
+            JOptionPane.showMessageDialog(null, "El Invitado a sido Exitosamente Guardado!! ");
         }else{
-            
-            ArrayList <Person> guestList = LoadDatas.readPersons();
-            Person persona = new Person(jTextField1.getText(),jTextField2.getText(),false);
-
-                try
-                {
-                    guestList.add(persona);
-                }catch(NullPointerException e)
-                {
-                    guestList= new ArrayList();
-                    guestList.add(persona);
-                }
-
-
-            boolean a = LoadDatas.savePerson(guestList);
-           // Invitados.jList1.gets
-            jTextField1.setText("");
-            jTextField2.setText("");
-            if (a){
-                JOptionPane.showMessageDialog(null, "El Contacto a sido Exitosamente Guardado!! ");
-            }else{
-                JOptionPane.showMessageDialog(null, "El Contacto NO a sido Guardado!! ");
-            }
-            DefaultTableModel model;
-            String data [][]={ };
-            String cabeza []={ "Nombre","Correo"};
-            model= new DefaultTableModel(data,cabeza);
-            for(int i =0; i<LoadDatas.readPersons().size();i++){
-                String datos []={LoadDatas.readPersons().get(i).getNombre(),LoadDatas.readPersons().get(i).getCorreo()};
-                model.addRow(datos);
-            }
-
-            jTable1.setModel(model);
+            JOptionPane.showMessageDialog(null, "El Invitado NO a sido Guardado!! ");
+        }
+        DefaultTableModel model;
+        String data [][]={ };
+        String cabeza []={ "Nombre","Correo"};
+        model= new DefaultTableModel(data,cabeza);
+        for(int i =0; i<LoadDatas.readPersons().size();i++){
+            String datos []={LoadDatas.readPersons().get(i).getNombre(),LoadDatas.readPersons().get(i).getCorreo()};
+            model.addRow(datos);
         }
         
+        jTable1.setModel(model);
 //        DefaultListModel listModel2 = new DefaultListModel();    
        
 //            for(int i=0; i<LoadDatas.readPersons().size(); i++) {
