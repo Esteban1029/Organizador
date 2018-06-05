@@ -372,6 +372,8 @@ public class EventGui extends javax.swing.JFrame {
             
             if(event.getAlarm()==null||event.getAlarm().isEmpty())
             {
+                ArrayList <Alarm> alarma= new ArrayList();
+                
                 System.out.println("Se está guardando");
                 event.setName(jTextField1.getText().toUpperCase());
                 event.setDescription(jTextArea1.getText());

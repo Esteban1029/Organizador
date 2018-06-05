@@ -121,7 +121,7 @@ public class ManagerAlarm{
                 System.out.println("."+e.getDescription()+".");
                 
                 if(persona.getCorreo().contains("@gmail.com")||persona.getCorreo().contains("@outlook")
-                        ||persona.getCorreo().contains("@unal.edu.co"))
+                        ||persona.getCorreo().contains("@unal.edu.co")||persona.getCorreo().contains("@hotmail.com")||persona.getCorreo().contains("@hotmail.es"))
                 {
                     emailSystem(persona.getCorreo(), user.getNombre(), 
                     persona.getNombre(), e.getName(), e.getDate().toString(),
