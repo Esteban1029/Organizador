@@ -618,18 +618,45 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
+        DefaultListModel listModel1 = new DefaultListModel();
+        boolean hayvencidos=false;
         
-        int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar TODOS los Eventos VENCIDOS?");
-            if(answer==0){
-                ArrayList <Event> eventos1 = LoadDatas.readEvents();
-                for(Event e:eventos1){
+        ArrayList <Event> eventos = LoadDatas.readEvents();
+                ArrayList <Event> vencidos = new ArrayList();
+                for(Event e:eventos){
                     if(e.isExpire()){
-                        eventos1.remove(e);
+                        vencidos.add(e);
+                        hayvencidos=true;
                     }
 
                 }
-                LoadDatas.saveEvents(eventos1);
+        
+        if(hayvencidos){
+            int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar TODOS los Eventos VENCIDOS?");
+            if(answer==0){
+                
+                for(Event e:vencidos){
+                    eventos.remove(e);
+                }
+                LoadDatas.saveEvents(eventos);
+                try
+                {
+                   for(Event e: LoadDatas.readEvents())
+                   {
+                       if(!e.isExpire()) listModel1.addElement(e);
+                   }
+                }catch(NullPointerException e)
+                {
+
+                }
+                    jList1MainScreen.setCellRenderer(new Renderer());
+                    jList1MainScreen.setModel(listModel1);
             }
+        }else{
+            JOptionPane.showMessageDialog(null, "No Hay Eventos Vencidos!!");
+        }
+        
+        
         
         
         
@@ -638,9 +665,16 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-        int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar TODOS los EVENTOS EXISTENTES?");
+        
+        ArrayList <Event> eventos = LoadDatas.readEvents();
+        DefaultListModel listModel1 = new DefaultListModel();
+        
+        if(eventos.isEmpty()){
+            JOptionPane.showMessageDialog(null, "No Hay Eventos Guardados!!");
+        }else{
+            int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar TODOS los EVENTOS EXISTENTES?");
             if(answer==0){
-                ArrayList <Event> eventos = LoadDatas.readEvents();
+                
                 eventos.clear();
 //                for(Event e:eventos){
 //                    if(e.isExpire()){
@@ -649,7 +683,21 @@ public class MainScreen extends javax.swing.JFrame {
 //
 //                }
                 LoadDatas.saveEvents(eventos);
+                try
+                {
+                   for(Event e: LoadDatas.readEvents())
+                   {
+                       if(!e.isExpire()) listModel1.addElement(e);
+                   }
+                }catch(NullPointerException e)
+                {
+
+                }
+                    jList1MainScreen.setCellRenderer(new Renderer());
+                    jList1MainScreen.setModel(listModel1);
             }
+        }
+        
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
