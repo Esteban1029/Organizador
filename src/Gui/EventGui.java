@@ -370,8 +370,15 @@ public class EventGui extends javax.swing.JFrame {
             if(event.getAlarm()==null||event.getAlarm().isEmpty())
             {
                 System.out.println("Se está guardando");
-                event = new Event(jTextField1.getText().toUpperCase(),jTextArea1.getText(),jTextField2.getText(), fecha ,Integer.parseInt(importance),guestListmain,alarmList);
+                event.setName(jTextField1.getText().toUpperCase());
+                event.setDescription(jTextArea1.getText());
+                event.setPlace(jTextField2.getText());
+                event.setDate(fecha);
+                event.setImportance(Integer.parseInt(importance));
+                event.setGuestList(guestListmain);
                 event.setIcon(iconoseleccion);
+                //event = new Event(jTextField1.getText().toUpperCase(),jTextArea1.getText(),jTextField2.getText(), fecha ,Integer.parseInt(importance),guestListmain,alarmList);
+                //event.setIcon(iconoseleccion);
                 a=ManagerEvents.addEvent(event);
                
                 
