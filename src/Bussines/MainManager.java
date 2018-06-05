@@ -11,9 +11,9 @@ public class MainManager{
  
     public static void main(String[] args) {
 
-
+//
         ManagerGui.showMainScreen();
-        
+//        
         ManagerAlarm.actionAlarms();
 //        
         //Prueba de correo
