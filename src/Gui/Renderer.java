@@ -23,7 +23,11 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
         private final ImageIcon defaultIcon= new ImageIcon("Icons\\Koala.PNG");
         private final int sizeIcon=50;
         static boolean color;
-    private Event is;
+        String restTime;
+        
+        
+        
+        private Event is;
         
         public Renderer()
         {
@@ -39,7 +43,9 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
             
             
             is=(Event)value;
-            System.out.println(is.getDate());
+            
+           String[] restTime=is.restTime().split(",");
+            
             try
             {
             
@@ -74,7 +80,8 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
                 this.setBackground(list.getBackground());
                 this.setForeground(list.getForeground());
             }
-
+            this.setToolTipText(String.format("Tiempo restante Dias: %s Horas: %s Minutos: %s",
+                    restTime[0],restTime[1],restTime[2]));
             setEnabled(true);
             setFont(list.getFont());
             if(true) importanceColor(); 

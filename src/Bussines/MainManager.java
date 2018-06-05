@@ -12,9 +12,9 @@ public class MainManager{
     public static void main(String[] args) {
 
 //
-//        ManagerGui.showMainScreen();
+        ManagerGui.showMainScreen();
 //        
-//        ManagerAlarm.actionAlarms();
+        ManagerAlarm.actionAlarms();
 //        
         //Prueba de correo
         //ManagerAlarm.sendGmail("andres.ardila.agudelo@gmail.com","Andres","Ricardo","Party","Feb 19,2019","we would have fun");
