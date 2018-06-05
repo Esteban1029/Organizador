@@ -33,6 +33,7 @@ public class ManagerAlarm{
     //Background method que revisa la vigencia de los eventos y alarmas
     public static void actionAlarms(){
         
+        
         System.out.println("actionAlarms ON");
         int contador=1;
         while(true){
