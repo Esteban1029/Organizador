@@ -10,6 +10,7 @@ import Data.Person;
 import static Gui.EditGuest.jTable1EditGuest;
 import static Gui.EventEdit.evento;
 
+
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -70,10 +71,10 @@ public class Invitados1 extends javax.swing.JFrame {
         setTitle("GUIguest");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Invitados");
+        jLabel1.setText("Contactos");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Selecciona los invitados que deseas agregar al Evento con ayuda de la tecla Ctrl");
+        jLabel2.setText("Selecciona los Contactos que deseas agregar al Evento con ayuda de la tecla Ctrl");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,7 +89,7 @@ public class Invitados1 extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable1);
 
-        jButton1.setText("Agregar Invitado Nuevo");
+        jButton1.setText("Agregar Contacto Nuevo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -153,36 +154,43 @@ public class Invitados1 extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int[]x=jTable1.getSelectedRows();
-        ArrayList<Person> List=LoadDatas.readPersons();
-        ArrayList<Person> a =new ArrayList();
-        for (int i = 0; i<x.length;i++){
-            a.add(List.get(x[i]));
-        }
-        
+        int test =jTable1.getSelectedRow();
+         if(test==-1){
+            JOptionPane.showMessageDialog(null,"No ha Seleccionado ningun Contacto!!" );
+        }else{
+            ArrayList<Person> List=LoadDatas.readPersons();
+            ArrayList<Person> a =new ArrayList();
+            for (int i = 0; i<x.length;i++){
+                a.add(List.get(x[i]));
+            }
+
+
+            ArrayList<Person> listainvitados =evento.getGuestList();
+            listainvitados.addAll(a);
+            evento.setGuestList(listainvitados);
+
+            String data [][]={ };
+            String cabeza []={ "Nombre","Correo"};
+            DefaultTableModel model1= new DefaultTableModel(data,cabeza);
+            for(int i =0; i<evento.getGuestList().size();i++){
+                String datos []={evento.getGuestList().get(i).getNombre(),evento.getGuestList().get(i).getCorreo()};
+                model1.addRow(datos);
+            }
+            jTable1EditGuest.setModel(model1);
             
-        ArrayList<Person> listainvitados =evento.getGuestList();
-        listainvitados.addAll(a);
-        evento.setGuestList(listainvitados);
+    //        DefaultListModel listModel1 = new DefaultListModel();
+    //        for(int i=0; i<evento.getGuestList().size(); i++) {
+    //            listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+    //                //listModel.addElement(i);
+    //            }
+    //
+    //        jTable1EditGuest.setModel(listModel1);
+
+            JOptionPane.showMessageDialog(null, "Los Contactos Han Sido Agregados como Invitados a Su Evento!! ");
+            this.setVisible(false);
+
         
-        String data [][]={ };
-        String cabeza []={ "Nombre","Correo"};
-        DefaultTableModel model1= new DefaultTableModel(data,cabeza);
-        for(int i =0; i<evento.getGuestList().size();i++){
-            String datos []={evento.getGuestList().get(i).getNombre(),evento.getGuestList().get(i).getCorreo()};
-            model1.addRow(datos);
-        }
-        jTable1EditGuest.setModel(model1);
-//        DefaultListModel listModel1 = new DefaultListModel();
-//        for(int i=0; i<evento.getGuestList().size(); i++) {
-//            listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
-//                //listModel.addElement(i);
-//            }
-//
-//        jTable1EditGuest.setModel(listModel1);
-            
-        JOptionPane.showMessageDialog(null, "Los Invitados Han Sido Agregados a Su Evento!! ");
-        this.setVisible(false);
-        
+         }
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -195,17 +203,23 @@ public class Invitados1 extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar este invitado?");
-        if(answer==0){
-            int position=jTable1.getSelectedRow();
-            ArrayList<Person> guestList= LoadDatas.readPersons();
-            Person remove= guestList.get(position);
-            guestList.remove(remove);
-            LoadDatas.savePerson(guestList);
-            model.removeRow(position);
-            
-            
+        int position=jTable1.getSelectedRow();
+        if(position ==-1){
+            JOptionPane.showMessageDialog(null,"No ha Seleccionado ningun Contacto!!" );
+        }else{
+            int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar este Contacto?");
+            if(answer==0){
+
+                ArrayList<Person> guestList= LoadDatas.readPersons();
+                Person remove= guestList.get(position);
+                guestList.remove(remove);
+                LoadDatas.savePerson(guestList);
+                model.removeRow(position);
+
+
+            }
         }
+        
         
         
         

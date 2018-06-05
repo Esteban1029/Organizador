@@ -5,6 +5,7 @@
  */
 package Gui;
 import static Gui.EventEdit.evento;
+import static Gui.EventEdit.jTable1EventEdit;
 
 
 import javax.swing.DefaultListModel;
@@ -63,7 +64,7 @@ public class EditGuest extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar Invitados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
-        jButton1.setText("Agregar Invitados");
+        jButton1.setText("Agregar Contactos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -115,8 +116,8 @@ public class EditGuest extends javax.swing.JFrame {
                         .addComponent(jScrollPane1)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4)
@@ -166,23 +167,33 @@ public class EditGuest extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    try
-    {
         int index =jTable1EditGuest.getSelectedRow();
-        evento.getGuestList().remove(index);
-        DefaultListModel listModel1 = new DefaultListModel();
-        model.removeRow(index);
-    }catch(ArrayIndexOutOfBoundsException e)
-    {
-        JOptionPane.showMessageDialog(this,"No se eliminó el evento");
-    }
-//        for(int i=0; i<evento.getGuestList().size(); i++) {
-//            
-//                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
-//                //listModel.addElement(i);
-//            }
+         if(index ==-1){
+            JOptionPane.showMessageDialog(null,"No ha Seleccionado ningun Contacto!!" );
+        }else{
+             int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar este Contacto?");
+            if(answer==0){
+                try
+                {
 
-            jTable1EditGuest.setModel(model);
+                    evento.getGuestList().remove(index);
+                    DefaultListModel listModel1 = new DefaultListModel();
+                    model.removeRow(index);
+                }catch(ArrayIndexOutOfBoundsException e)
+                {
+                    JOptionPane.showMessageDialog(this,"No se eliminó el evento");
+                }
+            //        for(int i=0; i<evento.getGuestList().size(); i++) {
+            //            
+            //                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+            //                //listModel.addElement(i);
+            //            }
+
+                        jTable1EditGuest.setModel(model);
+                }
+         }
+        
+    
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -205,10 +216,10 @@ public class EditGuest extends javax.swing.JFrame {
             model1.addRow(datos);
         }
         
-        JTable table=new  JTable();
-        table.setModel(model);
+        //JTable table=new  JTable();
+        jTable1EventEdit.setModel(model1);
         
-        EventEdit.jTable1EventEdit=table;
+        //EventEdit.jTable1EventEdit=table;
         
         
 //        DefaultListModel listModel1 = new DefaultListModel();

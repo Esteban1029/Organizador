@@ -34,8 +34,6 @@ public class EventGui extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         listaEventos=LoadDatas.readEvents();
-        new CrearAlarma();
-        event= new Event();
         
         
     }
@@ -127,7 +125,7 @@ public class EventGui extends javax.swing.JFrame {
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
         jSpinner1.setDoubleBuffered(true);
 
-        jButton2.setText("Agregar Invitados");
+        jButton2.setText("Agregar Contactos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -344,7 +342,8 @@ public class EventGui extends javax.swing.JFrame {
              // este código es por si el usuario crea un alarma dentro de la cración
              // de un evento
              //Inicializar alarmas para tener acceso a: Alarmas.defaultEvent;
-            event=CrearAlarma.defaultEvent;
+            new Alarmas();
+            event=Alarmas.defaultEvent;
             boolean a=true;
             
             if(event.getAlarm()==null||event.getAlarm().isEmpty())
@@ -366,7 +365,7 @@ public class EventGui extends javax.swing.JFrame {
                 event.setIcon(iconoseleccion);
                 listaEventos.add(event);
                 LoadDatas.saveEvents(listaEventos);
-                CrearAlarma.defaultEvent= new Event();
+                Alarmas.defaultEvent= new Event();
             }
             
             if(a){
@@ -418,11 +417,10 @@ public class EventGui extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
-        
-        CrearAlarma obj=new CrearAlarma();
-        CrearAlarma.isFromCreateEvent=true;
         CrearAlarma.defaultEvent=event;
+        CrearAlarma obj=new CrearAlarma();
+        // para que no guarde el evento
+        CrearAlarma.saveEvent=false;
         obj.setVisible(true);
         obj.setLocationRelativeTo(this);
         
