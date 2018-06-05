@@ -80,6 +80,8 @@ public class ManagerAlarm{
             }catch(NullPointerException ne){
                 System.out.println("No pending");
                 actionAlarms();
+            }catch(Exception e){
+                System.out.println("jejej Salu2");
             }
             LoadDatas.saveEvents(events);
             pause();

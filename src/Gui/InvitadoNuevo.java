@@ -134,6 +134,10 @@ public class InvitadoNuevo extends javax.swing.JFrame {
             
             JOptionPane.showMessageDialog(null, "El Contacto debe Tener Nombre!! ");
             
+        }if(!jTextField2.getText().contains("@")){
+            
+            JOptionPane.showMessageDialog(null, "El Contacto debe Tener Un Correo Valido!! ");
+            
         }else{
             
             ArrayList <Person> guestList = LoadDatas.readPersons();
