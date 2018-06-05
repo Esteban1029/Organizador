@@ -27,6 +27,7 @@ public class EventEdit extends javax.swing.JFrame {
     /**
      * Creates new form EventEdit
      */
+    public static boolean eventedit;
     public static Event evento = new Event();
     
     DefaultListModel listModel1 = new DefaultListModel();
@@ -36,6 +37,7 @@ public class EventEdit extends javax.swing.JFrame {
     
     public EventEdit() {
        initComponents();
+       eventedit=true;
        evento = workEvent;
        setResizable(false);
        this.setLocationRelativeTo(null);
@@ -619,7 +621,7 @@ public class EventEdit extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTable jTable1AlarmEventEdit;
+    public static javax.swing.JTable jTable1AlarmEventEdit;
     public static javax.swing.JTable jTable1EventEdit;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;

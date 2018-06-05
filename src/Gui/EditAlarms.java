@@ -5,7 +5,9 @@
  */
 package Gui;
 
+
 import static Gui.EventEdit.evento;
+import static Gui.EventEdit.jTable1AlarmEventEdit;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -170,6 +172,25 @@ public class EditAlarms extends javax.swing.JFrame {
 
                 evento.getAlarm().remove(index);
                 model.removeRow(index);
+                String data2 [][]={ };
+                String cabeza2 []={ "Tipo","Activada","fecha"};
+                DefaultTableModel model23= new DefaultTableModel(data2,cabeza2);
+                for(int i=0; i<evento.getAlarm().size(); i++) {
+
+                   String activate;
+                   if(evento.getAlarm().get(i).isActivated()){
+                       activate = "SI!!";
+                   }else{
+                       activate = "NO!!";
+                   }
+                    String datos []={evento.getAlarm().get(i).getTipoAlarma(),activate,evento.getAlarm().get(i).getDate().toString()};
+                    model23.addRow(datos);
+                       //listModel2.add(i, evento.getAlarm().get(i).getTipoAlarma()+"      "+activate +evento.getAlarm().get(i).getDate());
+                        //listModel.addElement(i);
+                    }
+
+                //jList2.setModel(listModel2);
+                jTable1AlarmEventEdit.setModel(model23);
         //        for(int i=0; i<evento.getGuestList().size(); i++) {
         //                listModel.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
         //                //listModel.addElement(i);
@@ -191,6 +212,7 @@ public class EditAlarms extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         CrearAlarma obj= new CrearAlarma();
+        
         this.setVisible(false);
         obj.setVisible(true);
         obj.setLocationRelativeTo(this);
