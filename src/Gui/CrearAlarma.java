@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author Ivan Solano
@@ -34,23 +32,17 @@ public class CrearAlarma extends javax.swing.JFrame {
     private String uxTime;
     private String[] time;
     private boolean valFecha;
-    
     static Event defaultEvent;
-    static boolean isFromCreateEvent;
-    static boolean isFromEditEvent;
-    static Alarm defaultAlarm;
+    static boolean saveEvent;
     
     public CrearAlarma() {
         initComponents();
         event=new Event();
         alarm=null;
         valFecha=true;
-        defaultEvent = new Event();
+        this.defaultEvent = new Event();
         listEvents=new ArrayList();
-        listAlarms=new ArrayList();
-        isFromCreateEvent=false;
-        isFromEditEvent=false;
-        defaultAlarm= new Alarm();
+        saveEvent=true;
     }
 
     /**
@@ -88,11 +80,6 @@ public class CrearAlarma extends javax.swing.JFrame {
         jCheckBox2.setText("Correo");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
@@ -208,62 +195,12 @@ public class CrearAlarma extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       
-       
+        try
+       {
 //                uxTime=(String)jSpinner1.getValue();
 //                time=uxTime.split(":");
 
-                
-                
-                
-                
-       event=defaultEvent;
-       listEvents=LoadDatas.readEvents();
-       
-        System.out.println(event);
-       if(!isFromEditEvent)
-       {
-           validDatas();
-       }
-       if(valFecha&&!isFromEditEvent){
-           loadDatas();
-       }
- 
-        if(!valFecha&&!isFromEditEvent) 
-        {
-            valFecha=true;
-            JOptionPane.showMessageDialog(this,"Elija una fecha coherente");
-     
-
-        }
-        else if(!isFromCreateEvent&&!isFromEditEvent)
-        {
-            System.out.println("!isFromCreateEvent&&!isFromEditEvent");
-            fromCreateAlarm();
-   
-        }
-        else if(isFromCreateEvent)
-        {   System.out.println("isFromCreateEvent"); 
-            // No se guarda que no se repita el objeto dos veces.
-            defaultEvent=event;
-            isFromCreateEvent=false;
-            this.setVisible(false);
-            
-        }
-        else
-        {
-            System.out.println("isFromEditEvent");
-            fromEditEvent();
-        }
-        
-       
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    public void fromEditEvent()
-    {
-       try
-        {
-            date=jDateChooser1.getDate();
+                date=jDateChooser1.getDate();
                 if(jComboBox3.getSelectedItem().toString().equals("PM")){
                     int hora = Integer.parseInt(jComboBox1.getSelectedItem().toString());
                     int horamilitar=hora +12;
@@ -278,101 +215,96 @@ public class CrearAlarma extends javax.swing.JFrame {
                     date.setMinutes(minutos);
                     date.setSeconds(00);
                 }
-        
-            if(date.compareTo(new Date())!=-1)
-            {
-                loadDatas();
-                this.setVisible(false);
-                isFromEditEvent=false;
-            }else
-            {
-                JOptionPane.showMessageDialog(this,"Sea coherente con los datos");
-            }
-            
-        }catch(NullPointerException e)
-        {
-            JOptionPane.showMessageDialog(this,"Sea coherente con los datos");
-        }
-        
-    }
-    
-    public void validDatas()
-    {
-       try
-       {
-           date=jDateChooser1.getDate();
-                if(jComboBox3.getSelectedItem().toString().equals("PM")){
-                    int hora = Integer.parseInt(jComboBox1.getSelectedItem().toString());
-                    int horamilitar=hora +12;
-                    int minutos =Integer.parseInt(jComboBox2.getSelectedItem().toString());
-                    date.setHours(horamilitar);
-                    date.setMinutes(minutos);
-                    date.setSeconds(00);
-                }if(jComboBox3.getSelectedItem().toString().equals("AM")){
-                    int hora= Integer.parseInt(jComboBox1.getSelectedItem().toString());
-                    int minutos =Integer.parseInt(jComboBox2.getSelectedItem().toString());
-                    date.setHours(hora);
-                    date.setMinutes(minutos);
-                    date.setSeconds(00);
-                }
-           
-           if(date.compareTo(new Date())==-1) valFecha=false;
- 
-           
+                
        }catch(NullPointerException e)
        {
+           JOptionPane.showMessageDialog(this,"Elija una fecha");
            valFecha=false;
        }
        try
-       {
+        {
+            event=Events.eventChoose;
+            listEvents=LoadDatas.readEvents();
+            System.out.println(event);
+            
             for (int i = 0; i <LoadDatas.readEvents().size(); i++) {
+                System.out.println("a");
                 if(listEvents.get(i).getName().equals(event.getName())&&listEvents.get(i).getDate()
-                        .equals(event.getDate())&&listEvents.get(i).getPlace().equals(event.getPlace())){
+                        .equals(event.getDate())){
                     posicion=i;
-                   listEvents.remove(i);
-                    
-                } 
+                }
+                
             }
- 
+            
+            listEvents.remove(posicion);
+        }catch(NullPointerException e)
+            
+        {
+            event=defaultEvent;
         }
         catch(IndexOutOfBoundsException e)
         {
-            System.out.println("error linea 246 Alarm");
-        }catch(NullPointerException e)
-        {
-            System.out.println("error linea 246 Alarm no tiene alarmas");
+            event=defaultEvent;
         }
-    }
-    
-    public void loadDatas()
-    {
-    
-        if(jCheckBox1.isSelected()&&jCheckBox2.isSelected())
+       
+       
+           
+        
+        if(jDateChooser1.getDate()!=null&&date.compareTo(new Date())==1)
+        {
+           
+               
+            try 
             {
+                
+                
+                
+                
+                if(jCheckBox1.isSelected()&&jCheckBox2.isSelected())
+                {
                     tipoAlarm=jCheckBox1.getLabel()+","+jCheckBox2.getLabel();
-            }
-            else if(jCheckBox1.isSelected())
-            {
+                }
+                else if(jCheckBox1.isSelected())
+                {
                     tipoAlarm=jCheckBox1.getLabel();
+                }
+                else tipoAlarm=jCheckBox2.getLabel();
+                
+                
+                
+                
+                alarm= new Alarm(tipoAlarm,date);
+
+                listAlarms=event.getAlarm();
+
+                listAlarms.add(alarm);
+                event.setAlarm(listAlarms);
+
+                listEvents.add(event);
+                if(saveEvent)LoadDatas.saveEvents(listEvents);
+                saveEvent=true;
+                this.setVisible(false);
+
+
+
+            }catch(NullPointerException e)
+            {
+                
+                listEvents=new ArrayList();
+                listAlarms.add(alarm);
+                event.setAlarm(listAlarms);
+                listEvents.add(event);
+                if(saveEvent)LoadDatas.saveEvents(listEvents);
+                saveEvent=true;
+                this.setVisible(false);
+
             }
-            else tipoAlarm=jCheckBox2.getLabel();
-            alarm= new Alarm(tipoAlarm,date);
-            listAlarms=event.getAlarm(); 
-            listAlarms.add(alarm);
-            event.setAlarm(listAlarms);
-            listEvents.add(posicion, event);
-    }
-    
-     private void fromCreateAlarm()
-    {    
-      LoadDatas.saveEvents(listEvents);
-      this.setVisible(false);
-    }
-    
-    
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+        }else
+        {
+           if(valFecha) JOptionPane.showMessageDialog(this,"Ingrese los Datos de manera coherente");
+           valFecha=true;
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

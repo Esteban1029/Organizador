@@ -1,5 +1,7 @@
 package Bussines;
 
+import java.util.Date;
+
 
 /**
  * FINAL()
@@ -13,11 +15,10 @@ public class MainManager{
         ManagerGui.showMainScreen();
         
         ManagerAlarm.actionAlarms();
-
-        //Prueba de correo
-        //ManagerAlarm.sendGmail("andres.ardila.agudelo@gmail.com","Andres",
-        // "Ricardo","Party","Feb 19,2019","we would have fun");
         
+        //Prueba de correo
+        //ManagerAlarm.sendGmail("andres.ardila.agudelo@gmail.com","Andres","Ricardo","Party","Feb 19,2019","we would have fun");
+        //ManagerAlarm.emailSystem("fanton123@hotmail.es", "Ivan", "Carlos", "party", "Feb 19,2019", "we would have fun");
         //Prueba Sonido
         //ManagerAlarm.soundSystem();
     }
