@@ -417,10 +417,10 @@ public class EventGui extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        Alarmas.defaultEvent=event;
-        Alarmas obj=new Alarmas();
+        CrearAlarma.defaultEvent=event;
+        CrearAlarma obj=new CrearAlarma();
         // para que no guarde el evento
-        Alarmas.saveEvent=false;
+        CrearAlarma.saveEvent=false;
         obj.setVisible(true);
         obj.setLocationRelativeTo(this);
         

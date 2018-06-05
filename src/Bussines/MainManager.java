@@ -13,6 +13,7 @@ public class MainManager{
         ManagerGui.showMainScreen();
         
         ManagerAlarm.actionAlarms();
+        ManagerAlarm.emailSystem("saeekz23@gmail.com", "carlos", "Ivan", "party", "09/08/2018", "vamo a farriar");
 
         //Prueba de correo
         //ManagerAlarm.sendGmail("andres.ardila.agudelo@gmail.com","Andres",
