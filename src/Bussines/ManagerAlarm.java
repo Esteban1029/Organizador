@@ -156,7 +156,7 @@ public class ManagerAlarm{
         "MeetingManager";
         
         Properties props = System.getProperties();
-        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");  //El servidor SMTP de Google
+        props.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
         props.put("mail.smtp.user", remitente);
         props.put("mail.smtp.clave", clave);    //La clave de la cuenta
         props.put("mail.smtp.auth", "true");    //Usar autenticación mediante usuario y clave

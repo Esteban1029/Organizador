@@ -22,6 +22,14 @@ public class Alarm implements Serializable  {
         activated=false;
     }   
     
+     public Alarm()
+     {
+        this.tipoAlarma="";
+        this.date= null;
+        activated=false;
+     }
+    
+    
     public String getTipoAlarma() {
         return tipoAlarma;
     }
