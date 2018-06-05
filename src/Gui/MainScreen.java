@@ -479,6 +479,11 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         About.setText("About");
+        About.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AboutMouseClicked(evt);
+            }
+        });
         About.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AboutActionPerformed(evt);
@@ -716,6 +721,14 @@ public class MainScreen extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_AboutActionPerformed
+
+    private void AboutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AboutMouseClicked
+
+        About obj=new  About();
+        obj.setVisible(true);
+        obj.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+
+    }//GEN-LAST:event_AboutMouseClicked
 
     /**
      * @param args the command line arguments

@@ -33,6 +33,7 @@ public class EventGui extends javax.swing.JFrame {
     private final ArrayList<Event> listaEventos;
     private Date fecha;
     private DefaultListModel listModel;
+    private boolean isDate;
     
     
     public EventGui() {
@@ -41,7 +42,7 @@ public class EventGui extends javax.swing.JFrame {
         listaEventos=LoadDatas.readEvents();
         CrearAlarma crearAlarma = new CrearAlarma();
         event=new Event();
-        
+        isDate=true;
         
     }
     
@@ -86,8 +87,10 @@ public class EventGui extends javax.swing.JFrame {
               
         
         if(fecha.compareTo(new Date())==-1){
-           JOptionPane.showMessageDialog(null, "Por favor ingrese un nueva fecha"); 
-           return false;
+          JOptionPane.showMessageDialog(null, "Por favor ingrese un nueva fecha"); 
+          isDate=false; 
+          return false;
+           
         }
         else if(guestListmain.isEmpty()){
             JOptionPane.showMessageDialog(null, "El evento debe tener al menos un invitado!! ");
@@ -424,7 +427,8 @@ public class EventGui extends javax.swing.JFrame {
             }
         }else
         {
-            JOptionPane.showMessageDialog(this, "Ingrese los datos de forma coherente ");
+         if(isDate)   JOptionPane.showMessageDialog(this, "Ingrese los datos de forma coherente ");
+         isDate=true;
         }
         
         

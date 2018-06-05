@@ -14,6 +14,7 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
+import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.sound.sampled.AudioInputStream;
@@ -118,9 +119,21 @@ public class ManagerAlarm{
                 System.out.println("."+e.getName()+".");
                 System.out.println("."+e.getDate().toString()+".");
                 System.out.println("."+e.getDescription()+".");
-                emailSystem(persona.getCorreo(), user.getNombre(), 
+                
+                if(persona.getCorreo().contains("@gmail.com")||persona.getCorreo().contains("@outlook")
+                        ||persona.getCorreo().contains("@unal.edu.co"))
+                {
+                    emailSystem(persona.getCorreo(), user.getNombre(), 
                     persona.getNombre(), e.getName(), e.getDate().toString(),
                     e.getDescription());
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "No se pudo enviar correo a: "+persona.getNombre(), "Error correo", JOptionPane.WARNING_MESSAGE);
+                }
+                
+                
+                
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, "No se pudo enviar correo a: "+persona.getNombre(), "Error correo", JOptionPane.WARNING_MESSAGE);
                 ex.printStackTrace();
@@ -149,7 +162,12 @@ public class ManagerAlarm{
         
         try {
          // Open an audio input stream.           
-          File soundFile = new File("AlertSound.wav"); //you could also get the sound file with an URL
+          File soundFile = new File("AlertSound.wav");
+          if(!soundFile.exists())
+          {
+              soundFile=new File("src\\Data\\AlertSound.wav");
+          }
+         
           AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
          // Get a sound clip resource.
          Clip clip = AudioSystem.getClip();
@@ -163,6 +181,9 @@ public class ManagerAlarm{
       } catch (LineUnavailableException e) {
          e.printStackTrace();
       }
+      
+          
+      
     }
     //Maneja el email de la alarma.
     public static void emailSystem(String destino, String usuario, String nombreInvitado, String eventName, String date, String descripcion){

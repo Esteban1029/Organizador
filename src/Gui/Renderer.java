@@ -39,6 +39,11 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
             
             
             is=(Event)value;
+            String[] restTime=is.restTime().split(",");
+            
+            this.setToolTipText(String.format(" %s Dias, %s horas y %s minutos",
+                    restTime[0],restTime[1],restTime[2]));
+            
             try
             {
             

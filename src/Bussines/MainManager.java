@@ -18,6 +18,9 @@ public class MainManager{
           ManagerGui.showMainScreen();
 //        
           ManagerAlarm.actionAlarms();
+          
+     
+          
            /*for(Person persona: LoadDatas.readPersons()){
                System.out.println("."+persona.getCorreo()+".");
                ManagerAlarm.emailSystem(persona.getCorreo(),"Andres","Ricardo","Party","Feb 19,2019","we would have fun");
