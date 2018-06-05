@@ -236,6 +236,7 @@ public class CrearAlarma extends javax.swing.JFrame {
         {
             System.out.println("!isFromCreateEvent&&!isFromEditEvent");
             fromCreateAlarm();
+            
    
         }
         else if(isFromCreateEvent)
@@ -244,7 +245,7 @@ public class CrearAlarma extends javax.swing.JFrame {
             defaultEvent=event;
             isFromCreateEvent=false;
             this.setVisible(false);
-            
+           
         }
         else
         {
@@ -361,7 +362,8 @@ public class CrearAlarma extends javax.swing.JFrame {
     }
     
      private void fromCreateAlarm()
-    {    
+    { 
+      
       LoadDatas.saveEvents(listEvents);
       this.setVisible(false);
     }

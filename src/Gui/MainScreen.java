@@ -135,6 +135,7 @@ public class MainScreen extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        About = new javax.swing.JMenu();
 
         jMenuItem2.setText("jMenuItem2");
 
@@ -477,6 +478,14 @@ public class MainScreen extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        About.setText("About");
+        About.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AboutActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(About);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -702,6 +711,12 @@ public class MainScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void AboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AboutActionPerformed
+
+        
+        
+    }//GEN-LAST:event_AboutActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -738,6 +753,7 @@ public class MainScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu About;
     private javax.swing.JButton allEvents;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
