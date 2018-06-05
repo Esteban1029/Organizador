@@ -30,17 +30,70 @@ public class EventGui extends javax.swing.JFrame {
     public static ImageIcon iconoseleccion;
     public static ArrayList <Person> guestListmain = new ArrayList();
     private Event event;
-    private ArrayList<Event> listaEventos;
+    private final ArrayList<Event> listaEventos;
+    private Date fecha;
+    private DefaultListModel listModel;
     
     
     public EventGui() {
         initComponents();
         this.setLocationRelativeTo(null);
         listaEventos=LoadDatas.readEvents();
-        new CrearAlarma();
+        CrearAlarma crearAlarma = new CrearAlarma();
         event=new Event();
         
         
+    }
+    
+    public  boolean validDate(){
+        try
+        {
+            fecha = new Date();
+                fecha = jDateChooser1.getDate();
+                listModel = new DefaultListModel();
+
+                if(jComboBox3.getSelectedItem().toString().equals("PM")){
+                    int hora = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+                    int horamilitar=hora +12;
+                    int minutos =Integer.parseInt(jComboBox2.getSelectedItem().toString());
+                    fecha.setHours(horamilitar);
+                    fecha.setMinutes(minutos);
+                    fecha.setSeconds(00);
+                }if(jComboBox3.getSelectedItem().toString().equals("AM")){
+                    int hora= Integer.parseInt(jComboBox1.getSelectedItem().toString());
+                    int minutos =Integer.parseInt(jComboBox2.getSelectedItem().toString());
+                    fecha.setHours(hora);
+                    fecha.setMinutes(minutos);
+                    fecha.setSeconds(00);
+                }
+
+
+            if("".equals(jTextField1.getText())){
+               JOptionPane.showMessageDialog(null, "El evento debe tener un nombre!! "); 
+            }
+            if("".equals(jTextField2.getText())){
+               JOptionPane.showMessageDialog(null, "El evento debe tener un Lugar!! "); 
+            }
+            if("".equals(jTextArea1.getText())){
+               JOptionPane.showMessageDialog(null, "El evento debe tener una Descripcion!! "); 
+            }
+
+        }catch(NullPointerException e)
+        {
+            return false;
+        }
+            
+              
+        
+        if(fecha.compareTo(new Date())==-1){
+           JOptionPane.showMessageDialog(null, "Por favor ingrese un nueva fecha"); 
+           return false;
+        }
+        else if(guestListmain.isEmpty()){
+            JOptionPane.showMessageDialog(null, "El evento debe tener al menos un invitado!! ");
+           return false; 
+        }
+        return true;
     }
 
     /**
@@ -301,44 +354,8 @@ public class EventGui extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         Date fecha = new Date();
-            fecha = jDateChooser1.getDate();
             
-            if(jComboBox3.getSelectedItem().toString().equals("PM")){
-                int hora = Integer.parseInt(jComboBox1.getSelectedItem().toString());
-                int horamilitar=hora +12;
-                int minutos =Integer.parseInt(jComboBox2.getSelectedItem().toString());
-                fecha.setHours(horamilitar);
-                fecha.setMinutes(minutos);
-                fecha.setSeconds(00);
-            }if(jComboBox3.getSelectedItem().toString().equals("AM")){
-                int hora= Integer.parseInt(jComboBox1.getSelectedItem().toString());
-                int minutos =Integer.parseInt(jComboBox2.getSelectedItem().toString());
-                fecha.setHours(hora);
-                fecha.setMinutes(minutos);
-                fecha.setSeconds(00);
-            }
-        
-        
-        if("".equals(jTextField1.getText())){
-           JOptionPane.showMessageDialog(null, "El evento debe tener un nombre!! "); 
-        }
-        if("".equals(jTextField2.getText())){
-           JOptionPane.showMessageDialog(null, "El evento debe tener un Lugar!! "); 
-        }
-        if("".equals(jTextArea1.getText())){
-           JOptionPane.showMessageDialog(null, "El evento debe tener una Descripcion!! "); 
-        }
-        
-        
-        if(fecha.compareTo(new Date())==-1){
-           JOptionPane.showMessageDialog(null, "Por favor ingrese un nueva fecha"); 
-        }
-        else if(guestListmain.isEmpty()){
-            JOptionPane.showMessageDialog(null, "El evento debe tener al menos un invitado!! ");
-            
-        }
-        else{
+        if(validDate()){
             ArrayList <Alarm> alarmList = new ArrayList();
             String importance = jSpinner1.getValue().toString();
             
@@ -352,9 +369,12 @@ public class EventGui extends javax.swing.JFrame {
             
             if(event.getAlarm()==null||event.getAlarm().isEmpty())
             {
+                System.out.println("Se está guardando");
                 event = new Event(jTextField1.getText().toUpperCase(),jTextArea1.getText(),jTextField2.getText(), fecha ,Integer.parseInt(importance),guestListmain,alarmList);
                 event.setIcon(iconoseleccion);
-                 a = ManagerEvents.addEvent(event);
+                a=ManagerEvents.addEvent(event);
+               
+                
             }
             
             else
@@ -367,14 +387,12 @@ public class EventGui extends javax.swing.JFrame {
                 event.setImportance(Integer.parseInt(importance));
                 event.setGuestList(guestListmain);
                 event.setIcon(iconoseleccion);
-                listaEventos.add(event);
-                LoadDatas.saveEvents(listaEventos);
-                CrearAlarma.defaultEvent= new Event();
+                a=ManagerEvents.addEvent(event);
             }
+            
             
             if(a){
                 JOptionPane.showMessageDialog(null, "El evento Fue guardado Exitosamente!! ");
-                DefaultListModel listModel = new DefaultListModel();
                 try
             {
                for(Event e: LoadDatas.readEvents())
@@ -383,8 +401,9 @@ public class EventGui extends javax.swing.JFrame {
                }
             }catch(NullPointerException e)
             {
-
+                
             }
+                
                 jList1MainScreen.setCellRenderer(new Renderer());
                 jList1MainScreen.setModel(listModel);
 //            for(int i=0; i<LoadDatas.readEvents().size(); i++) {
@@ -396,6 +415,9 @@ public class EventGui extends javax.swing.JFrame {
             }if(!a){
                 JOptionPane.showMessageDialog(null, "No pudo guardarse el Evento!! ");
             }
+        }else
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese los datos de forma coherente ");
         }
         
         

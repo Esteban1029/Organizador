@@ -28,7 +28,7 @@ public class LoadDatas {
     static String fileNameAlarm="Alarms.ser";
     
     
-    static public boolean saveEvents(ArrayList<Event> lisEve)
+     public static boolean saveEvents(ArrayList<Event> lisEve)
     {
         
         ObjectOutputStream salida;
@@ -52,7 +52,7 @@ public class LoadDatas {
     
     
     
-    static public ArrayList<Event> readEvents()
+     public static ArrayList<Event> readEvents()
     {
         
         ObjectInputStream entrada;
@@ -78,7 +78,7 @@ public class LoadDatas {
         return new ArrayList();
     }
     
-    static public User readUser()
+     public static User readUser()
     {
         ObjectInputStream entrada;
         User user;
@@ -103,7 +103,7 @@ public class LoadDatas {
        return null;         
     }
     
-    static public boolean saveUser(User user)
+    public static  boolean saveUser(User user)
     {
  
      ObjectOutputStream salida;

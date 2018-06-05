@@ -8,14 +8,10 @@ package Gui;
 import Bussines.LoadDatas;
 import Data.Alarm;
 import Data.Event;
-import static Gui.EventEdit.eventedit;
-import static Gui.EventEdit.evento;
-import static Gui.EventEdit.jTable1AlarmEventEdit;
 
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 
 
@@ -28,7 +24,6 @@ public class CrearAlarma extends javax.swing.JFrame {
     /**
      * Creates new form CrearAlarma
      */
-    
     private Event event;
     private ArrayList<Alarm> listAlarms;
     private Alarm alarm;
@@ -217,69 +212,8 @@ public class CrearAlarma extends javax.swing.JFrame {
        
 //                uxTime=(String)jSpinner1.getValue();
 //                time=uxTime.split(":");
-       if(eventedit){
-            event=defaultEvent;
-            listEvents=LoadDatas.readEvents();
 
-             System.out.println(event);
-            if(!isFromEditEvent)
-            {
-                validDatas();
-            }
-            if(valFecha&&!isFromEditEvent){
-                loadDatas();
-            }
-
-             if(!valFecha&&!isFromEditEvent) 
-             {
-                 valFecha=true;
-                 JOptionPane.showMessageDialog(this,"Elija una fecha coherente");
-
-
-             }
-             else if(!isFromCreateEvent&&!isFromEditEvent)
-             {
-                 System.out.println("!isFromCreateEvent&&!isFromEditEvent");
-                 fromCreateAlarm();
-
-             }
-             else if(isFromCreateEvent)
-             {   System.out.println("isFromCreateEvent"); 
-                 // No se guarda que no se repita el objeto dos veces.
-                 defaultEvent=event;
-                 isFromCreateEvent=false;
-                 this.setVisible(false);
-
-             }
-             else
-             {
-                 System.out.println("isFromEditEvent");
-                 fromEditEvent();
-                 isFromEditEvent=false;
-             }
-
-            String data2 [][]={ };
-            String cabeza2 []={ "Tipo","Activada","fecha"};
-            DefaultTableModel model23= new DefaultTableModel(data2,cabeza2);
-            for(int i=0; i<evento.getAlarm().size(); i++) {
-
-               String activate;
-               if(evento.getAlarm().get(i).isActivated()){
-                   activate = "SI!!";
-               }else{
-                   activate = "NO!!";
-               }
-                String datos []={evento.getAlarm().get(i).getTipoAlarma(),activate,evento.getAlarm().get(i).getDate().toString()};
-                model23.addRow(datos);
-                   //listModel2.add(i, evento.getAlarm().get(i).getTipoAlarma()+"      "+activate +evento.getAlarm().get(i).getDate());
-                    //listModel.addElement(i);
-                }
-
-                //jList2.setModel(listModel2);
-                jTable1AlarmEventEdit.setModel(model23);
-                eventedit=false;
-       }else{
-           event=defaultEvent;
+       event=defaultEvent;
        listEvents=LoadDatas.readEvents();
        
         System.out.println(event);
@@ -318,9 +252,6 @@ public class CrearAlarma extends javax.swing.JFrame {
             fromEditEvent();
             isFromEditEvent=false;
         }
-       }
-
-       
         
        
     }//GEN-LAST:event_jButton1ActionPerformed

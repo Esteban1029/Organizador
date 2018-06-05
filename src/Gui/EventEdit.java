@@ -27,7 +27,6 @@ public class EventEdit extends javax.swing.JFrame {
     /**
      * Creates new form EventEdit
      */
-    public static boolean eventedit;
     public static Event evento = new Event();
     
     DefaultListModel listModel1 = new DefaultListModel();
@@ -37,7 +36,6 @@ public class EventEdit extends javax.swing.JFrame {
     
     public EventEdit() {
        initComponents();
-       eventedit=true;
        evento = workEvent;
        setResizable(false);
        this.setLocationRelativeTo(null);
@@ -471,13 +469,22 @@ public class EventEdit extends javax.swing.JFrame {
         
         evento.setDate(fecha);
         evento.setImportance(Integer.parseInt(importance));
+         ArrayList <Event> eventos = LoadDatas.readEvents();
         
         
-      
+        try
+        {
+           
+            eventos.remove(Posicion);
+            eventos.add(Posicion, evento);
         
-        ArrayList <Event> eventos = LoadDatas.readEvents();
-        eventos.remove(Posicion);
-        eventos.add(Posicion, evento);
+        }catch(IndexOutOfBoundsException e)
+        {
+            System.out.println("No se eliminó el evento EventEdit 481");
+        }
+        
+        
+        
         boolean saved = LoadDatas.saveEvents(eventos);
         if (saved){
             JOptionPane.showMessageDialog(null, "El evento ha sido Modificado con Exito!!");
@@ -621,7 +628,7 @@ public class EventEdit extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSpinner jSpinner1;
-    public static javax.swing.JTable jTable1AlarmEventEdit;
+    private javax.swing.JTable jTable1AlarmEventEdit;
     public static javax.swing.JTable jTable1EventEdit;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;

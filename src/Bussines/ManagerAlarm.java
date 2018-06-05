@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -29,15 +31,19 @@ public class ManagerAlarm{
 
     //Background method que revisa la vigencia de los eventos y alarmas
     public static void actionAlarms(){
+        
         System.out.println("actionAlarms ON");
+        int contador=1;
         while(true){
             Date auxDate=new Date();
             Person usuario=null;
+            
             for(Person persona: LoadDatas.readPersons()){
                 if(persona.isUser()){
                     usuario = persona;
                 }
             }
+            
             ArrayList<Event> events = LoadDatas.readEvents();
             try{
             for(Event evento: events){
@@ -62,12 +68,14 @@ public class ManagerAlarm{
                         }
                     }
                 }
-                
-            };
-            LoadDatas.saveEvents(events);
+                System.out.println("Tu tranquilo "+contador++);
+            }
             }catch(NullPointerException ne){
                 System.out.println("No pending");
+                actionAlarms();
             }
+            LoadDatas.saveEvents(events);
+            pause();
         }
     }
     //Utiliza los dos métodos de abajo para notificar.
@@ -229,6 +237,17 @@ public class ManagerAlarm{
         
         return lisEve;
         
+    }
+    
+    static void pause() {
+        
+        try
+        {
+          Thread.sleep(1000);
+        }catch(InterruptedException ex)
+        {
+            
+        }
     }
     
 }
