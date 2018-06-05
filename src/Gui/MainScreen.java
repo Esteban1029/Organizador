@@ -339,7 +339,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel8MainScreen.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jLabel8MainScreen.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel8MainScreen.setForeground(new java.awt.Color(102, 102, 102));
 
         jLabel10.setFont(new java.awt.Font("Vivaldi", 1, 30)); // NOI18N
