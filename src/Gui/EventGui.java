@@ -125,7 +125,7 @@ public class EventGui extends javax.swing.JFrame {
         jSpinner1.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
         jSpinner1.setDoubleBuffered(true);
 
-        jButton2.setText("Agregar Invitados");
+        jButton2.setText("Agregar Contactos");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);

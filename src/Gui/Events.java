@@ -145,7 +145,7 @@ public class Events extends javax.swing.JFrame {
         
         eventChoose=jList1.getSelectedValue();
         this.setVisible(false);
-        Alarmas obj= new Alarmas();
+        CrearAlarma obj= new CrearAlarma();
         obj.setVisible(true);
         obj.setLocationRelativeTo(this);
         

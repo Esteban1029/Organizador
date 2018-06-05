@@ -70,10 +70,10 @@ public class Invitados1 extends javax.swing.JFrame {
         setTitle("GUIguest");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Invitados");
+        jLabel1.setText("Contactos");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel2.setText("Selecciona los invitados que deseas agregar al Evento con ayuda de la tecla Ctrl");
+        jLabel2.setText("Selecciona los Contactos que deseas agregar al Evento con ayuda de la tecla Ctrl");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,7 +88,7 @@ public class Invitados1 extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable1);
 
-        jButton1.setText("Agregar Invitado Nuevo");
+        jButton1.setText("Agregar Contacto Nuevo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -180,7 +180,7 @@ public class Invitados1 extends javax.swing.JFrame {
 //
 //        jTable1EditGuest.setModel(listModel1);
             
-        JOptionPane.showMessageDialog(null, "Los Invitados Han Sido Agregados a Su Evento!! ");
+        JOptionPane.showMessageDialog(null, "Los Contactos Han Sido Agregados como Invitados a Su Evento!! ");
         this.setVisible(false);
         
         
@@ -195,7 +195,7 @@ public class Invitados1 extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar este invitado?");
+        int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar este Contacto?");
         if(answer==0){
             int position=jTable1.getSelectedRow();
             ArrayList<Person> guestList= LoadDatas.readPersons();

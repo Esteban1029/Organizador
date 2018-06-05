@@ -63,7 +63,7 @@ public class EditGuest extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Editar Invitados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 14))); // NOI18N
 
-        jButton1.setText("Agregar Invitados");
+        jButton1.setText("Agregar Contactos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -116,7 +116,7 @@ public class EditGuest extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton4)
@@ -166,23 +166,27 @@ public class EditGuest extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-    try
-    {
-        int index =jTable1EditGuest.getSelectedRow();
-        evento.getGuestList().remove(index);
-        DefaultListModel listModel1 = new DefaultListModel();
-        model.removeRow(index);
-    }catch(ArrayIndexOutOfBoundsException e)
-    {
-        JOptionPane.showMessageDialog(this,"No se eliminó el evento");
-    }
-//        for(int i=0; i<evento.getGuestList().size(); i++) {
-//            
-//                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
-//                //listModel.addElement(i);
-//            }
+        int answer = JOptionPane.showConfirmDialog(null,"¿Esta seguro que desea eliminar este Contacto?");
+        if(answer==0){
+            try
+            {
+                int index =jTable1EditGuest.getSelectedRow();
+                evento.getGuestList().remove(index);
+                DefaultListModel listModel1 = new DefaultListModel();
+                model.removeRow(index);
+            }catch(ArrayIndexOutOfBoundsException e)
+            {
+                JOptionPane.showMessageDialog(this,"No se eliminó el evento");
+            }
+        //        for(int i=0; i<evento.getGuestList().size(); i++) {
+        //            
+        //                listModel1.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+        //                //listModel.addElement(i);
+        //            }
 
-            jTable1EditGuest.setModel(model);
+                    jTable1EditGuest.setModel(model);
+            }
+    
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
