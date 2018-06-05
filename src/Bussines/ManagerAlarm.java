@@ -42,6 +42,12 @@ public class ManagerAlarm{
                 if(persona.isUser()){
                     usuario = persona;
                 }
+                try{
+                    usuario.getNombre();
+                }catch(java.lang.NullPointerException exe){
+                    usuario =new Person(" ", " ", true);
+                }
+                
             }
             
             ArrayList<Event> events = LoadDatas.readEvents();
@@ -102,14 +108,22 @@ public class ManagerAlarm{
     }
     //Alarma Correo.
     public static void sendGmail(Event e,ArrayList<Person> guestList,Person user){
+        
         for(Person persona: guestList){
+            
             try{
+                System.out.println("."+persona.getCorreo()+".");
+                System.out.println("."+user.getNombre()+".");
+                System.out.println("."+persona.getNombre()+".");
+                System.out.println("."+e.getName()+".");
+                System.out.println("."+e.getDate().toString()+".");
+                System.out.println("."+e.getDescription()+".");
                 emailSystem(persona.getCorreo(), user.getNombre(), 
                     persona.getNombre(), e.getName(), e.getDate().toString(),
                     e.getDescription());
             }catch(Exception ex){
                 JOptionPane.showMessageDialog(null, "No se pudo enviar correo a: "+persona.getNombre(), "Error correo", JOptionPane.WARNING_MESSAGE);
-            
+                ex.printStackTrace();
             }
         }
     }
