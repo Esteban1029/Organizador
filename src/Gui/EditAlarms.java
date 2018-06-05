@@ -160,28 +160,37 @@ public class EditAlarms extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        try
-        {
+        int index =jTable1EditAlarms.getSelectedRow();
+        if(index ==-1){
+            JOptionPane.showMessageDialog(null,"No ha Seleccionado ningun Contacto!!" );
+        }else{
+            try
+            {
 
-            int index =jTable1EditAlarms.getSelectedRow();
-            evento.getAlarm().remove(index);
-            model.removeRow(index);
-    //        for(int i=0; i<evento.getGuestList().size(); i++) {
-    //                listModel.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
-    //                //listModel.addElement(i);
-    //            }
 
-             jTable1EditAlarms.setModel(model);
-        }catch(ArrayIndexOutOfBoundsException e)
-        {
-            JOptionPane.showMessageDialog(this,"No se pudo eliminar las alarma");
+                evento.getAlarm().remove(index);
+                model.removeRow(index);
+        //        for(int i=0; i<evento.getGuestList().size(); i++) {
+        //                listModel.add(i, evento.getGuestList().get(i).getNombre()+"           "+evento.getGuestList().get(i).getCorreo());
+        //                //listModel.addElement(i);
+        //            }
+
+                 jTable1EditAlarms.setModel(model);
+                 JOptionPane.showMessageDialog(this,"La Alarma se ha Eliminado!!!");
+            }catch(ArrayIndexOutOfBoundsException e)
+            {
+                JOptionPane.showMessageDialog(this,"No se pudo eliminar las alarma");
+            }
         }
+        
         
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
