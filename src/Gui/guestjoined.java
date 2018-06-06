@@ -5,10 +5,6 @@
  */
 
 package Gui;
-
-
-import Data.Person;
-import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 
@@ -119,11 +115,9 @@ public class guestjoined extends javax.swing.JFrame {
         }
         //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new guestjoined().setVisible(true);
-            }
+        /* Create and display the form */   
+        java.awt.EventQueue.invokeLater(() -> {
+            new guestjoined().setVisible(true);
         });
     }
 

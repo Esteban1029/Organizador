@@ -28,7 +28,7 @@ public class EventGui extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     public static ImageIcon iconoseleccion;
-    public static ArrayList <Person> guestListmain = new ArrayList();
+    public static ArrayList <Person> guestListmain;
     private Event event;
     private final ArrayList<Event> listaEventos;
     private Date fecha;
@@ -37,6 +37,7 @@ public class EventGui extends javax.swing.JFrame {
     
     
     public EventGui() {
+        guestListmain = new ArrayList();
         initComponents();
         this.setLocationRelativeTo(null);
         listaEventos=LoadDatas.readEvents();

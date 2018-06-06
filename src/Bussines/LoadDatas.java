@@ -100,7 +100,7 @@ public class LoadDatas {
             System.out.println("las clases no son sompatibles");
         }
         
-       return null;         
+       return new User();         
     }
     
     public static  boolean saveUser(User user)

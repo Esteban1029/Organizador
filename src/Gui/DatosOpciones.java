@@ -128,11 +128,18 @@ public class DatosOpciones extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //Guardar los datos del usuario
-        User usuario = new User("","","","");
-        usuario.setNombre(this.jTextField1.getText());
-        usuario.setCorreo(this.jTextField2.getText());
+        User usuario = new User();
+        if(!this.jTextField1.getText().equals(""))
+        {
+          usuario.setNombre(this.jTextField1.getText());    
+        }
+        
+        if(!this.jTextField2.getText().equals(""))
+        {
+            usuario.setCorreo(this.jTextField2.getText());
+        }
         LoadDatas.saveUser(usuario);
-        jLabel8MainScreen.setText("Bienvenido "+this.jTextField1.getText());
+        jLabel8MainScreen.setText("Bienvenido "+usuario.getNombre());
         
         
         

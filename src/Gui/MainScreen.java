@@ -44,11 +44,11 @@ public class MainScreen extends javax.swing.JFrame {
         }
         
         this.jPanel3.setBackground(Color.LIGHT_GRAY);
-        this.jPanel4.setBackground(new Color(255,229,230));
-        this.jPanel5.setBackground(new Color(255,242,242));
-        this.jPanel7.setBackground(new Color(192,213,255));
-        this.jPanel8.setBackground(new Color(191,255,201));
-        this.jPanel9.setBackground(new Color(252,250,203));
+        this.jPanel4.setBackground(new Color(255,102,102));
+        this.jPanel5.setBackground(new Color(255,229,230));
+        this.jPanel7.setBackground(new Color(255,242,242));
+        this.jPanel8.setBackground(new Color(192,213,255));
+        this.jPanel9.setBackground(new Color(191,255,201));
         this.jLabel8MainScreen.setText(usuario);
         setResizable(false);
         this.setLocationRelativeTo(null);

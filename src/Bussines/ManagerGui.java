@@ -8,7 +8,9 @@ package Bussines;
 
 import Data.Event;
 import Data.Person;
-import Gui.*;
+import Gui.Icons;
+import Gui.MainScreen;
+
 
 
 import java.awt.Image;

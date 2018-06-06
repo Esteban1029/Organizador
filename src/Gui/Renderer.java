@@ -91,11 +91,11 @@ public class Renderer extends DefaultListCellRenderer implements ListCellRendere
         private void importanceColor()
         {
             if(is.isExpire()) this.setBackground(Color.LIGHT_GRAY);
-            else if(is.getImportance()<=2) this.setBackground(new Color(252,250,203));
-            else if(is.getImportance()<=4) this.setBackground(new Color(191,255,201));
-            else if(is.getImportance()<=6) this.setBackground(new Color(192,213,255));
-            else if(is.getImportance()<=8) this.setBackground(new Color(255,242,242));
-            else this.setBackground(new Color(255,229,230));
+            else if(is.getImportance()<=2) this.setBackground(new Color(191,255,201));
+            else if(is.getImportance()<=4) this.setBackground(new Color(192,213,255));
+            else if(is.getImportance()<=6) this.setBackground(new Color(255,242,242));
+            else if(is.getImportance()<=8) this.setBackground(new Color(255,229,230));
+            else this.setBackground(new Color(255,102,102));
                
         }
         

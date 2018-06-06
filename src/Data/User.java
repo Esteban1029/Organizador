@@ -26,7 +26,12 @@ public class User extends Person implements Serializable{
     
     public User(String name,String emailAddress)
     {
-        this(null,null,name,emailAddress);
+        this("","",name,emailAddress);
+    }
+    
+    public User()
+    {
+        this("Anónimo","Sin Correo");
     }
 
     public String getOccupation() {

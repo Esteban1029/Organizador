@@ -10,7 +10,7 @@ import static Gui.EventEdit.jTable1EventEdit;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
+
 import javax.swing.table.DefaultTableModel;
 
 /**

@@ -1,9 +1,5 @@
 package Bussines;
 
-import Data.Person;
-import java.util.Date;
-
-
 /**
  * FINAL()
  * @authors Andres Ardila, Esteban Ladino, Ivan Solano

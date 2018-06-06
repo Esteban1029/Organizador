@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package Gui;
-import Data.*;
-import Bussines.*;
+import Bussines.LoadDatas;
+import Data.Person;
 import static Gui.Invitados1.jTable1;
 import java.util.ArrayList;
-import javax.swing.*;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -131,10 +131,6 @@ public class InvitadoNuevo1 extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El Contacto Debe Tener Nombre!! ");
         }if(jTextField2.getText().equals("")){
             JOptionPane.showMessageDialog(null, "El Contacto Debe Tener Correo!! ");
-        }if(!jTextField2.getText().contains("@")){
-            
-            JOptionPane.showMessageDialog(null, "El Contacto debe Tener Un Correo Valido!! ");
-            
         }else{
             ArrayList <Person> guestList = LoadDatas.readPersons();
             Person persona = new Person(jTextField1.getText(),jTextField2.getText(),false);

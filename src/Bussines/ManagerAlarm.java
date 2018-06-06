@@ -3,18 +3,18 @@ package Bussines;
 import Data.Alarm;
 import Data.Event;
 import Data.Person;
+import Data.User;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
 import javax.mail.Transport;
-import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.sound.sampled.AudioInputStream;
@@ -33,24 +33,12 @@ public class ManagerAlarm{
     //Background method que revisa la vigencia de los eventos y alarmas
     public static void actionAlarms(){
         
-        
         System.out.println("actionAlarms ON");
         int contador=1;
         while(true){
             Date auxDate=new Date();
-            Person usuario=null;
             
-            for(Person persona: LoadDatas.readPersons()){
-                if(persona.isUser()){
-                    usuario = persona;
-                }
-                try{
-                    usuario.getNombre();
-                }catch(java.lang.NullPointerException exe){
-                    usuario =new Person(" ", " ", true);
-                }
-                
-            }
+            User usuario=LoadDatas.readUser();
             
             ArrayList<Event> events = LoadDatas.readEvents();
             try{
@@ -81,8 +69,6 @@ public class ManagerAlarm{
             }catch(NullPointerException ne){
                 System.out.println("No pending");
                 actionAlarms();
-            }catch(Exception e){
-                System.out.println("jejej Salu2");
             }
             LoadDatas.saveEvents(events);
             pause();
@@ -92,22 +78,32 @@ public class ManagerAlarm{
     public static void notification(Alarm a,Event e,ArrayList<Person> guestList,Person user){
         switch (a.getTipoAlarma()) {
             case "Sonido,Correo":
+            {
                 soundAlarm(e);
                 sendGmail(e, guestList, user);
                 break;
+            }
             case "Sonido":
+            {
                 soundAlarm(e);
                 break;
+            }
             case "Correo":
+            {
                 sendGmail(e, guestList, user);
                 System.out.println(a.toString()+" "+e.toString());
                 //System.exit(0);
                 break;
+            }
+                
             default:
+            {
                 System.out.println("Error notification");
                 System.out.println(a.toString()+" "+e.toString());
-                //System.exit(0);
                 break;
+            }
+                //System.exit(0);
+                
         }
     }
     //Alarma Correo.
@@ -123,8 +119,7 @@ public class ManagerAlarm{
                 System.out.println("."+e.getDate().toString()+".");
                 System.out.println("."+e.getDescription()+".");
                 
-                if(persona.getCorreo().contains("@gmail.com")||persona.getCorreo().contains("@outlook")
-                        ||persona.getCorreo().contains("@unal.edu.co")||persona.getCorreo().contains("@hotmail.com")||persona.getCorreo().contains("@hotmail.es"))
+                if(validEmail(persona.getCorreo()))
                 {
                     emailSystem(persona.getCorreo(), user.getNombre(), 
                     persona.getNombre(), e.getName(), e.getDate().toString(),
@@ -287,5 +282,14 @@ public class ManagerAlarm{
             
         }
     }
+
     
+    public static boolean validEmail(String email)
+    {
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");        
+        Matcher mather = pattern.matcher(email);
+        return mather.find();
+    }
 }

@@ -171,9 +171,19 @@ public class Invitados extends javax.swing.JFrame {
             for (int i = 0; i<x.length;i++){
                 a.add(List.get(x[i]));
             }
+            
+            if(EventGui.guestListmain.isEmpty()){
+                EventGui.guestListmain= a;
+            }else
+            {
+                for(Person p: a)
+                {
+                    EventGui.guestListmain.add(p);
+                }
+            }
 
 
-            EventGui.guestListmain= a;
+            
             int size = EventGui.guestListmain.size();
             EventGui.jTextPane1.setText(String.valueOf(size));
             JOptionPane.showMessageDialog(null, "Los Contactos Han Sido Agregados como Invitados a Su Evento!! ");
