@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Properties;
+import java.util.function.Consumer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.mail.Message;
@@ -153,12 +154,7 @@ public class ManagerAlarm{
          // Open audio clip and load samples from the audio input stream.
          clip.open(audioIn);
          clip.start();
-      } catch (UnsupportedAudioFileException e) {
-         e.printStackTrace();
-      } catch (IOException e) {
-         e.printStackTrace();
-      } catch (LineUnavailableException e) {
-         e.printStackTrace();
+      } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
       }
       
           
@@ -194,13 +190,11 @@ public class ManagerAlarm{
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(destino));   //Se podrían añadir varios de la misma manera
             message.setSubject(asunto);
             message.setText(cuerpo);
-            Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", remitente, clave);
-            transport.sendMessage(message, message.getAllRecipients());
-            transport.close();
+            try (Transport transport = session.getTransport("smtp")) {
+                transport.connect("smtp.gmail.com", remitente, clave);
+                transport.sendMessage(message, message.getAllRecipients());
+            }
         }catch(MessagingException me){
-            me.printStackTrace();
-
         }
 
      }
@@ -208,19 +202,11 @@ public class ManagerAlarm{
     public ArrayList<Event> ExpireAlarm(){
         ArrayList<Event> lisEve= new ArrayList();
         
-        for(Event evento: LoadDatas.readEvents())
-        {
-            if(!evento.isExpire())
-            {    
-                for(Alarm alarma:evento.getAlarm())
-                {
-                    if(alarma.isExpire())
-                    {
-                        lisEve.add(evento);
-                    }
-                }
-            }    
-        }
+        LoadDatas.readEvents().stream().filter((evento) -> (!evento.isExpire())).forEachOrdered((Event evento) -> {
+            evento.getAlarm().stream().filter((alarma) -> (alarma.isExpire())).forEachOrdered((_item) -> {
+                lisEve.add(evento);
+            });
+        });
         
         if(lisEve.isEmpty())
             return null;
@@ -228,23 +214,15 @@ public class ManagerAlarm{
         return lisEve;
         
     }
-    //Eventos que tienen alarmas pendiendes.
+    
     public static ArrayList<Event> pendingAlarm(){
         ArrayList<Event> lisEve= new ArrayList();
         
-        for(Event evento: LoadDatas.readEvents())
-        {
-            if(!evento.isExpire())
-            {    
-                for(Alarm alarma:evento.getAlarm())
-                {
-                    if(!alarma.isExpire()&&!alarma.isActivated())
-                    {
-                        lisEve.add(evento);
-                    }
-                }
-            }    
-        }
+        LoadDatas.readEvents().stream().filter((evento) -> (!evento.isExpire())).forEachOrdered((evento) -> {
+            evento.getAlarm().stream().filter((alarma) -> (!alarma.isExpire()&&!alarma.isActivated())).forEachOrdered((_item) -> {
+                lisEve.add(evento);
+            });
+        });
         
         if(lisEve.isEmpty())
             return null;
@@ -264,7 +242,7 @@ public class ManagerAlarm{
         }
     }
 
-    
+        
     public static boolean validEmail(String email)
     {
         Pattern pattern = Pattern
