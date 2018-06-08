@@ -125,7 +125,6 @@ public class Icons1 extends javax.swing.JFrame {
         
         ImageIcon iconoseleccion = iconos[index];
         evento.setIcon(iconoseleccion);
-        JOptionPane.showMessageDialog(null, "El icono Fue seleccionado Exitosamente!! ");
         jLabel8EvenEdit.setIcon(evento.getIcon());
         this.setVisible(false);
         

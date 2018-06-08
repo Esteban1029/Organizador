@@ -22,10 +22,10 @@ import java.util.ArrayList;
  * @author Esteban
  */
 public class LoadDatas {
-    static String fileNameEvents="Events.ser";
-    static String fileNameUser="User.ser";
-    static String fileNamePerson="Invitados.ser";
-    static String fileNameAlarm="Alarms.ser";
+    static String fileNameEvents="Data\\Events.ser";
+    static String fileNameUser="Data\\User.ser";
+    static String fileNamePerson="Data\\Invitados.ser";
+    static String fileNameAlarm="Data\\Alarms.ser";
     
     
      public static boolean saveEvents(ArrayList<Event> lisEve)

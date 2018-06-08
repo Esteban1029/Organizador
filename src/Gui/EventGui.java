@@ -68,18 +68,6 @@ public class EventGui extends javax.swing.JFrame {
                     fecha.setMinutes(minutos);
                     fecha.setSeconds(00);
                 }
-
-
-            if("".equals(jTextField1.getText())){
-               JOptionPane.showMessageDialog(null, "El evento debe tener un nombre!! "); 
-            }
-            if("".equals(jTextField2.getText())){
-               JOptionPane.showMessageDialog(null, "El evento debe tener un Lugar!! "); 
-            }
-            if("".equals(jTextArea1.getText())){
-               JOptionPane.showMessageDialog(null, "El evento debe tener una Descripcion!! "); 
-            }
-
         }catch(NullPointerException e)
         {
             return false;
@@ -92,10 +80,6 @@ public class EventGui extends javax.swing.JFrame {
           isDate=false; 
           return false;
            
-        }
-        else if(guestListmain.isEmpty()){
-            JOptionPane.showMessageDialog(null, "El evento debe tener al menos un invitado!! ");
-           return false; 
         }
         return true;
     }
@@ -371,7 +355,7 @@ public class EventGui extends javax.swing.JFrame {
             event=CrearAlarma.defaultEvent;
             boolean a=true;
             
-            if(event.getAlarm()==null||event.getAlarm().isEmpty())
+            if(event.getAlarm().isEmpty())
             {
                 ArrayList <Alarm> alarma= new ArrayList();
                 
@@ -407,35 +391,27 @@ public class EventGui extends javax.swing.JFrame {
             if(a){
                 JOptionPane.showMessageDialog(null, "El evento Fue guardado Exitosamente!! ");
                 try
-            {
-               for(Event e: LoadDatas.readEvents())
-               {
-                   if(!e.isExpire()) listModel.addElement(e);
-               }
-            }catch(NullPointerException e)
-            {
-                
-            }
+                    {
+                    for(Event e: LoadDatas.readEvents())
+                    {
+                           if(!e.isExpire()) listModel.addElement(e);
+                    }
+                }catch(NullPointerException e){}
                 
                 jList1MainScreen.setCellRenderer(new Renderer());
                 jList1MainScreen.setModel(listModel);
-//            for(int i=0; i<LoadDatas.readEvents().size(); i++) {
-//                listModel.add(i, LoadDatas.readEvents().get(i).getName()+"           "+LoadDatas.readEvents().get(i).getDate());
-//                //listModel.addElement(i);
-//            }
-//
-//            jList1MainScreen.setModel(listModel);
+
             }if(!a){
                 JOptionPane.showMessageDialog(null, "No pudo guardarse el Evento!! ");
             }
+            this.setVisible(false);
+            
+            
         }else
         {
          if(isDate)   JOptionPane.showMessageDialog(this, "Ingrese los datos de forma coherente ");
          isDate=true;
         }
-        
-        
-        
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

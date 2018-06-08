@@ -15,7 +15,7 @@ public class MainManager{
 //        
           ManagerAlarm.actionAlarms();
           
-     
+          
           
            /*for(Person persona: LoadDatas.readPersons()){
                System.out.println("."+persona.getCorreo()+".");

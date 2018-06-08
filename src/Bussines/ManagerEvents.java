@@ -10,6 +10,8 @@ package Bussines;
 
 
 import Data.Event;
+import static Gui.MainScreen.jList1MainScreen;
+import Gui.Renderer;
 
 
 import java.util.ArrayList;
@@ -92,25 +94,5 @@ public class  ManagerEvents{
         
     }
     
-    public void editEvent(){
-        
-    }
-    
-    public void createguestList(){
-        
-    }
-    
-    public ArrayList<Event> searchEvent(){
-        return null;
-    }
-    
-    
-         
-    
-    
-    
-    
-    
-    
-    
+
 }

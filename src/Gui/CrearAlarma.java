@@ -13,8 +13,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-
-
 /**
  *
  * @author Ivan Solano
@@ -88,11 +86,6 @@ public class CrearAlarma extends javax.swing.JFrame {
         jCheckBox2.setText("Correo");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
 
@@ -183,13 +176,15 @@ public class CrearAlarma extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -216,7 +211,6 @@ public class CrearAlarma extends javax.swing.JFrame {
        event=defaultEvent;
        listEvents=LoadDatas.readEvents();
        
-        System.out.println(event);
        if(!isFromEditEvent)
        {
            validDatas();
@@ -241,7 +235,6 @@ public class CrearAlarma extends javax.swing.JFrame {
         }
         else if(isFromCreateEvent)
         {   System.out.println("isFromCreateEvent"); 
-            // No se guarda que no se repita el objeto dos veces.
             defaultEvent=event;
             isFromCreateEvent=false;
             this.setVisible(false);
@@ -353,7 +346,7 @@ public class CrearAlarma extends javax.swing.JFrame {
             {
                     tipoAlarm=jCheckBox1.getLabel();
             }
-            else tipoAlarm=jCheckBox2.getLabel();
+            else tipoAlarm=jCheckBox1.getLabel();
             alarm= new Alarm(tipoAlarm,date);
             listAlarms=event.getAlarm(); 
             listAlarms.add(alarm);

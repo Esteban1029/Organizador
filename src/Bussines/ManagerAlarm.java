@@ -30,48 +30,39 @@ import javax.swing.JOptionPane;
  */
 public class ManagerAlarm{
 
+    private static int i=1;
+
     //Background method que revisa la vigencia de los eventos y alarmas
     public static void actionAlarms(){
         
         System.out.println("actionAlarms ON");
-        int contador=1;
-        while(true){
-            Date auxDate=new Date();
-            
+        while(true){            
             User usuario=LoadDatas.readUser();
             
             ArrayList<Event> events = LoadDatas.readEvents();
             try{
             for(Event evento: events){
                 if(!evento.isExpire()){
-                    for(Alarm alarma:evento.getAlarm()){
-                    
-                        System.out.println(evento.getAlarm().size());
-                        System.out.println(alarma.toString()+ " "+alarma.isActivated());
-                        
-                        System.out.println();
-                    
+                    for(Alarm alarma:evento.getAlarm()){                                            
                         if(alarma.getDate().compareTo(new Date())==-1&&!alarma.isActivated()){
                         
-                            System.out.println("inIF");
                             notification(alarma,evento,evento.getGuestList(), usuario);
                             alarma.setActivated();
                             
                         }else{
-                        
-                            System.out.println("outIF");
-                        
+                                                
                         }
                     }
                 }
-                System.out.println("Tu tranquilo "+contador++);
             }
             }catch(NullPointerException ne){
                 System.out.println("No pending");
                 actionAlarms();
             }
+            System.out.println("Tiempo de Ejecución: "+i++);
             LoadDatas.saveEvents(events);
             pause();
+          
         }
     }
     //Utiliza los dos métodos de abajo para notificar.
@@ -91,8 +82,6 @@ public class ManagerAlarm{
             case "Correo":
             {
                 sendGmail(e, guestList, user);
-                System.out.println(a.toString()+" "+e.toString());
-                //System.exit(0);
                 break;
             }
                 
@@ -102,7 +91,6 @@ public class ManagerAlarm{
                 System.out.println(a.toString()+" "+e.toString());
                 break;
             }
-                //System.exit(0);
                 
         }
     }
@@ -112,13 +100,6 @@ public class ManagerAlarm{
         for(Person persona: guestList){
             
             try{
-                System.out.println("."+persona.getCorreo()+".");
-                System.out.println("."+user.getNombre()+".");
-                System.out.println("."+persona.getNombre()+".");
-                System.out.println("."+e.getName()+".");
-                System.out.println("."+e.getDate().toString()+".");
-                System.out.println("."+e.getDescription()+".");
-                
                 if(validEmail(persona.getCorreo()))
                 {
                     emailSystem(persona.getCorreo(), user.getNombre(), 

@@ -19,7 +19,7 @@ public class About extends javax.swing.JFrame {
      */
     public About() {
         initComponents();
-        ImageIcon icon = new ImageIcon("EventManager.png");
+        ImageIcon icon = new ImageIcon("Icons\\EventManager.png");
         ImageIcon icon1 = new ImageIcon(icon.getImage().getScaledInstance(603,282,Image.SCALE_AREA_AVERAGING));
         jLabel5.setIcon(icon1);
         setResizable(false);
